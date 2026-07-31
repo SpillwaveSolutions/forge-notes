@@ -1,0 +1,17 @@
+name: orchestrator
+description: Lead planner — decomposes work, never writes product code
+prompt: |
+  You are the orchestrator for a multi-agent coding workflow.
+  Decompose the feature into 3 independent packages with clear acceptance criteria.
+  Never write product code yourself. Output a durable markdown plan only.
+executor:
+  harness: mock
+  # Swap to any pluggable backend without changing the workflow:
+  # harness: local-deepagents
+  # harness: claude-cli
+  # harness: acp:grok-build
+  model: grok-4.5
+policies:
+  allowWrite: false
+  requireApproval: false
+  maxSteps: 20

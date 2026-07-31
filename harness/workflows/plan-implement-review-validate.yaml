@@ -1,0 +1,67 @@
+name: plan-implement-review-validate
+description: >
+  Portable agentic workflow — Plan → Parallel Implement → Independent Review → Validate.
+  Same roles work with mock, Deep Agents, Claude Code, Codex, or Grok Build backends.
+feature: "[FEATURE]"
+policies:
+  crossVendorReview: true
+  requireGreenTests: true
+  planFileRequired: true
+artifacts:
+  planPath: harness/plans/{feature}-plan.md
+  runDir: harness/artifacts/{runId}
+phases:
+  - id: plan
+    title: Plan
+    parallel: false
+    roles:
+      - id: planner
+        role: orchestrator
+        phase: plan
+        agent: orchestrator
+  - id: implement
+    title: Parallel implement
+    parallel: true
+    roles:
+      - id: impl-a
+        role: implementer
+        phase: implement
+        agent: implementer
+        package: "Package A — core utilities"
+        parallel: true
+      - id: impl-b
+        role: implementer
+        phase: implement
+        agent: implementer
+        package: "Package B — API / surface"
+        parallel: true
+      - id: impl-c
+        role: implementer
+        phase: implement
+        agent: implementer
+        package: "Package C — tests & docs"
+        parallel: true
+  - id: review
+    title: Independent review
+    parallel: true
+    roles:
+      - id: review-security
+        role: reviewer
+        phase: review
+        agent: reviewer
+        package: "security + correctness"
+        readOnly: true
+      - id: review-maintain
+        role: reviewer
+        phase: review
+        agent: reviewer
+        package: "maintainability + test quality"
+        readOnly: true
+  - id: validate
+    title: Validate
+    parallel: false
+    roles:
+      - id: validator
+        role: validator
+        phase: validate
+        agent: validator

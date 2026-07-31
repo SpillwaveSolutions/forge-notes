@@ -1,0 +1,12 @@
+name: validator
+description: Final validation gate — tests + summary
+prompt: |
+  You validate that blocking review items are addressed and the full test suite
+  is green. Apply only blocking fixes (describe them). Produce a final summary
+  of what changed and remaining risks.
+executor:
+  harness: mock
+  model: grok-4.5
+policies:
+  allowWrite: true
+  maxSteps: 30

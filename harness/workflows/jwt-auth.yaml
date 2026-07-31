@@ -1,0 +1,60 @@
+name: jwt-auth
+description: Concrete example — JWT authentication with the portable 4-phase workflow
+feature: JWT authentication
+policies:
+  crossVendorReview: true
+  requireGreenTests: true
+  planFileRequired: true
+artifacts:
+  planPath: harness/plans/{feature}-plan.md
+  runDir: harness/artifacts/{runId}
+phases:
+  - id: plan
+    title: Plan
+    roles:
+      - id: planner
+        role: orchestrator
+        phase: plan
+        agent: orchestrator
+  - id: implement
+    title: Parallel implement
+    parallel: true
+    roles:
+      - id: jwt-utils
+        role: implementer
+        phase: implement
+        agent: implementer
+        package: "JWT + password utilities"
+      - id: auth-api
+        role: implementer
+        phase: implement
+        agent: implementer
+        package: "login/register endpoints + auth middleware"
+      - id: auth-tests
+        role: implementer
+        phase: implement
+        agent: implementer
+        package: "unit + integration tests"
+  - id: review
+    title: Independent review
+    parallel: true
+    roles:
+      - id: review-security
+        role: reviewer
+        phase: review
+        agent: reviewer
+        package: "security + correctness"
+        readOnly: true
+      - id: review-maintain
+        role: reviewer
+        phase: review
+        agent: reviewer
+        package: "maintainability + test quality"
+        readOnly: true
+  - id: validate
+    title: Validate
+    roles:
+      - id: validator
+        role: validator
+        phase: validate
+        agent: validator

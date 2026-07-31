@@ -1,0 +1,142 @@
+[
+  {
+    "phase": "start",
+    "roleId": "orchestrator",
+    "level": "info",
+    "message": "Workflow `jwt-auth` · feature: JWT authentication",
+    "ts": 1785519080032
+  },
+  {
+    "phase": "plan",
+    "roleId": "orchestrator",
+    "level": "info",
+    "message": "Phase: Plan",
+    "ts": 1785519080032
+  },
+  {
+    "phase": "plan",
+    "roleId": "planner",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080034
+  },
+  {
+    "phase": "plan",
+    "roleId": "planner",
+    "level": "result",
+    "message": "# Plan\n\n## Package A — Core utilities\n- Acceptance: pure functions covered by unit tests\n\n## Package B — API / integration surface\n- Acceptance: endpoints return expected contracts\n\n## Package C — Tes",
+    "ts": 1785519080034
+  },
+  {
+    "phase": "plan",
+    "roleId": "planner",
+    "level": "info",
+    "message": "Wrote plan → harness/plans/jwt-authentication-plan.md",
+    "ts": 1785519080037
+  },
+  {
+    "phase": "implement",
+    "roleId": "orchestrator",
+    "level": "info",
+    "message": "Phase: Parallel implement (parallel)",
+    "ts": 1785519080037
+  },
+  {
+    "phase": "implement",
+    "roleId": "jwt-utils",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080040
+  },
+  {
+    "phase": "implement",
+    "roleId": "jwt-utils",
+    "level": "result",
+    "message": "# Implementation notes (implementer)\n\nScope: Implement package for feature: JWT authentication Package focus: JWT + password utilities Stay in scope. Leave tests green for this package. Summarize file",
+    "ts": 1785519080040
+  },
+  {
+    "phase": "implement",
+    "roleId": "auth-api",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080040
+  },
+  {
+    "phase": "implement",
+    "roleId": "auth-api",
+    "level": "result",
+    "message": "# Implementation notes (implementer)\n\nScope: Implement package for feature: JWT authentication Package focus: login/register endpoints + auth middleware Stay in scope. Leave tests green for this packa",
+    "ts": 1785519080040
+  },
+  {
+    "phase": "implement",
+    "roleId": "auth-tests",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080040
+  },
+  {
+    "phase": "implement",
+    "roleId": "auth-tests",
+    "level": "result",
+    "message": "# Implementation notes (implementer)\n\nScope: Implement package for feature: JWT authentication Package focus: unit + integration tests Stay in scope. Leave tests green for this package. Summarize file",
+    "ts": 1785519080040
+  },
+  {
+    "phase": "review",
+    "roleId": "orchestrator",
+    "level": "info",
+    "message": "Phase: Independent review (parallel)",
+    "ts": 1785519080041
+  },
+  {
+    "phase": "review",
+    "roleId": "review-security",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080043
+  },
+  {
+    "phase": "review",
+    "roleId": "review-security",
+    "level": "result",
+    "message": "# Review (read-only)\n\n## Blocking\n- None identified in mock mode\n\n## Non-blocking\n- Add edge-case tests for error paths\n- Document public API surface\n\n_Reviewer agent: reviewer_\n_Scope: Review the imp",
+    "ts": 1785519080043
+  },
+  {
+    "phase": "review",
+    "roleId": "review-maintain",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080044
+  },
+  {
+    "phase": "review",
+    "roleId": "review-maintain",
+    "level": "result",
+    "message": "# Review (read-only)\n\n## Blocking\n- None identified in mock mode\n\n## Non-blocking\n- Add edge-case tests for error paths\n- Document public API surface\n\n_Reviewer agent: reviewer_\n_Scope: Review the imp",
+    "ts": 1785519080044
+  },
+  {
+    "phase": "validate",
+    "roleId": "orchestrator",
+    "level": "info",
+    "message": "Phase: Validate",
+    "ts": 1785519080044
+  },
+  {
+    "phase": "validate",
+    "roleId": "validator",
+    "level": "info",
+    "message": "Running via backend `mock`",
+    "ts": 1785519080047
+  },
+  {
+    "phase": "validate",
+    "roleId": "validator",
+    "level": "result",
+    "message": "# Validation\n\n- Tests: simulated green (mock backend)\n- Blocking review items: none or addressed\n- Remaining risks: mock run — re-run with a live CLI for real signal\n\n## Summary\nFeature task completed",
+    "ts": 1785519080047
+  }
+]

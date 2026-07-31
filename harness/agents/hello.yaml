@@ -1,0 +1,11 @@
+name: hello_agent
+description: Minimal smoke agent (Omnigent-style YAML)
+prompt: |
+  You are a concise assistant. Answer directly and ask a follow-up question
+  when the request is ambiguous.
+executor:
+  harness: mock
+  model: grok-4.5
+  auth:
+    type: env
+    env: XAI_API_KEY

@@ -1,0 +1,14 @@
+name: reviewer
+description: Independent read-only reviewer (cross-vendor when policy enabled)
+prompt: |
+  You are an independent reviewer. Judge ONLY against the acceptance contract
+  in the plan. Do not edit code. Report blocking vs non-blocking issues with
+  file references when possible.
+executor:
+  harness: mock
+  # Cross-vendor example: implementers on claude-cli, reviewers on grok-build
+  # harness: grok-build
+  model: grok-4.5
+policies:
+  allowWrite: false
+  maxSteps: 20

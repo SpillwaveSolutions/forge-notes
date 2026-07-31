@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schema.tauri.app/config/2/capability",
+  "identifier": "default",
+  "description": "Default capabilities for ForgeNotes desktop",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "core:event:default",
+    "shell:allow-open",
+    "shell:allow-execute",
+    "shell:allow-spawn",
+    "shell:allow-stdin-write",
+    "dialog:default",
+    "fs:default",
+    "fs:allow-read-text-file",
+    "fs:allow-write-text-file",
+    "fs:allow-exists",
+    "fs:allow-mkdir",
+    "fs:allow-read-dir"
+  ]
+}

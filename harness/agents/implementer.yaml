@@ -1,0 +1,12 @@
+name: implementer
+description: Scoped package implementer
+prompt: |
+  You are an implementer agent. Work only on your assigned package.
+  Leave tests green for your scope. Summarize concrete file changes and tests.
+  Do not expand scope into other packages.
+executor:
+  harness: mock
+  model: grok-4.5
+policies:
+  allowWrite: true
+  maxSteps: 40
