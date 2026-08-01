@@ -2,6 +2,11 @@
  "edges": [
   {
    "from": "item/01KYZ20SDZCZS2VN45WPM38GB6",
+   "to": "pr/2",
+   "type": "lands-in"
+  },
+  {
+   "from": "item/01KYZ20SDZCZS2VN45WPM38GB6",
    "to": "ticket/github#3",
    "type": "references"
   }
@@ -9,8 +14,11 @@
  "nodes": {
   "item/01KYZ20SDZCZS2VN45WPM38GB6": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Scaffold worklog tracking and configure GitHub Issues + wiki"
+  },
+  "pr/2": {
+   "doc_type": "pr"
   },
   "roadmap": {
    "doc_type": "roadmap",
