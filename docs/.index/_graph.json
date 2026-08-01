@@ -19,6 +19,41 @@
    "from": "item/01KYZ52T5VQ7HGKZTTDFTVX3KS",
    "to": "ticket/github#5",
    "type": "references"
+  },
+  {
+   "from": "item/01KYZ8XKMKNZXG4VH7JD53QVJ6",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XKS8JTKW475Z0V18GSYF",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XKXZHJ767E31NKS05WPR",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XM2SCZG43J0MD59P4ZHK",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XM7DGK443WDFCVJTVC40",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XMBYBDR7M7V95CZZ63F3",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XMGPWDJ8KXXK23KV47NT",
+   "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "type": "belongs-to"
   }
  ],
  "nodes": {
@@ -29,8 +64,48 @@
   },
   "item/01KYZ52T5VQ7HGKZTTDFTVX3KS": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Email & password sign-in for desktop and localhost"
+  },
+  "item/01KYZ8X1X1V76HYNK8B5JYMD9W": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Agent-runnable UI verification loop"
+  },
+  "item/01KYZ8XKMKNZXG4VH7JD53QVJ6": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 0: clear decks \u2014 commit CLAUDE.md, close out worklog state"
+  },
+  "item/01KYZ8XKS8JTKW475Z0V18GSYF": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 1: Vitest + Playwright WebKit foundation"
+  },
+  "item/01KYZ8XKXZHJ767E31NKS05WPR": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 2: debug-only Tauri MCP bridge"
+  },
+  "item/01KYZ8XM2SCZG43J0MD59P4ZHK": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 3: testability retrofit + login dark-mode fix"
+  },
+  "item/01KYZ8XM7DGK443WDFCVJTVC40": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 4: screenshot determinism and reveal controls"
+  },
+  "item/01KYZ8XMBYBDR7M7V95CZZ63F3": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 5: spec/wireframe/rubric pipeline, piloted on AiSetupWizard"
+  },
+  "item/01KYZ8XMGPWDJ8KXXK23KV47NT": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Phase 6: roll out to remaining screens, make the loop mandatory"
   },
   "pr/1": {
    "doc_type": "pr"
