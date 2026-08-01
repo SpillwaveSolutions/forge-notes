@@ -1,0 +1,14 @@
+' Source: src/components/ai/AiSetupWizard.tsx:533 McpStep
+' State: data-wizard-step="mcp", empty (no servers configured)
+@startsalt
+{+
+  {* AI setup · Deep Agents & coding CLIs | X }
+  --
+  { 1. Welcome | 2. Provider | 3. Credentials | <b>4. MCP tools | 5. Skills | 6. Test & finish }
+  ==
+  { MCP tools are used when backend is <b>Deep Agents. | [+ Add server] }
+  <i>No MCP servers yet.
+  --
+  { [Back] | . | [Continue] }
+}
+@endsalt

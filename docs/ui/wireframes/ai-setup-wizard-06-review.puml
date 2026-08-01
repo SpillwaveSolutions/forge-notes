@@ -1,0 +1,23 @@
+' Source: src/components/ai/AiSetupWizard.tsx:686 ReviewStep
+' State: data-wizard-step="review", before any connection test has run
+@startsalt
+{+
+  {* AI setup · Deep Agents & coding CLIs | X }
+  --
+  { 1. Welcome | 2. Provider | 3. Credentials | 4. MCP tools | 5. Skills | <b>6. Test & finish }
+  ==
+  {#
+    Backend      | LangChain Deep Agents
+    Streaming    | Preferred
+    Provider     | xAI · Grok · grok-4.5
+    API key      | Not set
+    MCP servers  | 0 enabled
+    Skills       | 5 enabled
+  }
+  .
+  { [Test connection] | . }
+  <i>Result appears here — network dependent, so it is specified but not rubric'd.
+  --
+  { [Back] | . | [Save & finish] }
+}
+@endsalt

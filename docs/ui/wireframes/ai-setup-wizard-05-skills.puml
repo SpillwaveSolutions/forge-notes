@@ -1,0 +1,20 @@
+' Source: src/components/ai/AiSetupWizard.tsx:647 SkillsStep
+' State: data-wizard-step="skills"
+@startsalt
+{+
+  {* AI setup · Deep Agents & coding CLIs | X }
+  --
+  { 1. Welcome | 2. Provider | 3. Credentials | 4. MCP tools | <b>5. Skills | 6. Test & finish }
+  ==
+  Skills for Deep Agents mode.
+  { . | . | [Enable all] }
+  .
+  { [X] summarize-page }
+  { [X] edit-block }
+  { [X] action-items }
+  { [X] table-from-notes }
+  { [X] mermaid-diagram }
+  --
+  { [Back] | . | [Continue] }
+}
+@endsalt

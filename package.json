@@ -29,7 +29,9 @@
     "test:e2e:install": "playwright install webkit",
     "desktop:mcp": "node scripts/launch-desktop-mcp.mjs",
     "ports": "node scripts/dev-ports.mjs status",
-    "ports:resolve": "node scripts/dev-ports.mjs resolve"
+    "ports:resolve": "node scripts/dev-ports.mjs resolve",
+    "ui:render": "plantuml -tpng -o png docs/ui/wireframes/*.puml",
+    "ui:check": "plantuml -checkonly docs/ui/wireframes/*.puml"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.3",

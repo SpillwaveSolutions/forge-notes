@@ -1,0 +1,18 @@
+' Source: src/components/ai/AiSetupWizard.tsx:254 WelcomeStep
+' State: data-wizard-step="welcome"
+@startsalt
+{+
+  {* AI setup · Deep Agents & coding CLIs | X }
+  Connect an API model, or shell out to Claude Code / Codex / Grok CLIs.
+  --
+  { <b>1. Welcome | 2. Provider | 3. Credentials | 4. MCP tools | 5. Skills | 6. Test & finish }
+  ==
+  Generate and edit content with <b>Deep Agents, provider APIs, or
+  <b>coding CLIs (Claude Code, Codex, Grok) — with streaming when available.
+  .
+  { <b>API path: | Grok / Claude / OpenAI / Ollama keys (browser-stored) }
+  { <b>CLI path: | `claude`, `codex`, `grok` already logged in on the host }
+  --
+  { [Back] | . | [Continue] }
+}
+@endsalt
