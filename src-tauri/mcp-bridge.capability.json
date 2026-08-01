@@ -1,0 +1,6 @@
+{
+  "identifier": "mcp-bridge",
+  "description": "Agent-driving MCP bridge. Debug-only: registered at runtime from lib.rs behind #[cfg(feature = \"mcp-bridge\")], never present in release builds.",
+  "windows": ["main"],
+  "permissions": ["mcp-bridge:default"]
+}

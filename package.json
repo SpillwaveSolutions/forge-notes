@@ -26,7 +26,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "test:e2e:install": "playwright install webkit"
+    "test:e2e:install": "playwright install webkit",
+    "desktop:mcp": "tauri dev --features mcp-bridge"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.3",

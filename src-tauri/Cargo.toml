@@ -12,11 +12,25 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
 
+[features]
+# Agent-driving MCP bridge: screenshots, DOM/accessibility snapshots, and IPC
+# monitoring of the running desktop app, consumed by @hypothesi/tauri-mcp-server.
+#
+# Off by default, so it is NOT compiled into release bundles. It has to be an
+# optional dependency behind a feature rather than `#[cfg(debug_assertions)]`:
+# `[target.'cfg(debug_assertions)'.dependencies]` is not valid Cargo, and a plain
+# dependency with a cfg only at the registration site still links the crate into
+# the release binary.
+#
+# Launch with: npm run desktop:mcp
+mcp-bridge = ["dep:tauri-plugin-mcp-bridge"]
+
 [dependencies]
 tauri = { version = "2", features = [] }
 tauri-plugin-shell = "2"
 tauri-plugin-dialog = "2"
 tauri-plugin-fs = "2"
+tauri-plugin-mcp-bridge = { version = "0.12", optional = true }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
