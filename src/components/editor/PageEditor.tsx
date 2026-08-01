@@ -246,7 +246,13 @@ export function PageEditor({ page }: PageEditorProps) {
           </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button type="button" size="sm" variant="ghost" className="text-muted-foreground">
+              <Button
+                type="button"
+                size="sm"
+                variant="ghost"
+                aria-label="Page actions"
+                className="text-muted-foreground"
+              >
                 <MoreHorizontal className="size-3.5" />
               </Button>
             </DropdownMenuTrigger>

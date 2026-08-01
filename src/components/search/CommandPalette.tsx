@@ -101,7 +101,17 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         onClick={() => onOpenChange(false)}
         aria-hidden
       />
-      <div className="absolute left-1/2 top-[18%] w-[min(560px,calc(100%-2rem))] -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-popover shadow-2xl">
+      {/* Hand-rolled rather than Radix (cmdk brings its own dialog handling), so
+          the a11y wiring Radix would supply has to be written out. Without it
+          the palette is an anonymous div: invisible to accessibility tooling and
+          unaddressable by an agent reading the accessibility tree. */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Command palette"
+        data-testid="command-palette"
+        className="absolute left-1/2 top-[18%] w-[min(560px,calc(100%-2rem))] -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-popover shadow-2xl"
+      >
         <Command className="flex flex-col" label="Search pages" shouldFilter={false}>
           <div className="flex items-center gap-2 border-b border-border px-3">
             <Search className="size-4 shrink-0 text-muted-foreground" />

@@ -394,6 +394,12 @@ export function BlockRow({
   return (
     <div
       ref={rowRef}
+      // Structural attributes, not one testid per block type: an agent can
+      // address and count all 14 types through these two, and they stay correct
+      // when a type is added. Reading type off class names is the alternative,
+      // and it breaks on any restyle.
+      data-block-id={block.id}
+      data-block-type={block.type}
       className={cn(
         "group relative flex items-start gap-1 rounded-md py-0.5",
         isFocused && "bg-muted/40",

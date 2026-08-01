@@ -1,5 +1,6 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
+import { useTheme } from "@/lib/use-theme";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -22,6 +23,9 @@ export const Route = createRootRoute({
 });
 
 function RootDocument() {
+  // At the root so EVERY route gets it, including /login.
+  useTheme();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
