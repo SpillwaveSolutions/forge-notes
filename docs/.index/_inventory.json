@@ -3,14 +3,28 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-08-01T20:39:59Z",
+   "generated_at": "2026-08-01T22:05:23Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": 1717302,
+   "source_hash": "32789d36",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Roadmap",
    "wiki_key": "roadmap"
+  },
+  {
+   "canonical_key": "roadmap-snapshot/2026-08-01_v0.2.0-release",
+   "date": "2026-08-01",
+   "doc_type": "roadmap-snapshot",
+   "generated_at": "2026-08-01T20:39:59Z",
+   "name": "v0.2.0-release",
+   "release": "v0.2.0",
+   "slug": "2026-08-01_v0.2.0-release",
+   "source": "docs/roadmap/2026-08-01_v0.2.0-release.md",
+   "source_hash": 1717302,
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-08-01_v0.2.0-release"
   }
  ],
  "version": 1
