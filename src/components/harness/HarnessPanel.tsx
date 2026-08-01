@@ -317,7 +317,9 @@ export function HarnessPanel({ open, onOpenChange }: HarnessPanelProps) {
                     >
                       {result.ok ? "ok" : "failed"}
                     </span>
-                    <span className="text-muted-foreground">
+                    {/* runId and duration differ every run — hidden in capture
+                        mode so a screenshot rubric is not comparing noise. */}
+                    <span data-volatile className="text-muted-foreground">
                       {result.runId} · {result.backend} · {result.durationMs}ms
                     </span>
                     {result.planPath && (

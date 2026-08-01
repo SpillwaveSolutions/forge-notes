@@ -112,3 +112,41 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Capture mode ─────────────────────────────────────────────────────────────
+   Set from localStorage by `useCaptureMode` (dev only). Screenshot rubrics need
+   the UI to hold still, and this works with ANY capture tool — the MCP browser
+   tools have no `mask` option, so a Playwright-specific solution would not help
+   the actual consumer.
+
+   Deliberately CSS rather than stubbing components: it cannot change behaviour,
+   only appearance, so a frozen screenshot still reflects the real render tree. */
+
+.ui-freeze *,
+.ui-freeze *::before,
+.ui-freeze *::after {
+  animation: none !important;
+  transition: none !important;
+  /* caret blink is a real source of two-pixel diffs in text fields */
+  caret-color: transparent !important;
+}
+
+/* Timed auto-dismiss makes toasts unscreenshootable. Assert them via DOM text
+   instead, and keep them out of the picture entirely. */
+.ui-freeze [data-sonner-toaster] {
+  display: none !important;
+}
+
+/* Values that differ every run (durations, run ids, timestamps). `visibility`
+   rather than `display` so the box keeps its size and the layout does not
+   reflow — the point is a stable screenshot, not a different one. */
+.ui-freeze [data-volatile] {
+  visibility: hidden !important;
+}
+
+/* Hover-gated affordances are opacity-0, not unmounted: clickable but absent
+   from a screenshot. `.ui-reveal` forces them visible so a rubric can capture
+   the revealed state deliberately, instead of chasing a real :hover. */
+.ui-reveal [data-hover-reveal] {
+  opacity: 1 !important;
+}
