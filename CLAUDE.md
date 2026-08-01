@@ -53,19 +53,52 @@ the tree are pre-wired template code that must not be rewritten — see **Frozen
 
 ```bash
 npm run dev          # vite dev on 0.0.0.0:8080 — port is a hard contract, see below
-npm run typecheck    # tsc --noEmit — the de facto correctness gate
+npm run typecheck    # tsc --noEmit
 npm run lint         # eslint .
+npm run test         # vitest run — unit tests, colocated as src/**/*.test.ts
+npm run test:e2e     # playwright test — WebKit, specs in e2e/
 npm run build        # vite build && db:migrate  (what Vercel runs)
 npm run tauri:dev    # desktop shell against the same dev server
 npm run build:desktop && npm run tauri:build   # two-stage desktop build
 node scripts/browser-smoke.mjs http://127.0.0.1:8080/ screenshots/smoke.png
 ```
 
-**There is no test runner.** No vitest/jest/playwright-test config, no `*.test.*` files, no
-`test` script. `playwright` is a devDependency used only by `scripts/browser-smoke.mjs`
-(headless load; exits 1 on nav failure, 2 on console errors). The ship gate is
-`typecheck` + `lint` + smoke. If you add tests, `node --test` with `tsx` needs no new
-dependency; `vitest` is not installed.
+## Testing
+
+**Unit tests are Vitest, colocated as `src/**/*.test.ts`** so `tsconfig`'s `include: ["src"]`
+typechecks them for free. Import test globals explicitly from `vitest` — `globals` is off on
+purpose, so every source file doesn't see ambient `describe`/`it`.
+
+`vitest.config.ts` is **standalone and must stay that way.** It deliberately does not reuse
+`vite.config.ts`: `pgliteBootstrapPlugin` is `apply: "serve"` and its `configureServer` awaits
+`ensureDbReady()` and rethrows, which would abort every run before a test executes. The
+standalone config loads no plugins at all, so that never fires.
+
+**There is no global setup file, deliberately.** A global `mockIPC` would make `isTauri()`
+return `true` everywhere and silently stop the web-mode half of `src/lib/tauri.ts` from ever
+being tested. Mock per file. One gotcha: `clearMocks()` leaves `window.__TAURI_INTERNALS__`
+behind, so delete it in `afterEach` or a later web-mode test still sees `isTauri() === true`.
+
+Don't unit-test the 7 `createServerFn` modules — they need the TanStack Start transform, which
+means the real dev server, which means e2e. `vi.mock` them at the call site instead. Never add
+`tanstackStart()` to the Vitest config to work around this.
+
+**E2E is Playwright, WebKit only** — that's the engine the desktop build actually uses.
+`playwright` and `@playwright/test` are pinned to **1.61.1 exact**: `scripts/browser-smoke.mjs`
+depends on chromium revision 1228, and floating the version silently invalidates it. Run
+`npm run test:e2e:install` once to fetch WebKit 2311.
+
+`webServer.reuseExistingServer` is on outside CI, so `npm run test:e2e` works whether or not
+`npm run dev` is already up — necessary because `strictPort: 8080` makes a second server
+hard-fail.
+
+**Watch for the SSR hydration race.** Buttons exist in server-rendered markup before React
+attaches handlers, so a single click can land on inert markup and do nothing. Wrap
+click-then-assert in `expect(...).toPass()`. You cannot wait on `networkidle` instead — the
+Vite HMR websocket means it never settles.
+
+No pixel-diff baselines (`toHaveScreenshot`): WebKit rendering shifts across macOS point
+releases and there is no Linux baseline, so committed PNGs churn.
 
 Two lint errors are pre-existing and unrelated to app code: a build artifact under
 `src-tauri/target/` that ESLint should be ignoring, and `rules-of-hooks` at
