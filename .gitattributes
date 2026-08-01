@@ -1,2 +1,5 @@
 .work/todo.jsonl merge=union
 .work/done.jsonl merge=union
+
+# rendered wireframes: committed, but not worth diffing
+docs/ui/wireframes/png/*.png binary -diff

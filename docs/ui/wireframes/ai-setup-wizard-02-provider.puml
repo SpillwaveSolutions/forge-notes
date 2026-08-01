@@ -1,0 +1,26 @@
+' Source: src/components/ai/AiSetupWizard.tsx:274 ProviderStep
+' State: data-wizard-step="provider"
+@startsalt
+{+
+  {* AI setup · Deep Agents & coding CLIs | X }
+  Connect an API model, or shell out to Claude Code / Codex / Grok CLIs.
+  --
+  { 1. Welcome | <b>2. Provider | 3. Credentials | 4. MCP tools | 5. Skills | 6. Test & finish }
+  ==
+  <b>Generation backend
+  {^"  "
+    { (X) <b>LangChain Deep Agents  | . }
+    { In-process agent with skills + MCP tools. | . }
+    { ( ) <b>Direct model API | . }
+    { Single-shot chat via provider API (streamable). | . }
+    { ( ) <b>Claude Code CLI   [on PATH] | . }
+    { Shell out to `claude` with stream-json when available. | . }
+    { ( ) <b>Codex CLI   [on PATH] | . }
+    { Shell out to `codex exec` (streams stdout). | . }
+    { ( ) <b>Grok CLI   [on PATH] | . }
+  }
+  [X] Prefer streaming when the backend supports it
+  --
+  { [Back] | . | [Continue] }
+}
+@endsalt
