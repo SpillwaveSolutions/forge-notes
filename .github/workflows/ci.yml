@@ -26,8 +26,52 @@ jobs:
         run: npm run lint
         continue-on-error: true
 
-# Playwright is deliberately NOT here yet. WebKit on ubuntu needs
-# `install --with-deps` (~90s), plus a dev server whose PGlite bootstrap
-# rethrows and kills the server on any hiccup — a flaky gate protecting a suite
-# whose current purpose is local visual feedback. Add it later as its own job so
-# its flakiness cannot block the unit gate.
+  # The enforceable half of the UI verification loop. The rubric walk itself is
+  # judgement and cannot be a CI job; what CI can insist on is that a screen
+  # change arrives with the spec that describes it.
+  ui-docs:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: screen changes carry a docs/ui update
+        if: "!contains(github.event.pull_request.title, '[skip-ui-docs]')"
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.event.pull_request.base.ref }}"
+          node scripts/check-ui-docs.mjs "origin/${{ github.event.pull_request.base.ref }}"
+
+      - name: wireframe syntax
+        uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "17" }
+      - run: sudo apt-get update && sudo apt-get install -y plantuml graphviz
+      - run: npm run ui:check
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      # WebKit only — the engine the desktop build actually uses. --with-deps
+      # pulls the system libraries GitHub's runner image lacks.
+      - run: npx playwright install --with-deps webkit
+      - run: npm run test:e2e
+        env:
+          CI: "true"
+
+# Note on the e2e job: it is the flakiest thing here. It boots a real dev server
+# whose PGlite WASM init can be slow, and whose bootstrap plugin RETHROWS on
+# failure — which kills the server and surfaces as a webServer timeout rather
+# than a useful error. If it starts blocking merges for reasons unrelated to the
+# change under review, add `continue-on-error: true` to `npm run test:e2e` rather
+# than deleting the job; an advisory signal still beats none.
