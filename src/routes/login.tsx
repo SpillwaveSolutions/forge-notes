@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { GROK_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/client";
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,12 @@ function LoginPage() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const localOrigin = isLocalAuthOrigin();
+  // Computed after mount, not during render. isLocalAuthOrigin() reads
+  // window.location, so it is false during SSR and true on the client — using
+  // it directly made the server and first client render disagree, which React
+  // reports as a hydration mismatch and recovers from by re-rendering.
+  const [localOrigin, setLocalOrigin] = useState(false);
+  useEffect(() => setLocalOrigin(isLocalAuthOrigin()), []);
 
   if (!isPending && user) {
     return <Navigate to="/" />;

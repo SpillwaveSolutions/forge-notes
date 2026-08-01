@@ -153,6 +153,8 @@ export function AiSetupWizard({ open, onOpenChange, initialStep = "welcome" }: A
               <li key={s.id}>
                 <button
                   type="button"
+                  data-testid={`wizard-step-${s.id}`}
+                  aria-current={i === stepIndex ? "step" : undefined}
                   onClick={() => setStepIndex(i)}
                   className={cn(
                     "rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors",
@@ -170,7 +172,9 @@ export function AiSetupWizard({ open, onOpenChange, initialStep = "welcome" }: A
           </ol>
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-6 py-5">
+        {/* One attribute makes every step assertable — "is the wizard on the MCP
+            step?" had no answer before this. */}
+        <div data-wizard-step={step.id} className="min-h-0 flex-1 overflow-y-auto px-6 py-5">
           {step.id === "welcome" && <WelcomeStep />}
           {step.id === "provider" && (
             <ProviderStep

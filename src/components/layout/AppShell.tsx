@@ -100,12 +100,6 @@ export function AppShell() {
     return () => window.removeEventListener("workspace:clear-mount", clear);
   }, [setMountSelection]);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "dark") root.classList.add("dark");
-    else root.classList.remove("dark");
-  }, [theme]);
-
   const showMount = Boolean(mountSelection && mount);
   const page = !showMount
     ? pages.find((p) => p.id === activePageId && !p.archived)
