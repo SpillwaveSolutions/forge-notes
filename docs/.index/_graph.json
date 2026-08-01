@@ -159,7 +159,7 @@
   },
   "item/01KYZNRHGD57V0EPG6AE4F2RSK": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Release v0.2.0"
   },
   "pr/1": {
