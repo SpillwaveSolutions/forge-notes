@@ -27,7 +27,9 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install webkit",
-    "desktop:mcp": "tauri dev --features mcp-bridge"
+    "desktop:mcp": "node scripts/launch-desktop-mcp.mjs",
+    "ports": "node scripts/dev-ports.mjs status",
+    "ports:resolve": "node scripts/dev-ports.mjs resolve"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.3",

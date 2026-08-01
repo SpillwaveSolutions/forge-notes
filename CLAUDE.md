@@ -104,6 +104,52 @@ Two lint errors are pre-existing and unrelated to app code: a build artifact und
 `src-tauri/target/` that ESLint should be ignoring, and `rules-of-hooks` at
 `src/components/layout/AppShell.tsx:78`. Don't treat a clean-lint run as achievable yet.
 
+## Ports (several agents share this laptop)
+
+Multiple agents run Tauri apps here, so ports collide. `scripts/dev-ports.mjs` brokers them:
+it **probes by actually binding** (the only check that sees other agents' apps, and Chrome,
+whose remote-debugging port is also 9223) and **remembers** the assignment per repo in
+`~/.config/tauri-dev-ports.json`.
+
+```bash
+npm run ports                              # what's assigned, and who holds it
+npm run ports:resolve                      # assign + persist
+node scripts/dev-ports.mjs check 9223      # is one port free? exit 0/1
+node scripts/dev-ports.mjs claim vite 8080 # pin explicitly
+node scripts/dev-ports.mjs release         # give this repo's ports back
+```
+
+Assignments are **sticky even when the port is busy** — busy nearly always means this repo's
+own app is already up, and drifting on every check would defeat the point. A genuine foreign
+collision shows in `npm run ports`, which names the holding process.
+
+`8080` is still the default (Grok live preview and `devUrl` assume it); `VITE_PORT` only
+overrides locally.
+
+## Desktop MCP bridge
+
+`npm run desktop:mcp` launches the app with the agent bridge and reuses a running dev server.
+Then connect with the port it prints.
+
+**The port it prints is the one that matters.** The plugin scans upward from its base, so the
+port it binds is often *not* the one requested — base 9223 landing on 9224 is normal, and a
+client assuming 9223 gets `no Tauri app found` while everything is in fact fine. The launcher
+parses the real port from `MCP Bridge plugin initialized … on HOST:PORT` and records it. Never
+run the launcher through a pipe that buffers (`| tail`), or you lose that line.
+
+Two more gotchas, both cost real time:
+- **The bridge only binds after the webview loads.** No dev server → no socket → looks
+  identical to "the plugin isn't registered".
+- **An unscoped `webview_dom_snapshot` times out** on this app's DOM. Pass `--selector` to
+  scope it; scoped accessibility snapshots return fast and are what the rubric loop wants.
+  Screenshots need a generous `--call-timeout` (30s is not enough; 120s works).
+
+The bridge is compiled **only** under the `mcp-bridge` cargo feature, so release builds never
+contain it. Its ACL capability lives at `src-tauri/mcp-bridge.capability.json` — deliberately
+**outside** `src-tauri/capabilities/`, because `tauri-build` globs that directory at compile
+time and validates permissions against the compiled plugin set; a default build would fail on
+the unknown `mcp-bridge:default` permission. It is registered at runtime inside the cfg block.
+
 ## Stack
 
 React 19 · TanStack Start / Router / Query · Vite 8 · Tailwind **v4** · TypeScript strict ·

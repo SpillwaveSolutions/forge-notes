@@ -14,3 +14,6 @@ __pycache__/
 # test output
 playwright-report/
 test-results/
+
+# machine-local port assignments (see scripts/dev-ports.mjs)
+.dev-ports.json
