@@ -127,7 +127,11 @@ function authPopupPlugin(): Plugin {
 export default defineConfig(({ command }) => ({
   server: {
     host: "0.0.0.0",
-    port: 8080,
+    // 8080 stays the default — the Grok live preview and tauri.conf.json's
+    // devUrl both assume it. VITE_PORT only overrides it locally, so several
+    // agents can each run a Tauri app on one laptop without colliding. It is
+    // set by scripts/dev-ports.mjs; see `npm run ports`.
+    port: Number(process.env.VITE_PORT) || 8080,
     strictPort: true,
     // Harness runs write plans/artifacts under /workspace — do not full-reload the app.
     watch: {
