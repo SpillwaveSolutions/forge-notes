@@ -3,3 +3,10 @@ node_modules/
 .github_repo
 .env
 .env.*
+
+# worklog wiki publish cache
+.work/wiki-checkout/
+
+# python bytecode
+__pycache__/
+*.pyc
