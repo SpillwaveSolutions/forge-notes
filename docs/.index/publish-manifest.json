@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "c5e65508dae5",
+   "render_hash": "84d52b7b02f8",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -91,11 +91,91 @@
    "wiki_key": "item/01KYZ52T5VQ7HGKZTTDFTVX3KS"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-01T17:21:02Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "render": "as-is",
+   "render_hash": "2945150feeac",
+   "source": "docs/.index/rendered/tickets/01KYZ8X1X1V76HYNK8B5JYMD9W.md",
+   "title": "Agent-runnable UI verification loop",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8X1X1V76HYNK8B5JYMD9W"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XKMKNZXG4VH7JD53QVJ6",
+   "render": "as-is",
+   "render_hash": "776ae22fc4bd",
+   "source": "docs/.index/rendered/tickets/01KYZ8XKMKNZXG4VH7JD53QVJ6.md",
+   "title": "Phase 0: clear decks \u2014 commit CLAUDE.md, close out worklog state",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XKMKNZXG4VH7JD53QVJ6"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XKS8JTKW475Z0V18GSYF",
+   "render": "as-is",
+   "render_hash": "8e2027ad2df9",
+   "source": "docs/.index/rendered/tickets/01KYZ8XKS8JTKW475Z0V18GSYF.md",
+   "title": "Phase 1: Vitest + Playwright WebKit foundation",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XKS8JTKW475Z0V18GSYF"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XKXZHJ767E31NKS05WPR",
+   "render": "as-is",
+   "render_hash": "eb9cf6df8410",
+   "source": "docs/.index/rendered/tickets/01KYZ8XKXZHJ767E31NKS05WPR.md",
+   "title": "Phase 2: debug-only Tauri MCP bridge",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XKXZHJ767E31NKS05WPR"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XM2SCZG43J0MD59P4ZHK",
+   "render": "as-is",
+   "render_hash": "8471585fdd5d",
+   "source": "docs/.index/rendered/tickets/01KYZ8XM2SCZG43J0MD59P4ZHK.md",
+   "title": "Phase 3: testability retrofit + login dark-mode fix",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XM2SCZG43J0MD59P4ZHK"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XM7DGK443WDFCVJTVC40",
+   "render": "as-is",
+   "render_hash": "3997d034894d",
+   "source": "docs/.index/rendered/tickets/01KYZ8XM7DGK443WDFCVJTVC40.md",
+   "title": "Phase 4: screenshot determinism and reveal controls",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XM7DGK443WDFCVJTVC40"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XMBYBDR7M7V95CZZ63F3",
+   "render": "as-is",
+   "render_hash": "152c898d7912",
+   "source": "docs/.index/rendered/tickets/01KYZ8XMBYBDR7M7V95CZZ63F3.md",
+   "title": "Phase 5: spec/wireframe/rubric pipeline, piloted on AiSetupWizard",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XMBYBDR7M7V95CZZ63F3"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ8XMGPWDJ8KXXK23KV47NT",
+   "render": "as-is",
+   "render_hash": "72c52c4bb7d3",
+   "source": "docs/.index/rendered/tickets/01KYZ8XMGPWDJ8KXXK23KV47NT.md",
+   "title": "Phase 6: roll out to remaining screens, make the loop mandatory",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ8XMGPWDJ8KXXK23KV47NT"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-01T18:20:58Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "7ac7be8a214d",
+   "render_hash": "01e0112ad0d1",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",

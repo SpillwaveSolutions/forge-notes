@@ -1,0 +1,170 @@
+<!-- worklog:policy:start -->
+## Work tracking policy
+
+- Every plan MUST end by running `worklog plan-capture` — it writes
+  `docs/plans/<date>-<slug>.md` and appends the plan's steps as work items.
+- Work discovered mid-flight that wasn't in the plan: run
+  `worklog add --unplanned --discovered-during <item>` BEFORE doing the work.
+- Never hand-edit `.work/*.jsonl` (use `worklog`) or `docs/roadmap.md`
+  (it is generated; change the work items instead).
+- After changing work items, run `worklog roadmap-render` and commit the log
+  and roadmap together.
+<!-- worklog:policy:end -->
+
+<!-- worklog:taxonomy:start -->
+## Work taxonomy
+
+Every work item sits on four independent axes:
+
+| Axis | Field | Values | Answers |
+|---|---|---|---|
+| Level | `level` | epic / story / task / subtask | size & place in the parent tree |
+| Kind | `kind` | feature / bug / ops / triage | nature of the work |
+| Milestone | `milestone` | free string (e.g. v0.6.0) or null | what ships together |
+| Planned | `unplanned` + `discovered_during` | bool + ULID | deliberate vs discovered |
+
+Rules (the validator enforces these; apply them when proposing items):
+1. Kind is free at story/task/subtask.
+2. Epics are `feature` or `ops` only — a bug is never epic-sized.
+3. `kind` defaults to `triage` when omitted — never silently default to feature.
+4. `bug.parent` is optional; bugs may float free of any epic.
+5. `milestone` lives on leaves (story and below); an epic's milestone derives from its children.
+6. `triage` and `ops` both trend down: triage shrinks by classifying, ops by automating.
+
+When trackable work surfaces in conversation, propose an item inline as part of
+the normal response — "want me to file this? `level:story kind:feature
+parent:<ulid> milestone:v0.6.0`" — and create it only on assent, via the
+work-track or plan-capture skill. When unsure of the kind, propose `kind:triage`
+with the open question stated — triage is the honest default, never a confident
+guess. This inline path is the default; the flag-gated classifier (`classifier:`
+in `.work/config.yml`, off by default) is the escape hatch for teams where work
+keeps escaping the log.
+<!-- worklog:taxonomy:end -->
+
+---
+
+# ForgeNotes
+
+A block-based notes app with AI assistance, shipping as **both** a web app (Vercel) and a
+desktop app (Tauri) from one React SPA. Grown from a Grok app-builder template, so parts of
+the tree are pre-wired template code that must not be rewritten — see **Frozen files** below.
+
+## Commands
+
+```bash
+npm run dev          # vite dev on 0.0.0.0:8080 — port is a hard contract, see below
+npm run typecheck    # tsc --noEmit — the de facto correctness gate
+npm run lint         # eslint .
+npm run build        # vite build && db:migrate  (what Vercel runs)
+npm run tauri:dev    # desktop shell against the same dev server
+npm run build:desktop && npm run tauri:build   # two-stage desktop build
+node scripts/browser-smoke.mjs http://127.0.0.1:8080/ screenshots/smoke.png
+```
+
+**There is no test runner.** No vitest/jest/playwright-test config, no `*.test.*` files, no
+`test` script. `playwright` is a devDependency used only by `scripts/browser-smoke.mjs`
+(headless load; exits 1 on nav failure, 2 on console errors). The ship gate is
+`typecheck` + `lint` + smoke. If you add tests, `node --test` with `tsx` needs no new
+dependency; `vitest` is not installed.
+
+Two lint errors are pre-existing and unrelated to app code: a build artifact under
+`src-tauri/target/` that ESLint should be ignoring, and `rules-of-hooks` at
+`src/components/layout/AppShell.tsx:78`. Don't treat a clean-lint run as achievable yet.
+
+## Stack
+
+React 19 · TanStack Start / Router / Query · Vite 8 · Tailwind **v4** · TypeScript strict ·
+Better Auth · PGlite *or* Postgres · Tauri 2 · LangChain + deepagents.
+
+## Frozen files — do not edit
+
+The template pre-wires auth and expects to be left alone. Rewriting these breaks live-preview
+sign-in in ways that are slow to diagnose.
+
+| Path | Rule |
+| --- | --- |
+| `src/lib/auth/*` | **Only `email-password.ts` is editable.** Everything else is pre-wired. |
+| `src/lib/auth/server.ts` | Frozen. It *reads* `emailAndPasswordEnabled`; flip the flag, never the config. |
+| `migrations/0001_auth.sql` | Better Auth CLI output. camelCase columns must stay double-quoted. |
+| `src/routeTree.gen.ts` | TanStack Router output. `@ts-nocheck`, eslint-ignored, but committed. |
+| `src/routes/auth/popup.tsx` | **Must not exist.** `/auth/popup` is served by `authPopupPlugin` in `vite.config.ts`; a React route there paints the app shell into the popup and breaks OAuth. |
+
+Also: **never create `.env` / `.env.local` / `.env.example`.** Nothing is required to run —
+auth falls back to a baked preview client, the DB falls back to in-memory PGlite.
+
+## Traps worth knowing before you touch anything
+
+**Port 8080 is a contract.** `vite.config.ts` binds `0.0.0.0:8080` with `strictPort`, Tauri's
+`devUrl` is `http://127.0.0.1:8080`, and the Grok live preview assumes it. Changing the port
+breaks preview and desktop at once. Relatedly, `nitro({ preset: "vercel" })` is gated on
+`command === "build"` — enabling it in dev opens a second port and breaks the single-port
+preview.
+
+**Loopback and auth.** Google/X sign-in federates through a shared broker whose preview OAuth
+client only accepts `*.grok-sandbox.com` callbacks, so social sign-in **cannot** work on
+`localhost`/Tauri. Email+password (`emailAndPasswordEnabled`) is the desktop path, and
+`src/lib/auth/server.ts` deliberately trusts all three loopback spellings on 8080. Fix an
+"Invalid origin" by opening the right origin — never by loosening CSRF.
+
+**Auth flicker.** Gate on `isPending`, never on `user === null` alone — `null` means *loading
+or signed out*, so redirecting on it bounces signed-in users on every hard reload.
+
+**The `.server` suffix is load-bearing.** Modules importing `@tanstack/react-start/server`
+must keep it, or Vite ships them to the browser and the app dies with
+`AsyncLocalStorage is not a constructor`.
+
+**Data access has no ORM.** Raw SQL through the tagged-template wrapper in `src/lib/db.ts`.
+Always go through `getSql()` — it normalizes driver differences between PGlite and `pg`
+(int8 → Number, date → `YYYY-MM-DD`, interval → text) so results stay JSON-safe. Bypassing it
+reintroduces `BigInt` values that `JSON.stringify` rejects. Kysely appears only as the Better
+Auth adapter dialect.
+
+**Migrations are recorded by filename in `_migrations` and never re-run.** Editing an applied
+file is a silent no-op — add a new ordered file (`0004_*.sql`). App tables are snake_case with
+`user_id TEXT` (TEXT, not UUID, because the dev user id is the literal `'dev-user'`).
+
+**`globalThis` state in `db.ts` / `auth/server.ts` is deliberate**, not sloppiness. It exists
+to survive HMR re-evaluation; making it module-level would double-open pools, race migrations,
+and invalidate live sessions mid-dev. Don't "clean it up."
+
+**Server functions must be called from client code.** `assertSameSiteRequest()` runs at the
+`authMiddleware` chokepoint and needs `Sec-Fetch-Site: same-origin`. Every server function
+touching per-user data needs `.middleware([authMiddleware])` and must scope **reads and
+writes** by `context.userId`.
+
+**`useSecureCookies: false` is intentional.** It suppresses Better Auth's `__Secure-` prefix so
+the code can set `__Host-`-prefixed names itself; `__Host-` forbids a `Domain` attribute, which
+is what stops a sibling `*.grok.me` app from injecting a session cookie. Do not "fix" it.
+
+**Known latent bug:** `src-tauri/tauri.conf.json` lists an icon named
+`icons/henry.w@example.net` — a scrubbing artifact from `128x128@2x.png`. Harmless today
+(file and reference agree) but wrong; fixing it means renaming the file and the config together.
+
+## Conventions
+
+- **Path alias `@/*` → `./src/*`**, declared in `tsconfig.json` only; Vite resolves via
+  `resolve: { tsconfigPaths: true }` — there is no `vite-tsconfig-paths` plugin.
+- **Tailwind v4 is CSS-first.** There is no `tailwind.config.*` and no `postcss.config.*`.
+  All tokens live in `src/styles.css` under `@theme`, with a `.dark` block. Add tokens there.
+- **UI primitives are hand-maintained**, shadcn-*style* but not CLI-managed — no
+  `components.json`, so `npx shadcn add` is not wired. Only 8 exist in `src/components/ui/`
+  (button, dialog, dropdown-menu, input, popover, scroll-area, separator, tooltip). Many
+  `@radix-ui/*` packages are installed without local wrappers; follow `button.tsx`'s pattern
+  (Radix + `Slot` for `asChild` + `cva` + `cn()`).
+- Naming: `*.server.ts` / `*-server.ts` = server-only. Feature folders under `components/`.
+  State via zustand with `persist`.
+- Prettier: double quotes, semicolons, trailing commas, **printWidth 100**.
+- `@typescript-eslint/no-explicit-any` is **off**; unused vars warn, with a `^_` escape.
+
+## Docs map
+
+Prefer editing these over adding new docs; several already cover what you might document.
+
+| File | What it holds |
+| --- | --- |
+| `AGENTS.md` (27 KB) | The **Grok sandbox** operating manual — container/preview contract, port rules, scaffold requirements. Partly stale now the repo is filled out and lives outside `/workspace`. Not a symlink to this file. |
+| `DEVELOPERS.md` | Setup, env vars, architecture, Tauri walkthrough, §11 QA, §12 conventions. |
+| `.grok/skills/*/SKILL.md` | 16 skill packages. `auth/` and `neon/` carry the binding auth and DB doctrine quoted above. |
+| `FEATURES.md` / `USER_GUIDE.md` | Capability inventory / end-user manual — update when user-visible behavior changes. |
+| `TAURI.md`, `harness/README.md` | Desktop packaging; the meta-harness CLI and YAML. |
+| `deepagents-root/AGENTS.md` | Runtime system prompt for the **in-app** AI agent, not developer guidance. |
