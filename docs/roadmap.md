@@ -2,7 +2,7 @@
 wiki_key: roadmap
 doc_type: roadmap
 truth_state: current
-source_hash: 4b57f170
+source_hash: 71152269
 generated_at: 2026-08-01T17:17:52Z
 ---
 
@@ -13,7 +13,7 @@ generated_at: 2026-08-01T17:17:52Z
 
 # Roadmap
 
-_0 epic(s) in flight, 2 open item(s), 0 blocked, 0 unclassified._
+_0 epic(s) in flight, 1 open item(s), 0 blocked, 0 unclassified._
 
 ## Now
 
@@ -26,7 +26,6 @@ _Nothing here._
 | # | Item | Type | Priority | Status | Blocked by |
 |---|---|---|---|---|---|
 | [5](https://github.com/SpillwaveSolutions/forge-notes/issues/5) | Email & password sign-in for desktop and localhost | story | P1 | todo | — |
-| [3](https://github.com/SpillwaveSolutions/forge-notes/issues/3) | Scaffold worklog tracking and configure GitHub Issues + wiki | task | P2 | todo | — |
 
 ## Later
 
@@ -38,16 +37,14 @@ _Nothing here._
 
 ```mermaid
 graph TD
-    01KYZ20SDZCZS2VN45WPM38GB6["🔧 Scaffold worklog tracking and"]
     01KYZ52T5VQ7HGKZTTDFTVX3KS["📦 Email & password sign-in for d"]
     classDef todo fill:#f4f4f4,stroke:#999999
-    class 01KYZ20SDZCZS2VN45WPM38GB6,01KYZ52T5VQ7HGKZTTDFTVX3KS todo
+    class 01KYZ52T5VQ7HGKZTTDFTVX3KS todo
 ```
 
 ### Hierarchy
 
 ```mermaid
 graph TD
-    01KYZ20SDZCZS2VN45WPM38GB6["🔧 Scaffold worklog tracking and"]
     01KYZ52T5VQ7HGKZTTDFTVX3KS["📦 Email & password sign-in for d"]
 ```

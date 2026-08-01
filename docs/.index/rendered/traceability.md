@@ -8,6 +8,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - references: [github#5](https://github.com/SpillwaveSolutions/forge-notes/issues/5)
 
 ### Scaffold worklog tracking and configure GitHub Issues + wiki
-`01KYZ20SDZCZS2VN45WPM38GB6` · status: todo
+`01KYZ20SDZCZS2VN45WPM38GB6` · status: done
+- lands-in: pr/2
 - references: [github#3](https://github.com/SpillwaveSolutions/forge-notes/issues/3)
 

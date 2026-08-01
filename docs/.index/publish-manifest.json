@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "fb961300581b",
+   "render_hash": "ce09b1fc41d2",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -62,12 +62,22 @@
   },
   {
    "frozen": false,
+   "page_name": "PR-2",
+   "render": "as-is",
+   "render_hash": "14f5e7ad19f2",
+   "source": "docs/.index/rendered/prs/2.md",
+   "title": "PR #2",
+   "truth_state": "not tracked",
+   "wiki_key": "pr/2"
+  },
+  {
+   "frozen": false,
    "page_name": "Ticket-01KYZ20SDZCZS2VN45WPM38GB6",
    "render": "as-is",
-   "render_hash": "1f474bd1b4f3",
+   "render_hash": "e4a69fb10ff8",
    "source": "docs/.index/rendered/tickets/01KYZ20SDZCZS2VN45WPM38GB6.md",
    "title": "Scaffold worklog tracking and configure GitHub Issues + wiki",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYZ20SDZCZS2VN45WPM38GB6"
   },
   {
@@ -85,7 +95,7 @@
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "e58a1165df41",
+   "render_hash": "00783c75b827",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
