@@ -4,6 +4,50 @@
 
 Built with React, TanStack Start, Tailwind, PGLite/Postgres, LangChain Deep Agents, and Tauri 2.
 
+<p align="center">
+  <img src="./screenshots/tauri-web-sidebar.png" alt="ForgeNotes workspace — sidebar, nested pages, cover image, and AI block" width="100%" />
+</p>
+
+---
+
+## Screenshots
+
+### Desktop workspace
+
+Notion-style sidebar with favorites, nested pages, linked markdown, and an inline AI block.
+
+![ForgeNotes desktop workspace](./screenshots/final-desktop.png)
+
+### Mobile
+
+Clean page view on a small screen — same blocks and covers, hamburger navigation.
+
+<p align="center">
+  <img src="./screenshots/final-mobile.png" alt="ForgeNotes on mobile" width="360" />
+</p>
+
+### AI in the editor
+
+Generate summaries, todos, tables, outlines, and diagrams from page context (Deep Agents + skills).
+
+![AI block summarizing a page](./screenshots/ai-deepagents-settings.png)
+
+Rewrite any block with Improve / Shorter / Expand / Fix grammar, or a custom instruction.
+
+![Edit block with AI dialog](./screenshots/ai-mermaid.png)
+
+### AI setup wizard
+
+Connect providers (Claude, Grok, OpenAI, Ollama…), credentials, MCP tools, and workspace skills.
+
+![AI setup wizard — Test & finish](./screenshots/ai-wizard.png)
+
+### Agent meta-harness
+
+Run Plan → Implement → Review → Validate workflows from the UI; swap backends without rewriting the workflow.
+
+![Meta-harness workflow panel with run results](./screenshots/harness-panel.png)
+
 ---
 
 ## Documentation
