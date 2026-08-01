@@ -260,7 +260,7 @@ export function Sidebar({ onOpenSearch, mobile, onNavigate }: SidebarProps) {
               <span className="shrink-0 text-sm">{page.icon || "📄"}</span>
               <span className="truncate">{page.title || "Untitled"}</span>
             </button>
-            <div className="flex items-center opacity-0 group-hover:opacity-100">
+            <div data-hover-reveal className="flex items-center opacity-0 group-hover:opacity-100">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button
@@ -468,6 +468,7 @@ export function Sidebar({ onOpenSearch, mobile, onNavigate }: SidebarProps) {
                   </button>
                   <button
                     type="button"
+                    data-hover-reveal
                     className="flex size-6 items-center justify-center rounded opacity-0 group-hover:opacity-100 hover:bg-black/5"
                     title="Unlink"
                     onClick={() => removeMount(m.id)}

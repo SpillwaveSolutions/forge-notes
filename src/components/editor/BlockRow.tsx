@@ -530,6 +530,9 @@ function BlockHandles({
 }) {
   return (
     <div
+      // opacity-0, not unmounted — clickable but invisible to a screenshot.
+      // `.ui-reveal` targets this so a rubric can capture the revealed state.
+      data-hover-reveal
       className={cn(
         "absolute -left-12 top-1 flex items-center gap-0.5 opacity-0 transition-opacity max-sm:-left-10",
         visible && "opacity-100",

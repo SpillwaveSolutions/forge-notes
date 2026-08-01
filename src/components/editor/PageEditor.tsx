@@ -150,7 +150,10 @@ export function PageEditor({ page }: PageEditorProps) {
       {cover ? (
         <div className="group/cover relative -mx-4 mb-2 h-36 overflow-hidden rounded-xl sm:-mx-6 sm:h-44">
           <div className={cn("absolute inset-0", cover.className)} />
-          <div className="absolute bottom-3 right-3 opacity-0 transition-opacity group-hover/cover:opacity-100">
+          <div
+            data-hover-reveal
+            className="absolute bottom-3 right-3 opacity-0 transition-opacity group-hover/cover:opacity-100"
+          >
             <Button
               type="button"
               size="sm"
