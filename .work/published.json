@@ -1,10 +1,10 @@
 {
   "_sidebar": {
     "page_id": "_Sidebar",
-    "render_hash": "bf90917cf238",
-    "rev": "583d418a24e35809fb1cb63af4c2fc62a396195b",
+    "render_hash": "91a4f6fc4c69",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
     "source": "docs/.index/rendered/_Sidebar.md",
-    "source_hash": "bf90917cf238",
+    "source_hash": "91a4f6fc4c69",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/_Sidebar"
   },
   "home": {
@@ -25,10 +25,10 @@
   },
   "index/releases": {
     "page_id": "Index-Releases",
-    "render_hash": "f45668ba0034",
-    "rev": "583d418a24e35809fb1cb63af4c2fc62a396195b",
+    "render_hash": "857376f85471",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
     "source": "docs/.index/rendered/releases.md",
-    "source_hash": "f45668ba0034",
+    "source_hash": "857376f85471",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Index-Releases"
   },
   "index/status": {
@@ -41,10 +41,10 @@
   },
   "index/traceability": {
     "page_id": "Index-Traceability",
-    "render_hash": "edae77684f6f",
-    "rev": "140e4d92cbd947c846f4dc1cb4d029d6c5e7c8a3",
+    "render_hash": "6ad110b5e3bf",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
     "source": "docs/.index/rendered/traceability.md",
-    "source_hash": "edae77684f6f",
+    "source_hash": "6ad110b5e3bf",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Index-Traceability"
   },
   "item/01KYZ20SDZCZS2VN45WPM38GB6": {
@@ -127,6 +127,14 @@
     "source_hash": "2e7127f97dd7",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Ticket-01KYZ8XMGPWDJ8KXXK23KV47NT"
   },
+  "item/01KYZNRHGD57V0EPG6AE4F2RSK": {
+    "page_id": "Ticket-01KYZNRHGD57V0EPG6AE4F2RSK",
+    "render_hash": "3cb23bb74383",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
+    "source": "docs/.index/rendered/tickets/01KYZNRHGD57V0EPG6AE4F2RSK.md",
+    "source_hash": "3cb23bb74383",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Ticket-01KYZNRHGD57V0EPG6AE4F2RSK"
+  },
   "pr/1": {
     "page_id": "PR-1",
     "render_hash": "dbad4d5b4c3c",
@@ -191,16 +199,36 @@
     "source_hash": "16ee4b0f5b0a",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/PR-9"
   },
+  "release/v0.2.0": {
+    "page_id": "Release-v0.2.0",
+    "render_hash": "ecb854522776",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
+    "source": "docs/.index/rendered/releases/v0.2.0.md",
+    "source_hash": "ecb854522776",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Release-v0.2.0"
+  },
   "roadmap": {
     "canonical_key": "roadmap",
     "doc_type": "roadmap",
     "page_id": "Roadmap",
-    "render_hash": "b1478e49d97f",
-    "rev": "140e4d92cbd947c846f4dc1cb4d029d6c5e7c8a3",
+    "render_hash": "4fc5cd079494",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
     "source": "docs/roadmap.md",
-    "source_hash": "b3c762cd5d7c",
+    "source_hash": "8cafd00c2dd2",
     "truth_state": "current",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Roadmap",
     "wiki_key": "roadmap"
+  },
+  "roadmap-snapshot/2026-08-01_v0.2.0-release": {
+    "canonical_key": "roadmap-snapshot/2026-08-01_v0.2.0-release",
+    "doc_type": "roadmap-snapshot",
+    "page_id": "Roadmap-2026-08-01_v0.2.0-release",
+    "render_hash": "e96725deb3d0",
+    "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
+    "source": "docs/roadmap/2026-08-01_v0.2.0-release.md",
+    "source_hash": "ec231b4855de",
+    "truth_state": "snapshot",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Roadmap-2026-08-01_v0.2.0-release",
+    "wiki_key": "roadmap-snapshot/2026-08-01_v0.2.0-release"
   }
 }
