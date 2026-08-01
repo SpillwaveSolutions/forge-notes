@@ -2,6 +2,9 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Release v0.2.0
+`01KYZNRHGD57V0EPG6AE4F2RSK` · status: todo
+
 ### Phase 6: roll out to remaining screens, make the loop mandatory
 `01KYZ8XMGPWDJ8KXXK23KV47NT` · status: todo
 - belongs-to: Agent-runnable UI verification loop
