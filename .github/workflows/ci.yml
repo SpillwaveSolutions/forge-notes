@@ -1,0 +1,33 @@
+name: ci
+
+# Separate from worklog.yml on purpose: that job is scoped to git-log
+# invariants, and a red X labelled "worklog-invariants" because a unit test
+# failed would be a misleading signal.
+on: [push, pull_request]
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run test
+
+      # Not a gate yet: two pre-existing errors unrelated to app code — a build
+      # artifact under src-tauri/target/ that ESLint should be ignoring, and
+      # rules-of-hooks at src/components/layout/AppShell.tsx:78.
+      - name: lint (advisory until the two pre-existing errors are fixed)
+        run: npm run lint
+        continue-on-error: true
+
+# Playwright is deliberately NOT here yet. WebKit on ubuntu needs
+# `install --with-deps` (~90s), plus a dev server whose PGlite bootstrap
+# rethrows and kills the server on any hiccup — a flaky gate protecting a suite
+# whose current purpose is local visual feedback. Add it later as its own job so
+# its flakiness cannot block the unit gate.

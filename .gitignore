@@ -10,3 +10,7 @@ node_modules/
 # python bytecode
 __pycache__/
 *.pyc
+
+# test output
+playwright-report/
+test-results/

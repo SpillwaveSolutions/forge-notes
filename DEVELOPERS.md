@@ -418,6 +418,13 @@ More narrative detail: [TAURI.md](./TAURI.md).
 # type safety
 npm run typecheck
 
+# unit tests (Vitest, colocated as src/**/*.test.ts)
+npm run test
+
+# e2e (Playwright, WebKit only — the engine the desktop build uses)
+npm run test:e2e:install   # once: fetches WebKit 2311
+npm run test:e2e           # works with or without `npm run dev` already running
+
 # browser smoke (example helper)
 mkdir -p screenshots
 node scripts/browser-smoke.mjs http://127.0.0.1:8080/ screenshots/smoke.png
