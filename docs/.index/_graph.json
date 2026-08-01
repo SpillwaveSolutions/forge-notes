@@ -21,9 +21,19 @@
    "type": "references"
   },
   {
+   "from": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
+   "to": "ticket/github#12",
+   "type": "references"
+  },
+  {
    "from": "item/01KYZ8XKMKNZXG4VH7JD53QVJ6",
    "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XKMKNZXG4VH7JD53QVJ6",
+   "to": "pr/6",
+   "type": "lands-in"
   },
   {
    "from": "item/01KYZ8XKS8JTKW475Z0V18GSYF",
@@ -31,9 +41,19 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYZ8XKS8JTKW475Z0V18GSYF",
+   "to": "pr/7",
+   "type": "lands-in"
+  },
+  {
    "from": "item/01KYZ8XKXZHJ767E31NKS05WPR",
    "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XKXZHJ767E31NKS05WPR",
+   "to": "pr/8",
+   "type": "lands-in"
   },
   {
    "from": "item/01KYZ8XM2SCZG43J0MD59P4ZHK",
@@ -41,9 +61,19 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYZ8XM2SCZG43J0MD59P4ZHK",
+   "to": "pr/9",
+   "type": "lands-in"
+  },
+  {
    "from": "item/01KYZ8XM7DGK443WDFCVJTVC40",
    "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XM7DGK443WDFCVJTVC40",
+   "to": "pr/10",
+   "type": "lands-in"
   },
   {
    "from": "item/01KYZ8XMBYBDR7M7V95CZZ63F3",
@@ -51,9 +81,19 @@
    "type": "belongs-to"
   },
   {
+   "from": "item/01KYZ8XMBYBDR7M7V95CZZ63F3",
+   "to": "pr/11",
+   "type": "lands-in"
+  },
+  {
    "from": "item/01KYZ8XMGPWDJ8KXXK23KV47NT",
    "to": "item/01KYZ8X1X1V76HYNK8B5JYMD9W",
    "type": "belongs-to"
+  },
+  {
+   "from": "item/01KYZ8XMGPWDJ8KXXK23KV47NT",
+   "to": "ticket/github#13",
+   "type": "references"
   }
  ],
  "nodes": {
@@ -74,32 +114,32 @@
   },
   "item/01KYZ8XKMKNZXG4VH7JD53QVJ6": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 0: clear decks \u2014 commit CLAUDE.md, close out worklog state"
   },
   "item/01KYZ8XKS8JTKW475Z0V18GSYF": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 1: Vitest + Playwright WebKit foundation"
   },
   "item/01KYZ8XKXZHJ767E31NKS05WPR": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 2: debug-only Tauri MCP bridge"
   },
   "item/01KYZ8XM2SCZG43J0MD59P4ZHK": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 3: testability retrofit + login dark-mode fix"
   },
   "item/01KYZ8XM7DGK443WDFCVJTVC40": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 4: screenshot determinism and reveal controls"
   },
   "item/01KYZ8XMBYBDR7M7V95CZZ63F3": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Phase 5: spec/wireframe/rubric pipeline, piloted on AiSetupWizard"
   },
   "item/01KYZ8XMGPWDJ8KXXK23KV47NT": {
@@ -110,7 +150,25 @@
   "pr/1": {
    "doc_type": "pr"
   },
+  "pr/10": {
+   "doc_type": "pr"
+  },
+  "pr/11": {
+   "doc_type": "pr"
+  },
   "pr/2": {
+   "doc_type": "pr"
+  },
+  "pr/6": {
+   "doc_type": "pr"
+  },
+  "pr/7": {
+   "doc_type": "pr"
+  },
+  "pr/8": {
+   "doc_type": "pr"
+  },
+  "pr/9": {
    "doc_type": "pr"
   },
   "roadmap": {
@@ -118,6 +176,14 @@
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current"
+  },
+  "ticket/github#12": {
+   "doc_type": "ticket",
+   "url": "https://github.com/SpillwaveSolutions/forge-notes/issues/12"
+  },
+  "ticket/github#13": {
+   "doc_type": "ticket",
+   "url": "https://github.com/SpillwaveSolutions/forge-notes/issues/13"
   },
   "ticket/github#3": {
    "doc_type": "ticket",
