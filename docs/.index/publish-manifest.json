@@ -251,11 +251,11 @@
    "wiki_key": "item/01KYZNRHGD57V0EPG6AE4F2RSK"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-01T20:39:59Z. Historical snapshots are linked from [[Index-Releases]].",
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-01T22:05:23Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "b1478e49d97f",
+   "render_hash": "4fc5cd079494",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
