@@ -439,30 +439,70 @@ If the shared contract isn’t ready, stay sequential.
    preview. **Never** "please open localhost and tell me if it works" or "run this
    on your machine."
 
-### Browser QA (agent-driven only; the user is not your QA)
+### Work tracking (enforced by git hooks)
 
-Use whatever browser capability you have **yourself**, so quality beats
-curl-only. All of this runs **in the sandbox** against `http://127.0.0.1:8080` —
-it is **not** the user's Grok chat tab.
+`core.hooksPath=hooks`, so these run for every clone — no per-developer install.
 
-1. **Grok browser / computer-use / MCP browser tools** if listed — open
-   `http://127.0.0.1:8080`, glance at the UI, screenshot if supported.
-2. **`web_fetch`** on that URL for an HTML-only check.
-3. **Playwright helper (preinstalled)** — simple load + screenshot.
-   **Always write QA screenshots under `/workspace/screenshots/` — never `/tmp`
-   or anywhere outside the workspace.** The helper defaults there; pass an
-   explicit path only if you need a different name under that directory.
+- **Every commit message must cite a 26-char ULID or a `#123` ticket.** File the
+  item first (`./bin/worklog add --level task --kind ops --body "..." "title"`
+  prints the ULID), then reference it. Merge commits are exempt.
+- **`main` is pull-only.** Commit on a branch.
+- **Never hand-edit `.work/*.jsonl` or `docs/roadmap.md`** — both are generated.
+  Change the work items, then `./bin/worklog roadmap-render`.
+- If pre-commit warns about staleness, run `./bin/worklog ia-inventory` and
+  `ia-render`, and commit the result alongside your change.
+
+Full policy and the four-axis work taxonomy live in `CLAUDE.md`.
+
+### UI verification (mandatory — the user is not your QA)
+
+Any change under `src/components/**` or `src/routes/**` MUST update the matching
+`docs/ui/<screen>.md`, its `.puml`, and re-run `npm run ui:render`. A new screen
+means a new doc. This is enforced in CI — see `.github/workflows/ci.yml`.
+
+**The loop.** Read the screen's doc. Follow its *Capture recipe* verbatim. Screenshot
+the running app. Compare against the wireframe and the four rubric lists, reporting
+per-item pass/fail **with a reason**. It is a checklist review, not a pixel diff —
+which is why *Acceptable Differences* has to be written honestly, or every run
+reports noise and the rubric gets ignored within a week.
+
+**Where things live** — `docs/ui/README.md` is the index. These files sit OUTSIDE
+the worklog IA (`bin/ia.py` globs a fixed allow-list), so they need no frontmatter,
+no `wiki_key`, and never run through `ia-normalize`.
+
+**Capture prerequisites.** Seed via `localStorage` before the page loads — no click
+path needed, and it works with any capture tool:
+
+| Key | Effect |
+|---|---|
+| `workspace-v1` | Theme: `{"state":{"theme":"dark"},"version":0}` |
+| `forgenotes-ui-freeze` | Stops animation, hides toasts and `[data-volatile]`, blanks the caret |
+| `forgenotes-ui-reveal` | Forces `[data-hover-reveal]` affordances visible |
+
+Viewport 1280x800 desktop, 390x844 mobile. Never capture mid-stream. Screens with
+hover affordances need TWO captures, `-rest` and `-reveal`.
+
+**Addressability rules for new code.** Prefer one structural `data-*` carrying a
+variant (`data-block-type={block.type}`) over N enumerated testids. Every icon-only
+button gets an `aria-label` — `webview_dom_snapshot` returns an accessibility tree,
+so an unnamed control is one the agent cannot see. Every new form control gets
+`id` + `htmlFor`.
+
+**Two capture paths.** Playwright WebKit (`npm run test:e2e`) for anything CI must
+check. The MCP bridge (`npm run desktop:mcp`) for the real macOS WKWebView — that
+one is local-only by nature.
 
 ```bash
-mkdir -p /workspace/screenshots
-node scripts/browser-smoke.mjs http://127.0.0.1:8080/ /workspace/screenshots/app-builder-preview.png
-# Then Read /workspace/screenshots/app-builder-preview.png if you have an image tool, and iterate if it looks wrong.
+npm run test && npm run test:e2e   # the automated half
+npm run ui:check                   # wireframe syntax
+npm run desktop:mcp                # then follow the capture recipe
 ```
 
-Depth is **your judgment**: a landing page screenshot is usually enough. For a
-game with WASD / vehicles / flight, still verify control signs (A left / D right
-from a chase cam) per **`.grok/skills/controls/SKILL.md`** — you don't have to
-play end-to-end, but inverted A/D must not ship.
+Gotchas that cost real time: a `location.reload()` from injected JS strips the
+bridge's `window.__MCP__` helper (restart the driver session); an unscoped
+`webview_dom_snapshot` times out (pass `--selector`); screenshots need
+`--call-timeout 120000`.
+
 
 ### Communication rules (avoid confusing the user)
 

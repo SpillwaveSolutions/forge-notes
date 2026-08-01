@@ -57,6 +57,10 @@ npm run typecheck    # tsc --noEmit
 npm run lint         # eslint .
 npm run test         # vitest run — unit tests, colocated as src/**/*.test.ts
 npm run test:e2e     # playwright test — WebKit, specs in e2e/
+npm run ui:render    # docs/ui wireframes: .puml -> png/
+npm run ui:check     # wireframe syntax only
+npm run ports        # which dev ports this repo holds
+npm run desktop:mcp  # desktop app + agent bridge, on brokered ports
 npm run build        # vite build && db:migrate  (what Vercel runs)
 npm run tauri:dev    # desktop shell against the same dev server
 npm run build:desktop && npm run tauri:build   # two-stage desktop build
@@ -103,6 +107,40 @@ releases and there is no Linux baseline, so committed PNGs churn.
 Two lint errors are pre-existing and unrelated to app code: a build artifact under
 `src-tauri/target/` that ESLint should be ignoring, and `rules-of-hooks` at
 `src/components/layout/AppShell.tsx:78`. Don't treat a clean-lint run as achievable yet.
+
+## UI verification — mandatory, and gated in CI
+
+**Any change under `src/components/**` or `src/routes/**` must update the matching
+`docs/ui/<screen>.md` and its `.puml`, then `npm run ui:render`.** CI enforces this
+(`scripts/check-ui-docs.mjs`); a genuinely non-visual change can carry `[skip-ui-docs]` in the
+PR title, with the reason stated in the body.
+
+The full protocol lives in **`AGENTS.md`** — that file is what Grok/Codex/OpenCode read, so it
+is canonical rather than this one. `docs/ui/README.md` is the index.
+
+What CI can and cannot check is worth being precise about: the **rubric walk is judgement** —
+an agent reading a screenshot against a checklist — and no CI job can do it. What CI enforces
+is the cheap deterministic invariant: screen code moved, so the spec describing it moved too.
+It cannot tell whether the doc was updated *well*, only that it was not skipped.
+
+**Capture mode** (dev-only) is seeded through `localStorage` so it can be set before the page
+loads, which is why it works with any capture tool — the MCP browser tools have no `mask`
+option:
+
+| Key | Effect |
+|---|---|
+| `workspace-v1` | Theme: `{"state":{"theme":"dark"},"version":0}` |
+| `forgenotes-ui-freeze` | Stops animation/transitions, hides toasts and `[data-volatile]`, blanks the caret |
+| `forgenotes-ui-reveal` | Forces `[data-hover-reveal]` affordances visible |
+
+Hover affordances are `opacity-0`, **not unmounted** — clickable but absent from a screenshot.
+That asymmetry is the trap `.ui-reveal` exists to close, so screens with them need two
+captures, `-rest` and `-reveal`.
+
+When writing new UI: prefer one structural `data-*` carrying a variant
+(`data-block-type={block.type}`) over N testids; give every icon-only button an `aria-label`
+(the agent reads an accessibility tree, so an unnamed control is invisible to it); give every
+form control `id` + `htmlFor`.
 
 ## Ports (several agents share this laptop)
 
@@ -241,7 +279,8 @@ Prefer editing these over adding new docs; several already cover what you might 
 
 | File | What it holds |
 | --- | --- |
-| `AGENTS.md` (27 KB) | The **Grok sandbox** operating manual — container/preview contract, port rules, scaffold requirements. Partly stale now the repo is filled out and lives outside `/workspace`. Not a symlink to this file. |
+| `AGENTS.md` | **Canonical for the UI verification protocol and the work-tracking rules** — it is what Grok/Codex/OpenCode read, so policy lives there and this file points at it. Also the Grok sandbox operating manual (container/preview contract, port rules, scaffold requirements), parts of which are stale now the repo lives outside `/workspace`. Not a symlink to this file. |
+| `docs/ui/` | Per-screen spec + wireframe + rubric + capture recipe. `README.md` is the index; `TEMPLATE.md` starts a new screen. Deliberately outside the worklog IA, so no frontmatter and no `ia-normalize`. |
 | `DEVELOPERS.md` | Setup, env vars, architecture, Tauri walkthrough, §11 QA, §12 conventions. |
 | `.grok/skills/*/SKILL.md` | 16 skill packages. `auth/` and `neon/` carry the binding auth and DB doctrine quoted above. |
 | `FEATURES.md` / `USER_GUIDE.md` | Capability inventory / end-user manual — update when user-visible behavior changes. |
