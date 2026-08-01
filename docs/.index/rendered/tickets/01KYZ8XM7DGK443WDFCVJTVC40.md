@@ -1,9 +1,13 @@
 # Phase 4: screenshot determinism and reveal controls
 
-`01KYZ8XM7DGK443WDFCVJTVC40` · story/feature · **open**
+`01KYZ8XM7DGK443WDFCVJTVC40` · story/feature · **done**
 
 A .ui-freeze class seeded from localStorage plus ~8 lines of CSS kills spinners, toasts and animations at once, and works with any capture tool since MCP browser tools have no mask parameter.
 
 ## Hierarchy
 
 - epic: [[Ticket-01KYZ8X1X1V76HYNK8B5JYMD9W]] Agent-runnable UI verification loop — Adopt an agent-runnable UI verification loop for ForgeNotes: a written spec and PlantUML Salt wireframe define intent, the UI is made addressable, and an agent takes a real screenshot of the macOS WKWebView via the Tauri MCP bridge and compares it against the wireframe and a written rubric before calling work done.
+
+## Linked PRs
+
+- [[PR-10]]

@@ -7,3 +7,7 @@ Six waves of per-screen docs, the AGENTS.md protocol replacing the stale Browser
 ## Hierarchy
 
 - epic: [[Ticket-01KYZ8X1X1V76HYNK8B5JYMD9W]] Agent-runnable UI verification loop — Adopt an agent-runnable UI verification loop for ForgeNotes: a written spec and PlantUML Salt wireframe define intent, the UI is made addressable, and an agent takes a real screenshot of the macOS WKWebView via the Tauri MCP bridge and compares it against the wireframe and a written rubric before calling work done.
+
+## Related tickets
+
+- [github #13](https://github.com/SpillwaveSolutions/forge-notes/issues/13)
