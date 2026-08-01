@@ -1,5 +1,11 @@
 {
- "edges": [],
+ "edges": [
+  {
+   "from": "item/01KYZ20SDZCZS2VN45WPM38GB6",
+   "to": "ticket/github#3",
+   "type": "references"
+  }
+ ],
  "nodes": {
   "item/01KYZ20SDZCZS2VN45WPM38GB6": {
    "doc_type": "item",
@@ -11,6 +17,10 @@
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current"
+  },
+  "ticket/github#3": {
+   "doc_type": "ticket",
+   "url": "https://github.com/SpillwaveSolutions/forge-notes/issues/3"
   }
  },
  "version": 1

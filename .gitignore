@@ -6,3 +6,7 @@ node_modules/
 
 # worklog wiki publish cache
 .work/wiki-checkout/
+
+# python bytecode
+__pycache__/
+*.pyc
