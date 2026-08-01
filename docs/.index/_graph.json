@@ -4,6 +4,11 @@
    "from": "item/01KYZ20SDZCZS2VN45WPM38GB6",
    "to": "ticket/github#3",
    "type": "references"
+  },
+  {
+   "from": "item/01KYZ52T5VQ7HGKZTTDFTVX3KS",
+   "to": "pr/1",
+   "type": "lands-in"
   }
  ],
  "nodes": {
@@ -11,6 +16,14 @@
    "doc_type": "item",
    "status": "todo",
    "title": "Scaffold worklog tracking and configure GitHub Issues + wiki"
+  },
+  "item/01KYZ52T5VQ7HGKZTTDFTVX3KS": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Email & password sign-in for desktop and localhost"
+  },
+  "pr/1": {
+   "doc_type": "pr"
   },
   "roadmap": {
    "doc_type": "roadmap",
