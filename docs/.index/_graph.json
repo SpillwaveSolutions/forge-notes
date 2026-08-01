@@ -29,7 +29,7 @@
   },
   "item/01KYZ52T5VQ7HGKZTTDFTVX3KS": {
    "doc_type": "item",
-   "status": "todo",
+   "status": "done",
    "title": "Email & password sign-in for desktop and localhost"
   },
   "pr/1": {
