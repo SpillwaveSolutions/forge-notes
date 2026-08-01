@@ -5,6 +5,12 @@
    "doc_type": "item",
    "status": "todo",
    "title": "Scaffold worklog tracking and configure GitHub Issues + wiki"
+  },
+  "roadmap": {
+   "doc_type": "roadmap",
+   "source": "docs/roadmap.md",
+   "title": "Roadmap",
+   "truth_state": "current"
   }
  },
  "version": 1

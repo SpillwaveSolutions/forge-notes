@@ -59,6 +59,17 @@
    "title": "Scaffold worklog tracking and configure GitHub Issues + wiki",
    "truth_state": "open",
    "wiki_key": "item/01KYZ20SDZCZS2VN45WPM38GB6"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-01T16:20:22Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Roadmap",
+   "render": "doc+banner",
+   "render_hash": "5406e5ed6c10",
+   "source": "docs/roadmap.md",
+   "title": "Roadmap",
+   "truth_state": "current",
+   "wiki_key": "roadmap"
   }
  ],
  "sidebar": {
