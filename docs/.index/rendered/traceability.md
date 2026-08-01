@@ -5,6 +5,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 ### Email & password sign-in for desktop and localhost
 `01KYZ52T5VQ7HGKZTTDFTVX3KS` · status: todo
 - lands-in: pr/1
+- references: [github#5](https://github.com/SpillwaveSolutions/forge-notes/issues/5)
 
 ### Scaffold worklog tracking and configure GitHub Issues + wiki
 `01KYZ20SDZCZS2VN45WPM38GB6` · status: todo

@@ -9,6 +9,11 @@
    "from": "item/01KYZ52T5VQ7HGKZTTDFTVX3KS",
    "to": "pr/1",
    "type": "lands-in"
+  },
+  {
+   "from": "item/01KYZ52T5VQ7HGKZTTDFTVX3KS",
+   "to": "ticket/github#5",
+   "type": "references"
   }
  ],
  "nodes": {
@@ -34,6 +39,10 @@
   "ticket/github#3": {
    "doc_type": "ticket",
    "url": "https://github.com/SpillwaveSolutions/forge-notes/issues/3"
+  },
+  "ticket/github#5": {
+   "doc_type": "ticket",
+   "url": "https://github.com/SpillwaveSolutions/forge-notes/issues/5"
   }
  },
  "version": 1
