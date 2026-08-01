@@ -1,0 +1,11 @@
+{
+ "edges": [],
+ "nodes": {
+  "item/01KYZ20SDZCZS2VN45WPM38GB6": {
+   "doc_type": "item",
+   "status": "todo",
+   "title": "Scaffold worklog tracking and configure GitHub Issues + wiki"
+  }
+ },
+ "version": 1
+}

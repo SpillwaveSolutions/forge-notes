@@ -1,0 +1,69 @@
+{
+ "pages": [
+  {
+   "frozen": false,
+   "page_name": "Home",
+   "render": "as-is",
+   "render_hash": "7a6e118df66d",
+   "source": "docs/.index/rendered/home.md",
+   "title": "Home",
+   "truth_state": "current",
+   "wiki_key": "home"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Decisions",
+   "render": "as-is",
+   "render_hash": "d3182fbfb022",
+   "source": "docs/.index/rendered/decisions.md",
+   "title": "Decisions Index",
+   "truth_state": "current",
+   "wiki_key": "index/decisions"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Releases",
+   "render": "as-is",
+   "render_hash": "f45668ba0034",
+   "source": "docs/.index/rendered/releases.md",
+   "title": "Releases Index",
+   "truth_state": "current",
+   "wiki_key": "index/releases"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Status",
+   "render": "as-is",
+   "render_hash": "b8bcebbbbe23",
+   "source": "docs/.index/rendered/status.md",
+   "title": "Status Archive",
+   "truth_state": "current",
+   "wiki_key": "index/status"
+  },
+  {
+   "frozen": false,
+   "page_name": "Index-Traceability",
+   "render": "as-is",
+   "render_hash": "6bb0f574d172",
+   "source": "docs/.index/rendered/traceability.md",
+   "title": "Traceability Index",
+   "truth_state": "current",
+   "wiki_key": "index/traceability"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KYZ20SDZCZS2VN45WPM38GB6",
+   "render": "as-is",
+   "render_hash": "de48c1d5c21a",
+   "source": "docs/.index/rendered/tickets/01KYZ20SDZCZS2VN45WPM38GB6.md",
+   "title": "Scaffold worklog tracking and configure GitHub Issues + wiki",
+   "truth_state": "open",
+   "wiki_key": "item/01KYZ20SDZCZS2VN45WPM38GB6"
+  }
+ ],
+ "sidebar": {
+  "render_hash": "bf90917cf238",
+  "source": "docs/.index/rendered/_Sidebar.md"
+ },
+ "version": 1
+}
