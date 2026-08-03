@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "93376bcf476d",
+   "render_hash": "1c65284e1422",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -149,6 +149,16 @@
    "title": "Release v0.3.0",
    "truth_state": "shipped",
    "wiki_key": "release/v0.3.0"
+  },
+  {
+   "frozen": false,
+   "page_name": "Release-v0.3.1",
+   "render": "as-is",
+   "render_hash": "5a99797a5279",
+   "source": "docs/.index/rendered/releases/v0.3.1.md",
+   "title": "Release v0.3.1",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.3.1"
   },
   {
    "frozen": false,
@@ -311,11 +321,41 @@
    "wiki_key": "item/01KZ2MM83PJSTBEFWA953QPTSS"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-03T01:43:17Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Ticket-01KZ3Z46SDWDGVD3CFZ0Z1S9FB",
+   "render": "as-is",
+   "render_hash": "dd388ffa9ead",
+   "source": "docs/.index/rendered/tickets/01KZ3Z46SDWDGVD3CFZ0Z1S9FB.md",
+   "title": "cargo tauri build fails: scrubbed icon filename has no image extension",
+   "truth_state": "done",
+   "wiki_key": "item/01KZ3Z46SDWDGVD3CFZ0Z1S9FB"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KZ4D4P3YE5H94JXVZKCA08YY",
+   "render": "as-is",
+   "render_hash": "b556fa98cb78",
+   "source": "docs/.index/rendered/tickets/01KZ4D4P3YE5H94JXVZKCA08YY.md",
+   "title": "Desktop app ships a dead placeholder \u2014 SSR build has no static entry, so the UI never loads",
+   "truth_state": "open",
+   "wiki_key": "item/01KZ4D4P3YE5H94JXVZKCA08YY"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KZ4FQNVT4N2H3XV0QYY9X1SS",
+   "render": "as-is",
+   "render_hash": "b29760cfcc35",
+   "source": "docs/.index/rendered/tickets/01KZ4FQNVT4N2H3XV0QYY9X1SS.md",
+   "title": "Desktop window blanks on boot: Better Auth rejects the tauri:// scheme as a base URL",
+   "truth_state": "open",
+   "wiki_key": "item/01KZ4FQNVT4N2H3XV0QYY9X1SS"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-03T18:56:15Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "e40f42bb2ab8",
+   "render_hash": "fa5cba40d257",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
