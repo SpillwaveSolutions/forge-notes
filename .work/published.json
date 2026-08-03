@@ -235,8 +235,8 @@
     "source": "docs/ui/README.md",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-Screens",
     "page_id": "UI-Screens",
-    "source_hash": "3a7ae6bcf1a0",
-    "render_hash": "6e0f9888981b"
+    "source_hash": "70cc0832b51c",
+    "render_hash": "81b9491bd871"
   },
   "ui/TEMPLATE": {
     "source": "docs/ui/TEMPLATE.md",
@@ -263,22 +263,22 @@
     "source": "docs/ui/app-shell.md",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-app-shell",
     "page_id": "UI-app-shell",
-    "source_hash": "ba2aef0b070f",
-    "render_hash": "0b3549049f1e"
+    "source_hash": "5f92c1f54471",
+    "render_hash": "dddcff7871f7"
   },
   "ui/blocks": {
     "source": "docs/ui/blocks.md",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-blocks",
     "page_id": "UI-blocks",
-    "source_hash": "1e65ee8eafd8",
-    "render_hash": "5555dea9eddc"
+    "source_hash": "b361c6c890ad",
+    "render_hash": "ddf6cf79c223"
   },
   "ui/command-palette": {
     "source": "docs/ui/command-palette.md",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-command-palette",
     "page_id": "UI-command-palette",
-    "source_hash": "6e548ea9af34",
-    "render_hash": "b67d01322091"
+    "source_hash": "f5454186c4a6",
+    "render_hash": "d28cdb7c54e9"
   },
   "ui/dialogs": {
     "source": "docs/ui/dialogs.md",
