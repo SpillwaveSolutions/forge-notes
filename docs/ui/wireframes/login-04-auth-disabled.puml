@@ -1,0 +1,15 @@
+' Source: src/routes/login.tsx:195 — authEnabled === false
+' VITE_AUTH_ENABLED="false". Whole form replaced; guest link survives.
+@startsalt
+{+
+  .
+  {* F }
+  <b>Sign in to ForgeNotes
+  Signed-in pages sync to the database. Guests keep a local copy only.
+  .
+  {# Sign-in is disabled in this environment. Data still uses the
+  local database fallback. }
+  .
+  Continue as guest
+}
+@endsalt

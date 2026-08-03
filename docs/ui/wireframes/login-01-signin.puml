@@ -1,0 +1,22 @@
+' Source: src/routes/login.tsx:83 LoginPage — mode="signin"
+' State: default, authEnabled, non-loopback origin
+@startsalt
+{+
+  .
+  {* F }
+  <b>Sign in to ForgeNotes
+  Signed-in pages sync to the database. Guests keep a local copy only.
+  .
+  Email
+  "you@example.com          "
+  Password
+  "At least 8 characters    "
+  [   Sign in with email    ]
+  Need an account? Sign up
+  --  or  --
+  [  Continue with Google   ]
+  [    Continue with X      ]
+  .
+  Continue as guest
+}
+@endsalt

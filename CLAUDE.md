@@ -93,8 +93,22 @@ depends on chromium revision 1228, and floating the version silently invalidates
 `npm run test:e2e:install` once to fetch WebKit 2311.
 
 `webServer.reuseExistingServer` is on outside CI, so `npm run test:e2e` works whether or not
-`npm run dev` is already up — necessary because `strictPort: 8080` makes a second server
-hard-fail.
+`npm run dev` is already up — necessary because `strictPort` makes a second server hard-fail.
+
+**`reuseExistingServer` is a liveness check, not an identity check**, and that distinction
+has teeth here: three repos on this laptop (`forge-notes`, `okf-forge`, `agent-brain-ui`)
+default Vite to 8080. Left naive, `npm run test:e2e` run while a sibling holds 8080 executes
+this repo's entire suite against a *different application* — nothing errors, the assertions
+just fail, in this repo's specs, pointing at this repo's code.
+
+So `playwright.config.ts` does not hardcode a port. It shells out to
+`node scripts/dev-ports.mjs port vite`, which returns a port that is either free or already
+serving **this** app (proven by fetching `/` and finding `ForgeNotes` in the HTML), then
+threads it through `webServer.env.VITE_PORT`. Reuse is safe by construction.
+
+Related trap: **`npm run dev` deliberately carries no `--port` flag.** A CLI flag outranks
+`vite.config.ts`, so re-adding `--port 8080` silently defeats `VITE_PORT` and takes the
+Playwright wiring with it.
 
 **Watch for the SSR hydration race.** Buttons exist in server-rendered markup before React
 attaches handlers, so a single click can land on inert markup and do nothing. Wrap
@@ -144,22 +158,34 @@ form control `id` + `htmlFor`.
 
 ## Ports (several agents share this laptop)
 
-Multiple agents run Tauri apps here, so ports collide. `scripts/dev-ports.mjs` brokers them:
-it **probes by actually binding** (the only check that sees other agents' apps, and Chrome,
-whose remote-debugging port is also 9223) and **remembers** the assignment per repo in
-`~/.config/tauri-dev-ports.json`.
+Multiple agents run Tauri apps here, so ports collide. `scripts/dev-ports.mjs` brokers them
+with three mechanisms:
+
+1. a **reality probe** — actually binding the port, the only check that sees other agents'
+   apps, and Chrome, whose remote-debugging port is also 9223;
+2. an **identity probe** — fetching `/` and requiring `ForgeNotes` in the HTML, because
+   "something is listening" and "*my app* is listening" are different questions;
+3. a **registry** at `~/.config/tauri-dev-ports.json`, keyed by repo path, so assignments
+   survive between runs.
 
 ```bash
 npm run ports                              # what's assigned, and who holds it
 npm run ports:resolve                      # assign + persist
+node scripts/dev-ports.mjs port vite       # print just that port (for configs)
 node scripts/dev-ports.mjs check 9223      # is one port free? exit 0/1
 node scripts/dev-ports.mjs claim vite 8080 # pin explicitly
 node scripts/dev-ports.mjs release         # give this repo's ports back
 ```
 
-Assignments are **sticky even when the port is busy** — busy nearly always means this repo's
-own app is already up, and drifting on every check would defeat the point. A genuine foreign
-collision shows in `npm run ports`, which names the holding process.
+Assignments are **sticky while the port is free or holds our own server** — drifting on every
+check would defeat the point of remembering. The one case that is *not* sticky is a port held
+by a different app: staying put there is exactly how a sibling's dev server ends up under this
+repo's e2e suite. `mcpBridge` has no HTTP marker to check, so it keeps the old warn-and-stay
+behaviour. `npm run ports` labels a busy port `this app` or `NOT this app` — `lsof` says
+`node` either way, which is no help at all.
+
+`scripts/dev-ports.test.mjs` pins all three branches (stranger, ours, and a bare TCP listener
+that never answers — the case that hangs a probe without a timeout).
 
 `8080` is still the default (Grok live preview and `devUrl` assume it); `VITE_PORT` only
 overrides locally.

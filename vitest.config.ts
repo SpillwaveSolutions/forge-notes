@@ -18,7 +18,10 @@ export default defineConfig({
   resolve: { tsconfigPaths: true },
   test: {
     environment: "jsdom",
-    include: ["src/**/*.test.{ts,tsx}"],
+    // `scripts/` is plain ESM with no `@/` imports and no DOM, but it holds
+    // real logic worth pinning (the dev-port broker's identity probe). One glob
+    // beats standing up a second runner for one file.
+    include: ["src/**/*.test.{ts,tsx}", "scripts/**/*.test.mjs"],
     restoreMocks: true,
   },
 });

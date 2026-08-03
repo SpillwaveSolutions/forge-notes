@@ -1,0 +1,27 @@
+' Source: src/routes/login.tsx:96 — localOrigin === true
+' Mounts one frame AFTER hydration (useEffect), never in SSR markup.
+@startsalt
+{+
+  .
+  {* F }
+  <b>Sign in to ForgeNotes
+  Signed-in pages sync to the database. Guests keep a local copy only.
+  .
+  {# <b>Desktop / local note: Continue with Google or X uses the shared
+  Grok auth broker, which only accepts callbacks from *.grok-sandbox.com
+  (or a deployed app with its own broker credentials). For this Tauri /
+  localhost window, use <b>email & password below. }
+  .
+  Email
+  "you@example.com          "
+  Password
+  "At least 8 characters    "
+  [   Sign in with email    ]
+  Need an account? Sign up
+  --  or  --
+  [  Continue with Google   ]
+  [    Continue with X      ]
+  .
+  Continue as guest
+}
+@endsalt
