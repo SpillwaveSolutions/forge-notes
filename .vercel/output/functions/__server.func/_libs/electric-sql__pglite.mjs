@@ -1,6 +1,6 @@
 import { r as __exportAll } from "../_runtime.mjs";
-import * as s$1 from "fs";
 import * as o$2 from "path";
+import * as s$1 from "fs";
 //#region node_modules/@electric-sql/pglite/dist/chunk-QY3QWFKW.js
 var p$3 = Object.create;
 var i = Object.defineProperty;

@@ -328,7 +328,7 @@ var isHttpResponse = (data) => {
 var basicToast = toastFunction;
 var getHistory = () => ToastState.toasts;
 var getToasts = () => ToastState.getActiveToasts();
-Object.assign(basicToast, {
+var toast = Object.assign(basicToast, {
 	success: ToastState.success,
 	info: ToastState.info,
 	warning: ToastState.warning,
@@ -905,4 +905,4 @@ var Toaster = /*#__PURE__*/ import_react.forwardRef(function Toaster(props, ref)
 	}));
 });
 //#endregion
-export { Toaster as t };
+export { toast as n, Toaster as t };
