@@ -1,6 +1,6 @@
 # Phase 6: roll out to remaining screens, make the loop mandatory
 
-`01KYZ8XMGPWDJ8KXXK23KV47NT` · story/feature · **open**
+`01KYZ8XMGPWDJ8KXXK23KV47NT` · story/feature · **done**
 
 Six waves of per-screen docs, the AGENTS.md protocol replacing the stale Browser QA section, and the repo's first Node CI workflow.
 

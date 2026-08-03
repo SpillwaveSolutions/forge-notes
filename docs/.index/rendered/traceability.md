@@ -2,11 +2,31 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Command palette shows an empty RESULTS heading with no 'No pages found' message
+`01KZ2MM83PJSTBEFWA953QPTSS` · status: done
+- targets: release/v0.3.0
+
+### AI and Mermaid blocks lack data-block-id/type (early returns in BlockRow)
+`01KZ2MFJV7PHPNSTFR2XEEM5TV` · status: done
+- targets: release/v0.3.0
+
+### Zoom: Cmd+/Cmd- font scaling, persisted per device
+`01KZ2JN6SD0RF7AR020N2V9880` · status: done
+- targets: release/v0.3.0
+
+### Header theme toggle (light/dark)
+`01KZ2JN6KQKJ90RP9A9H3PHZ0T` · status: done
+- targets: release/v0.3.0
+
+### Port identity check: e2e can silently adopt a sibling project's dev server
+`01KZ2HRT1E6SEP9E9KCX687YVG` · status: done
+- targets: release/v0.3.0
+
 ### Release v0.2.0
 `01KYZNRHGD57V0EPG6AE4F2RSK` · status: done
 
 ### Phase 6: roll out to remaining screens, make the loop mandatory
-`01KYZ8XMGPWDJ8KXXK23KV47NT` · status: todo
+`01KYZ8XMGPWDJ8KXXK23KV47NT` · status: done
 - belongs-to: Agent-runnable UI verification loop
 - references: [github#13](https://github.com/SpillwaveSolutions/forge-notes/issues/13)
 
@@ -41,7 +61,7 @@ _The evidence chain: plan → item → ticket → code → release, forward and 
 - lands-in: pr/6
 
 ### Agent-runnable UI verification loop
-`01KYZ8X1X1V76HYNK8B5JYMD9W` · status: todo
+`01KYZ8X1X1V76HYNK8B5JYMD9W` · status: done
 - references: [github#12](https://github.com/SpillwaveSolutions/forge-notes/issues/12)
 - contains: Phase 0: clear decks — commit CLAUDE.md, close out worklog state
 - contains: Phase 1: Vitest + Playwright WebKit foundation

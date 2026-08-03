@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "857376f85471",
+   "render_hash": "042532137775",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "fc5e2361f969",
+   "render_hash": "93376bcf476d",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -142,6 +142,16 @@
   },
   {
    "frozen": false,
+   "page_name": "Release-v0.3.0",
+   "render": "as-is",
+   "render_hash": "8d85cc1bdd89",
+   "source": "docs/.index/rendered/releases/v0.3.0.md",
+   "title": "Release v0.3.0",
+   "truth_state": "shipped",
+   "wiki_key": "release/v0.3.0"
+  },
+  {
+   "frozen": false,
    "page_name": "Ticket-01KYZ20SDZCZS2VN45WPM38GB6",
    "render": "as-is",
    "render_hash": "e4a69fb10ff8",
@@ -164,10 +174,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYZ8X1X1V76HYNK8B5JYMD9W",
    "render": "as-is",
-   "render_hash": "d839cd7cbc95",
+   "render_hash": "f921e258aa2a",
    "source": "docs/.index/rendered/tickets/01KYZ8X1X1V76HYNK8B5JYMD9W.md",
    "title": "Agent-runnable UI verification loop",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYZ8X1X1V76HYNK8B5JYMD9W"
   },
   {
@@ -234,10 +244,10 @@
    "frozen": false,
    "page_name": "Ticket-01KYZ8XMGPWDJ8KXXK23KV47NT",
    "render": "as-is",
-   "render_hash": "2e7127f97dd7",
+   "render_hash": "293d0441f6d4",
    "source": "docs/.index/rendered/tickets/01KYZ8XMGPWDJ8KXXK23KV47NT.md",
    "title": "Phase 6: roll out to remaining screens, make the loop mandatory",
-   "truth_state": "open",
+   "truth_state": "done",
    "wiki_key": "item/01KYZ8XMGPWDJ8KXXK23KV47NT"
   },
   {
@@ -251,11 +261,61 @@
    "wiki_key": "item/01KYZNRHGD57V0EPG6AE4F2RSK"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-01T22:10:56Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Ticket-01KZ2HRT1E6SEP9E9KCX687YVG",
+   "render": "as-is",
+   "render_hash": "83d85ad73685",
+   "source": "docs/.index/rendered/tickets/01KZ2HRT1E6SEP9E9KCX687YVG.md",
+   "title": "Port identity check: e2e can silently adopt a sibling project's dev server",
+   "truth_state": "done",
+   "wiki_key": "item/01KZ2HRT1E6SEP9E9KCX687YVG"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KZ2JN6KQKJ90RP9A9H3PHZ0T",
+   "render": "as-is",
+   "render_hash": "66b0009ab459",
+   "source": "docs/.index/rendered/tickets/01KZ2JN6KQKJ90RP9A9H3PHZ0T.md",
+   "title": "Header theme toggle (light/dark)",
+   "truth_state": "done",
+   "wiki_key": "item/01KZ2JN6KQKJ90RP9A9H3PHZ0T"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KZ2JN6SD0RF7AR020N2V9880",
+   "render": "as-is",
+   "render_hash": "cb0ebe90c4eb",
+   "source": "docs/.index/rendered/tickets/01KZ2JN6SD0RF7AR020N2V9880.md",
+   "title": "Zoom: Cmd+/Cmd- font scaling, persisted per device",
+   "truth_state": "done",
+   "wiki_key": "item/01KZ2JN6SD0RF7AR020N2V9880"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KZ2MFJV7PHPNSTFR2XEEM5TV",
+   "render": "as-is",
+   "render_hash": "7918d626a812",
+   "source": "docs/.index/rendered/tickets/01KZ2MFJV7PHPNSTFR2XEEM5TV.md",
+   "title": "AI and Mermaid blocks lack data-block-id/type (early returns in BlockRow)",
+   "truth_state": "done",
+   "wiki_key": "item/01KZ2MFJV7PHPNSTFR2XEEM5TV"
+  },
+  {
+   "frozen": false,
+   "page_name": "Ticket-01KZ2MM83PJSTBEFWA953QPTSS",
+   "render": "as-is",
+   "render_hash": "9fa33ba3bad4",
+   "source": "docs/.index/rendered/tickets/01KZ2MM83PJSTBEFWA953QPTSS.md",
+   "title": "Command palette shows an empty RESULTS heading with no 'No pages found' message",
+   "truth_state": "done",
+   "wiki_key": "item/01KZ2MM83PJSTBEFWA953QPTSS"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-03T01:43:17Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "9a0d987a7ce0",
+   "render_hash": "e40f42bb2ab8",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -271,10 +331,21 @@
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki_key": "roadmap-snapshot/2026-08-01_v0.2.0-release"
+  },
+  {
+   "banner": "> **Snapshot** of release v0.3.0 (2026-08-03) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-08-03_v0.3.0-release",
+   "render": "doc+banner",
+   "render_hash": "10709a977bec",
+   "source": "docs/roadmap/2026-08-03_v0.3.0-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-08-03_v0.3.0-release"
   }
  ],
  "sidebar": {
-  "render_hash": "91a4f6fc4c69",
+  "render_hash": "44c742b62e38",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
