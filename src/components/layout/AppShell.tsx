@@ -9,6 +9,8 @@ import {
   Loader2,
   FileDown,
   Link2,
+  Moon,
+  Sun,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useWorkspace } from "@/lib/store";
@@ -42,6 +44,7 @@ export function AppShell() {
   const setSidebarOpen = useWorkspace((s) => s.setSidebarOpen);
   const toggleSidebar = useWorkspace((s) => s.toggleSidebar);
   const setActivePage = useWorkspace((s) => s.setActivePage);
+  const setTheme = useWorkspace((s) => s.setTheme);
   const updatePage = useWorkspace((s) => s.updatePage);
   const createPage = useWorkspace((s) => s.createPage);
   const setHydrated = useWorkspace((s) => s.setHydrated);
@@ -224,6 +227,24 @@ export function AppShell() {
             </nav>
 
             <SyncChip mode={storageMode} status={syncStatus} />
+
+            {/* Settings already exposes theme, but three clicks deep. This is
+                the same `setTheme`, surfaced where it is actually reached for.
+                The label names the DESTINATION, not the current state — a
+                control called "Dark" is ambiguous about which one it means. */}
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-sm"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            >
+              {theme === "dark" ? (
+                <Sun className="size-4 text-muted-foreground" />
+              ) : (
+                <Moon className="size-4 text-muted-foreground" />
+              )}
+            </Button>
 
             {(page || showMount) && (
               <Button

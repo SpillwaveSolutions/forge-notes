@@ -233,7 +233,11 @@ async function cmdPort(service) {
     updatedAt: new Date().toISOString(),
   };
   writeRegistry(reg);
-  console.log(port);
+  // String(), NOT the bare number. `console.log(8080)` runs through
+  // util.inspect, which colourizes numbers when it believes stdout is a TTY —
+  // and Playwright sets FORCE_COLOR when it spawns this. The caller then parses
+  // "\x1b[33m8080\x1b[39m" and gets NaN. A string is never colourized.
+  console.log(String(port));
 }
 
 async function cmdStatus() {

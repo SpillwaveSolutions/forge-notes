@@ -110,6 +110,12 @@ Related trap: **`npm run dev` deliberately carries no `--port` flag.** A CLI fla
 `vite.config.ts`, so re-adding `--port 8080` silently defeats `VITE_PORT` and takes the
 Playwright wiring with it.
 
+And the caveat on the caveat: **the marker proves which *app*, not which *build*.** A dev
+server left running from before your edit is still ForgeNotes, so the broker keeps it and
+Playwright reuses it — and the suite tests the old code while looking exactly like a logic
+bug. Symptom: an assertion fails on a control the accessibility snapshot says isn't there,
+and the same spec passes in isolation. Kill the server, or `rm -rf node_modules/.vite`.
+
 **Watch for the SSR hydration race.** Buttons exist in server-rendered markup before React
 attaches handlers, so a single click can land on inert markup and do nothing. Wrap
 click-then-assert in `expect(...).toPass()`. You cannot wait on `networkidle` instead — the

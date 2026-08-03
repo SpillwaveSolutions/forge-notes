@@ -1,5 +1,12 @@
 import { execFileSync } from "node:child_process";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig, devices } from "@playwright/test";
+
+// Playwright loads this config as a real ES module, so `__dirname` does not
+// exist. Resolving from `import.meta.url` also makes the broker call
+// cwd-independent — it is spawned from wherever `npx playwright` was invoked.
+const ROOT = dirname(fileURLToPath(import.meta.url));
 
 /**
  * WebKit-only on purpose: the desktop app ships in a macOS WKWebView, so WebKit
@@ -28,17 +35,18 @@ import { defineConfig, devices } from "@playwright/test";
  * `dev-ports.mjs port vite` returns a port that is either free or already
  * serving THIS app, so reuse is safe by construction.
  */
-const port = Number(
-  execFileSync(process.execPath, ["scripts/dev-ports.mjs", "port", "vite"], {
-    encoding: "utf8",
-    // stderr passes through: the broker explains on it when it moves off 8080,
-    // and swallowing that turns a legible message into a mystery port change.
-    stdio: ["ignore", "pipe", "inherit"],
-  }).trim(),
-);
+const raw = execFileSync(process.execPath, [join(ROOT, "scripts", "dev-ports.mjs"), "port", "vite"], {
+  encoding: "utf8",
+  cwd: ROOT,
+  // stderr passes through: the broker explains on it when it moves off 8080,
+  // and swallowing that turns a legible message into a mystery port change.
+  stdio: ["ignore", "pipe", "inherit"],
+}).trim();
+
+const port = Number(raw);
 
 if (!Number.isInteger(port) || port < 1) {
-  throw new Error(`dev-ports.mjs returned no usable port for vite (got: ${port})`);
+  throw new Error(`dev-ports.mjs returned no usable port for vite (got: ${JSON.stringify(raw)})`);
 }
 
 const baseURL = `http://127.0.0.1:${port}`;
