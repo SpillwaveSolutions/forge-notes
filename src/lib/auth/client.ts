@@ -1,6 +1,7 @@
 import { genericOAuthClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 import { GROK_PROVIDERS } from "./providers";
+import { resolveAuthBaseURL } from "./base-url";
 
 /**
  * Better Auth client for this React SPA (browser-side).
@@ -13,6 +14,11 @@ import { GROK_PROVIDERS } from "./providers";
  * is stored, so nothing changes.
  */
 export const authClient = createAuthClient({
+  // Inference (`undefined`) everywhere the origin is already http(s) — so the
+  // web build and live preview behave exactly as before. Only the desktop's
+  // `tauri://localhost` gets an override, because Better Auth throws on a
+  // custom scheme and that throw blanks the whole window. See `base-url.ts`.
+  baseURL: resolveAuthBaseURL(typeof window === "undefined" ? undefined : window.location.protocol),
   plugins: [genericOAuthClient()],
   fetchOptions: {
     onRequest(ctx) {

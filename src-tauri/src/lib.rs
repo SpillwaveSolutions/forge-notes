@@ -27,6 +27,21 @@ fn which_binary(name: String) -> bool {
     .unwrap_or(false)
 }
 
+/// Surface a webview error on the process's stderr.
+///
+/// A packaged Tauri app has no devtools and no console anyone can read, so a
+/// JavaScript exception during boot presents as a blank window and nothing
+/// else — which is exactly how a broken desktop build shipped twice. Paired
+/// with the `reportClientErrors()` handler on the frontend, running the binary
+/// from a terminal now prints what actually failed.
+#[tauri::command]
+fn log_client_error(message: String, stack: Option<String>) {
+  eprintln!("[client-error] {message}");
+  if let Some(stack) = stack {
+    eprintln!("{stack}");
+  }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
   // The chain is broken into a rebind so the bridge can hang off a cfg. Enabled
@@ -56,7 +71,7 @@ pub fn run() {
   });
 
   builder
-    .invoke_handler(tauri::generate_handler![desktop_info, which_binary])
+    .invoke_handler(tauri::generate_handler![desktop_info, which_binary, log_client_error])
     .setup(|app| {
       if let Some(window) = app.get_webview_window("main") {
         let _ = window.set_title("ForgeNotes");

@@ -3,7 +3,13 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { useTheme } from "@/lib/use-theme";
 import { useZoom } from "@/lib/use-zoom";
 import { useCaptureMode } from "@/lib/use-capture-mode";
+import { reportClientErrors } from "@/lib/report-client-errors";
 import appCss from "../styles.css?url";
+
+// At module scope, not in an effect: an exception thrown during the first
+// render happens before any effect runs, and that is exactly the failure this
+// exists to report.
+reportClientErrors();
 
 export const Route = createRootRoute({
   head: () => ({

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { safeStorage } from "./safe-storage";
 
 /**
  * App-level zoom: ⌘+ / ⌘- scale every rem in the app, remembered per device.
@@ -49,7 +50,7 @@ export function stepZoom(current: number, direction: -1 | 0 | 1): number {
 
 export function readZoom(): number {
   if (typeof window === "undefined") return DEFAULT_ZOOM;
-  const raw = Number.parseFloat(window.localStorage.getItem(KEY) ?? "");
+  const raw = Number.parseFloat(safeStorage().getItem(KEY) ?? "");
   // A NaN, a zero, or a hand-edited absurdity must not make the app unreadable.
   if (!Number.isFinite(raw) || raw <= 0) return DEFAULT_ZOOM;
   return Math.min(ZOOM_STEPS.at(-1)!, Math.max(ZOOM_STEPS[0]!, raw));
@@ -91,7 +92,7 @@ export function useZoom(): void {
 
       scale = next;
       applyZoom(scale);
-      window.localStorage.setItem(KEY, String(scale));
+      safeStorage().setItem(KEY, String(scale));
     };
 
     window.addEventListener("keydown", onKey);

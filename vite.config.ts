@@ -124,6 +124,9 @@ function authPopupPlugin(): Plugin {
 // opens a second dev-server port, which breaks the single-port preview.
 // The dev server starts once `src/router.tsx` and `src/routes/` exist — see
 // AGENTS.md § "First scaffold".
+/** Set by `scripts/build-desktop.mjs`. Switches the build from SSR to a static SPA shell. */
+const isDesktopBuild = process.env.DESKTOP_BUILD === "1";
+
 export default defineConfig(({ command }) => ({
   server: {
     host: "0.0.0.0",
@@ -154,8 +157,31 @@ export default defineConfig(({ command }) => ({
     // Before tanstackStart so /auth/popup never falls through to the SPA.
     authPopupPlugin(),
     tailwindcss(),
-    tanstackStart(),
-    ...(command === "build" ? [nitro({ preset: "vercel" })] : []),
+    // Desktop needs a STATIC entry point. The default build targets Vercel and
+    // is server-rendered, so it emits `.vercel/output/static/assets/**` and no
+    // index.html at all — there is nothing for a Tauri webview to open. SPA
+    // mode prerenders a shell that boots the client router, which is exactly
+    // what a webview loading from disk needs.
+    //
+    // Set by scripts/build-desktop.mjs; unset for web, so the Vercel build is
+    // byte-for-byte what it was.
+    tanstackStart(
+      isDesktopBuild
+        ? {
+            spa: {
+              enabled: true,
+              // Default is `/_shell`, i.e. `_shell.html`. A Tauri webview opens
+              // the directory and expects `index.html`, so name it that here
+              // rather than renaming the file afterwards — one less step that
+              // can be skipped.
+              prerender: { outputPath: "/index" },
+            },
+          }
+        : {},
+    ),
+    // Nitro is the Vercel server target. A desktop build has no server to
+    // deploy to, and leaving it on makes the SPA shell fight the SSR output.
+    ...(command === "build" && !isDesktopBuild ? [nitro({ preset: "vercel" })] : []),
     viteReact(),
   ],
 }));

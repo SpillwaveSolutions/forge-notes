@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
+import { safeStorage } from "./safe-storage";
 import type { Block, BlockType, Page } from "./types";
 import { createEmptyPage, seedWorkspace } from "./seed";
 import { uid } from "./utils";
@@ -333,6 +334,12 @@ export const useWorkspace = create<WorkspaceState>()(
     }),
     {
       name: "workspace-v1",
+      // NOT the default localStorage. zustand reads storage at store-CREATION
+      // time, before React renders, so a throw on `window.localStorage` takes
+      // the app down with a blank window rather than degrading. That happens in
+      // Safari private browsing and partitioned iframes (the live preview).
+      // It does NOT happen under Tauri — see the note in `safe-storage.ts`.
+      storage: createJSONStorage(safeStorage),
       partialize: (s) => ({
         name: s.name,
         pages: s.pages,
