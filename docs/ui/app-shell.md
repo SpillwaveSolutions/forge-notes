@@ -104,7 +104,7 @@ behaviour and a genuine a11y gap; it is recorded here rather than rubric'd as a 
 
 | What | Selector |
 |---|---|
-| Sidebar column | `aside` (the only one) |
+| Sidebar column | `aside` — **two match below `md`**, see below |
 | Header | `header` (the only one) |
 | Breadcrumb | `header nav button` — ordered ancestor→self |
 | Sync chip | `header span[title^="Guest mode"]` \| `[title^="Signed in"]` |
@@ -119,6 +119,16 @@ behaviour and a genuine a11y gap; it is recorded here rather than rubric'd as a 
 The import/export button uses `title`, not `aria-label`, so its accessible name comes
 from the tooltip. It **is** named in the accessibility tree, but by a different
 mechanism than the star — do not assume one query shape covers both.
+
+**Below `md` there are two `aside` elements.** The desktop sidebar's wrapper is
+`hidden md:block`, so with `sidebarOpen` true the `<Sidebar>` inside it is still
+*mounted* — just not displayed — while the drawer renders a second one. A bare
+`aside` selector is therefore ambiguous at mobile widths, and is the wrong readiness
+signal after opening the drawer. Wait on the overlay (`.fixed.inset-0.z-50`) instead.
+
+Related: the drawer covers the hamburger that opened it, so a click-retry loop keyed on
+that button will time out on an element that is merely occluded, *after* having already
+succeeded.
 
 ## Capture recipe
 

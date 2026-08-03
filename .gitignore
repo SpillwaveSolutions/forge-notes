@@ -17,3 +17,4 @@ test-results/
 
 # machine-local port assignments (see scripts/dev-ports.mjs)
 .dev-ports.json
+screenshots/ui/

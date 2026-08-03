@@ -17,6 +17,14 @@ optional one-line **mode banner**, and a scrolling list capped at `max-h-80`.
 second group whose heading flips between **Pages** (browse, first 30 non-archived) and
 **Results** (a query is present).
 
+That "always" has a consequence worth stating, because it was a real bug: cmdk renders
+`<Command.Empty>` only when the **whole list** has zero items, and the Actions group
+always contributes one. So `Command.Empty` could never fire here, and a search matching
+nothing showed a bare **Results** heading with no rows and no message. The empty message
+is now rendered explicitly on `showHits && hits.length === 0`, and deliberately sits
+*outside* both groups — a cmdk `Group` with no `Item` children hides itself, message
+included.
+
 ### Search has two engines and says which one ran
 
 The mode banner appears **only while a query is present**:
@@ -137,6 +145,8 @@ Tokens and always-acceptable items: [tokens.md](tokens.md).
 - The mode banner with an empty query
 - A snippet line in browse mode (`showHits` gates it)
 - Results carried over from a previous query
+- A **Results** heading with neither rows nor an empty message — that dead end is the
+  bug the explicit empty state replaced
 
 ### Failure Criteria
 - Palette below the Settings or wizard dialog — it is `z-[100]` and must win

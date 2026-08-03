@@ -25,7 +25,28 @@ file because they are read together and rot together.
 ```bash
 npm run ui:render   # all .puml -> png/
 npm run ui:check    # syntax only, no output written
+npm run ui:capture  # screenshot every documented state -> screenshots/ui/
 ```
+
+`ui:capture` runs `e2e/capture.spec.ts`, which encodes every capture recipe in this
+directory. It is a Playwright spec rather than a standalone script for one reason: the
+dev server. `webServer` already starts one, tears it down, and — since the port work —
+refuses to adopt a sibling project's. Skipped unless `CAPTURE=1`, because it produces
+artefacts and asserts nothing, and a CI job that passes without checking anything is
+worse than no job.
+
+**Capturing is half the loop. The other half is judgement**: read a screen's doc, look
+at the matching screenshot, and report per-item pass/fail against the four rubric
+lists. No CI job can do that part.
+
+That it is worth doing is not theoretical. The first full walk of these specs — written
+from reading the code — found three defects in an hour:
+
+| Found | Why reading missed it |
+|---|---|
+| `divider`, `ai` and `mermaid` blocks carried **no `data-block-id`/`data-block-type`** | Three early returns sit ~130 lines above the wrapper that sets them |
+| The e2e test meant to catch that was **vacuous** | It filtered on `[data-block-type]`, so a row missing the attribute satisfied it trivially |
+| The command palette's empty state was **unreachable** | `Command.Empty` needs a zero-item list, and the Actions group always has one |
 
 Requires `plantuml` and `graphviz` (`brew install plantuml graphviz`).
 

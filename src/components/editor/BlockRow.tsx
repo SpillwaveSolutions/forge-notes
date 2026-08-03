@@ -243,6 +243,10 @@ export function BlockRow({
     return (
       <div
         ref={rowRef}
+        // See the note on the `ai` early return below — same reason. THREE
+        // types took an early return past the wrapper that sets these.
+        data-block-id={block.id}
+        data-block-type={block.type}
         className="group relative flex items-center gap-1 py-2"
         style={indentStyle}
         onMouseEnter={() => setHovered(true)}
@@ -267,6 +271,14 @@ export function BlockRow({
     return (
       <div
         ref={rowRef}
+        // Same structural attributes as the general row below. They are easy to
+        // forget on an early return, and forgetting them is invisible: the
+        // block renders correctly, and only selector-based tooling notices that
+        // 3 of the 14 types cannot be addressed or counted. `e2e/a11y.spec.ts`
+        // now compares the rendered row count against the store, so a fourth
+        // early return fails loudly instead of silently.
+        data-block-id={block.id}
+        data-block-type={block.type}
         className="group relative py-1"
         style={indentStyle}
         onMouseEnter={() => setHovered(true)}
@@ -308,6 +320,9 @@ export function BlockRow({
     return (
       <div
         ref={rowRef}
+        // See the note on the `ai` early return above — same reason.
+        data-block-id={block.id}
+        data-block-type={block.type}
         className="group relative py-1"
         style={indentStyle}
         onMouseEnter={() => setHovered(true)}

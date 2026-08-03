@@ -32,6 +32,7 @@
     "ports": "node scripts/dev-ports.mjs status",
     "ports:resolve": "node scripts/dev-ports.mjs resolve",
     "ui:render": "plantuml -tpng -o png docs/ui/wireframes/*.puml",
+    "ui:capture": "CAPTURE=1 playwright test e2e/capture.spec.ts",
     "ui:check": "plantuml -checkonly docs/ui/wireframes/*.puml"
   },
   "dependencies": {
