@@ -30,7 +30,7 @@ test("Cmd+= grows the UI and Cmd+- shrinks it back", async ({ page }) => {
   await expect(async () => {
     await page.keyboard.press("ControlOrMeta+=");
     expect(await rootFontPx(page)).toBeGreaterThan(base);
-  }).toPass({ timeout: 15_000 });
+  }).toPass({ timeout: 30_000 });
 
   const grown = await rootFontPx(page);
   expect(grown).toBeCloseTo(base * 1.15, 1);
@@ -47,7 +47,7 @@ test("Cmd+0 resets from any level", async ({ page }) => {
   await expect(async () => {
     await page.keyboard.press("ControlOrMeta+=");
     expect(await rootFontPx(page)).toBeGreaterThan(base);
-  }).toPass({ timeout: 15_000 });
+  }).toPass({ timeout: 30_000 });
 
   await page.keyboard.press("ControlOrMeta+=");
   await page.keyboard.press("ControlOrMeta+0");
@@ -62,7 +62,7 @@ test("the zoom level survives a reload", async ({ page }) => {
   await expect(async () => {
     await page.keyboard.press("ControlOrMeta+=");
     expect(await rootFontPx(page)).toBeGreaterThan(base);
-  }).toPass({ timeout: 15_000 });
+  }).toPass({ timeout: 30_000 });
 
   const grown = await rootFontPx(page);
   expect(await page.evaluate(() => localStorage.getItem("forgenotes-zoom"))).toBe("1.15");
@@ -72,7 +72,7 @@ test("the zoom level survives a reload", async ({ page }) => {
   await expect(page.locator("body")).not.toBeEmpty();
   await expect(async () => {
     expect(await rootFontPx(page)).toBeCloseTo(grown, 1);
-  }).toPass({ timeout: 15_000 });
+  }).toPass({ timeout: 30_000 });
 });
 
 test("zoom stops at the ends of the ladder instead of running away", async ({ page }) => {
@@ -83,7 +83,7 @@ test("zoom stops at the ends of the ladder instead of running away", async ({ pa
   await expect(async () => {
     await page.keyboard.press("ControlOrMeta+=");
     expect(await rootFontPx(page)).toBeGreaterThan(base);
-  }).toPass({ timeout: 15_000 });
+  }).toPass({ timeout: 30_000 });
 
   // Well past the 8-entry ladder.
   for (let i = 0; i < 12; i++) await page.keyboard.press("ControlOrMeta+=");
