@@ -58,4 +58,29 @@ test("block rows carry structural type and id attributes", async ({ page }) => {
       ).length,
   );
   expect(missingId).toBe(0);
+
+  // The check above is necessary but was VACUOUS on its own: it only inspects
+  // rows that already carry the attribute, so a row missing BOTH passes
+  // trivially. That is exactly what happened — `BlockRow` returns early for
+  // `ai` and `mermaid` about 130 lines above the wrapper that sets them, and
+  // those two types were unaddressable while this test stayed green.
+  //
+  // Comparing the rendered count against the store catches the class, not the
+  // instance: any future early return that forgets the attributes fails here.
+  const expected = await page.evaluate(() => {
+    const state = JSON.parse(localStorage.getItem("workspace-v1") ?? "{}").state;
+    const active = state?.pages?.find((p: { id: string }) => p.id === state.activePageId);
+    return active?.blocks?.length ?? -1;
+  });
+  expect(expected, "workspace-v1 did not hydrate").toBeGreaterThan(0);
+  await expect(rows).toHaveCount(expected);
+
+  // Named explicitly because they are the two that were broken, and a count
+  // check alone would not say which type went missing.
+  for (const type of ["ai", "mermaid"] as const) {
+    await expect(
+      page.locator(`[data-block-type="${type}"]`),
+      `${type} blocks must be addressable by type`,
+    ).not.toHaveCount(0);
+  }
 });

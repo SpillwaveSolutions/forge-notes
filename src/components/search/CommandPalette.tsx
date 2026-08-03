@@ -144,10 +144,6 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
           )}
 
           <Command.List className="max-h-80 overflow-y-auto p-2">
-            <Command.Empty className="py-8 text-center text-sm text-muted-foreground">
-              {searching ? "Searching…" : "No pages found"}
-            </Command.Empty>
-
             <Command.Group
               heading="Actions"
               className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-muted-foreground"
@@ -205,6 +201,19 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                 </Command.Item>
               ))}
             </Command.Group>
+
+            {/* Replaces <Command.Empty>, which was dead code here: cmdk renders
+                Empty only when the whole list has zero items, and the Actions
+                group always contributes "New page". So a search that matched
+                nothing showed a bare "Results" heading with no rows and no
+                message — a dead end that told the user nothing. Rendered
+                outside the groups because a cmdk Group with no Items hides
+                itself, message and all. */}
+            {showHits && hits.length === 0 && (
+              <p className="py-8 text-center text-sm text-muted-foreground">
+                {searching ? "Searching…" : "No pages found"}
+              </p>
+            )}
           </Command.List>
         </Command>
       </div>

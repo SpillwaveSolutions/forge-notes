@@ -14,6 +14,17 @@ all fourteen types addressable and countable through one selector, and stays cor
 when a type is added — the alternative is fourteen testids, or reading type off class
 names, which breaks on any restyle.
 
+> That claim was **false for three of the fourteen** until a real capture caught it.
+> `BlockRow` returns early for `divider`, `ai` and `mermaid`, roughly 130 lines above
+> the wrapper that sets the attributes, and none of those three wrappers had them. The
+> blocks rendered perfectly; only selector-based tooling could tell. The existing e2e
+> check passed the whole time because it only inspected rows that *already* carried
+> `data-block-type` — a row missing both attributes satisfied it trivially.
+>
+> `e2e/a11y.spec.ts` now compares the rendered row count against the store, so a fourth
+> early return fails loudly. The lesson generalises: **a test that filters by the thing
+> it is checking for cannot detect absence.**
+
 ### The fourteen types — one table, not fourteen sections
 
 Rubric each row by the **Distinguishing mark** column. That mark is the entire
