@@ -1,4 +1,4 @@
-import { fn as defineErrorCodes, ln as BetterAuthError, nn as env } from "../_libs/@better-auth/core+[...].mjs";
+import { Ln as env, Wn as BetterAuthError, qn as defineErrorCodes } from "../_libs/@better-auth/core+[...].mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/url-CBX8wGYU.js
 var PACKAGE_VERSION = "1.6.25";
 var GENERIC_OAUTH_ERROR_CODES = defineErrorCodes({

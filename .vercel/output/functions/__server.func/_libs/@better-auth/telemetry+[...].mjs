@@ -1,8 +1,8 @@
-import { $t as logger, B as base64Url, Gt as createRandomStringGenerator, Jt as betterFetch, V as getWebcryptoSubtle, in as getEnvVar, nn as env, rn as getBooleanEnvVar, sn as isTest, tn as ENV, z as base64 } from "./core+[...].mjs";
+import { D as getWebcryptoSubtle, E as base64Url, Hn as isTest, In as ENV, Ln as env, Pn as logger, Rn as getBooleanEnvVar, T as base64, jt as createRandomStringGenerator, kn as betterFetch, zn as getEnvVar } from "./core+[...].mjs";
+import fs$1 from "node:fs/promises";
 import fs from "node:fs";
-import fsPromises from "node:fs/promises";
-import os from "node:os";
 import path from "node:path";
+import os from "node:os";
 //#region node_modules/@better-auth/utils/dist/hash.mjs
 function createHash(algorithm, encoding) {
 	return { digest: async (input) => {
@@ -253,7 +253,7 @@ async function readRootPackageJson() {
 	try {
 		const cwd = process.cwd();
 		if (!cwd) return void 0;
-		const raw = await fsPromises.readFile(path.join(cwd, "package.json"), "utf-8");
+		const raw = await fs$1.readFile(path.join(cwd, "package.json"), "utf-8");
 		packageJSONCache = JSON.parse(raw);
 		return packageJSONCache;
 	} catch {}
@@ -264,7 +264,7 @@ async function getPackageVersion(pkg) {
 		const cwd = process.cwd();
 		if (!cwd) throw new Error("no-cwd");
 		const pkgJsonPath = path.join(cwd, "node_modules", pkg, "package.json");
-		const raw = await fsPromises.readFile(pkgJsonPath, "utf-8");
+		const raw = await fs$1.readFile(pkgJsonPath, "utf-8");
 		return JSON.parse(raw).version || await getVersionFromLocalPackageJson(pkg) || void 0;
 	} catch {}
 	return getVersionFromLocalPackageJson(pkg);

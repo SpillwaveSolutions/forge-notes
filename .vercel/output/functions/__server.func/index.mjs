@@ -9,7 +9,7 @@ function lazyService(loader) {
 		return promise.then((mod) => mod.fetch(req));
 	} };
 }
-var services = { ["ssr"]: lazyService(() => import("./_ssr/ssr.mjs").then((n) => n.s)) };
+var services = { ["ssr"]: lazyService(() => import("./_ssr/ssr.mjs")) };
 globalThis.__nitro_vite_envs__ = services;
 //#endregion
 //#region node_modules/nitro/dist/runtime/internal/route-rules.mjs
@@ -38,11 +38,11 @@ var findRouteRules = /* @__PURE__ */ (() => {
 		return r;
 	};
 })();
-var _lazy_IO091Z = defineLazyEventHandler(() => import("./_chunks/ssr-renderer.mjs"));
+var _lazy_CQqvAI = defineLazyEventHandler(() => import("./_chunks/ssr-renderer.mjs"));
 var findRoute = /* @__PURE__ */ (() => {
 	const data = {
 		route: "/**",
-		handler: _lazy_IO091Z
+		handler: _lazy_CQqvAI
 	};
 	return ((_m, p) => {
 		return {

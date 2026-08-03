@@ -285,9 +285,16 @@ writes** by `context.userId`.
 the code can set `__Host-`-prefixed names itself; `__Host-` forbids a `Domain` attribute, which
 is what stops a sibling `*.grok.me` app from injecting a session cookie. Do not "fix" it.
 
-**Known latent bug:** `src-tauri/tauri.conf.json` lists an icon named
-`icons/henry.w@example.net` — a scrubbing artifact from `128x128@2x.png`. Harmless today
-(file and reference agree) but wrong; fixing it means renaming the file and the config together.
+**Fixed in v0.3.1, and it was never harmless.** `tauri.conf.json` used to list an icon
+named `icons/henry.w@example.net` — a scrubbing artifact from `128x128@2x.png`. This file
+previously called that harmless because the file and the reference agreed. They did, and
+it still broke the build: the bundler infers image format from the extension, `.net` is
+not one, and `cargo tauri build` died with `Failed to create app icon: The image format
+could not be determined`. That is exactly why the desktop packaging path stayed
+unexercised — the first person to run it hit a wall.
+
+Generalises past this one file: **"the references agree" is not "it works."** The
+consistency was checkable by reading; the format inference was not.
 
 ## Conventions
 
