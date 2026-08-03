@@ -1,0 +1,29 @@
+' Source: src/components/markdown/MountedMarkdownView.tsx:250 — mode="file"
+' Deliberately simpler than PageEditor: single-line title (input, not textarea),
+' explicit Save, no hover handles, no slash menu, no 14 types. Each block is a
+' bare textarea with a TRANSPARENT border that only appears on hover/focus, and
+' its type printed BELOW it as a 10px uppercase caption.
+' No data-block-id / data-block-type here — BlockRow is imported but unused.
+@startsalt
+{
+  {
+    { (🔗 Linked · not imported) | docs | / | <b>getting-started.md }
+    .
+    { <size:24><b>Getting started | [💾 Save to disk] }
+    .
+    # Getting started
+    <i>HEADING1
+    .
+    Install the CLI and run the setup wizard.
+    <i>PARAGRAPH
+    .
+    - First step
+    <i>BULLET
+    .
+    [ Add block ]
+    .
+    <i>Edits write back to the linked file. This page is <b>not stored in
+    <i>your workspace until you Import.
+  }
+}
+@endsalt

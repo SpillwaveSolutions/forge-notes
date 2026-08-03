@@ -1,0 +1,11 @@
+' Source: src/components/editor/PageEditor.tsx:181 — PopoverContent w-72
+' PAGE_ICONS in an 8-column grid; the current icon is bg-muted with ring-1.
+@startsalt
+{+
+  <i>Page icon
+  --
+  { 📄 | 📘 | 📕 | 📗 | 📙 | 📓 | 📔 | 📒 }
+  { ✅ | 🎯 | 🚀 | 💡 | 🔧 | 🧪 | 📊 | 🗂 }
+  { 🐛 | 🔒 | 🌱 | ⭐ | 🔥 | ❄ | 🎨 | 🧭 }
+}
+@endsalt

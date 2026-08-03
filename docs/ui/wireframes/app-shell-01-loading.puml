@@ -1,0 +1,14 @@
+' Source: src/components/layout/AppShell.tsx:120
+' State: !hydrated || authPending || remoteLoading — replaces the whole shell.
+@startsalt
+{+
+  .
+  .
+  {   [   ]   }
+  Loading workspace…
+  .
+  <i>(reads "Loading workspace from database…" while remoteLoading)
+  .
+  .
+}
+@endsalt

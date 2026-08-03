@@ -35,11 +35,37 @@ replaces the shell rather than sitting inside it.
    `sm`) and truncates. Replaced by a single `🔗 mount / relPath` label in mount mode,
    and by "No page selected" when neither.
 4. **SyncChip** — see below
-5. **Import/export** (`title="Import / export markdown"`) — only with a page or mount
-6. **Favourite star** (`aria-label="Favorite"` / `"Unfavorite"`) — page mode only;
+5. **Theme toggle** — a Moon in light mode, a Sun in dark. Always present, in every
+   layout state that has a header.
+6. **Import/export** (`title="Import / export markdown"`) — only with a page or mount
+7. **Favourite star** (`aria-label="Favorite"` / `"Unfavorite"`) — page mode only;
    filled amber when set
-7. **Sign in to sync** button, or `UserButton` — `hidden sm:flex`, and only when
+8. **Sign in to sync** button, or `UserButton` — `hidden sm:flex`, and only when
    `authEnabled`
+
+### Theme toggle
+
+Its accessible name is **the destination, not the current state**:
+`Switch to dark theme` while light, `Switch to light theme` while dark. A control
+labelled "Dark" is ambiguous about which of the two it means, and an agent reading the
+accessibility tree has only the name to go on.
+
+The icon runs the same way — Moon while light (what you would get), Sun while dark. So
+**icon and label always agree, and both disagree with the current theme.** A rubric
+that expects "dark mode shows a moon" is asserting the opposite of the design.
+
+It writes the same `setTheme` the Settings dialog does, into the same `workspace-v1`
+persist. Two controls, one piece of state — flipping either updates the other, and both
+survive a reload. `useTheme()` in `__root.tsx` is what actually applies `.dark` to
+`<html>`, so the toggle works on `/login` too even though the header does not render
+there.
+
+### Zoom
+
+⌘`+` / ⌘`-` / ⌘`0` are bound at the root by `useZoom()` and have **no visible control
+at all** — nothing in the header changes, and there is nothing to screenshot. What they
+do change is the root font size, which rescales every capture of every screen. See
+[tokens.md](tokens.md); reset zoom to 1 before capturing anything.
 
 ### SyncChip
 
@@ -82,6 +108,7 @@ behaviour and a genuine a11y gap; it is recorded here rather than rubric'd as a 
 | Header | `header` (the only one) |
 | Breadcrumb | `header nav button` — ordered ancestor→self |
 | Sync chip | `header span[title^="Guest mode"]` \| `[title^="Signed in"]` |
+| Theme toggle | `role=button[name="Switch to dark theme"]` \| `[name="Switch to light theme"]` |
 | Favourite | `role=button[name="Favorite"]` \| `[name="Unfavorite"]` |
 | Import/export | `header button[title="Import / export markdown"]` |
 | Open sidebar | `role=button[name="Open sidebar"]` — **two nodes, one visible** |
@@ -123,6 +150,7 @@ stable marker, only the pulse square and text. Assert `header` is *absent* inste
 | 3 · Empty workspace | ![](wireframes/png/app-shell-03-empty.png) |
 | 4 · Mobile drawer | ![](wireframes/png/app-shell-04-mobile-drawer.png) |
 | 5 · Sync chip variants | ![](wireframes/png/app-shell-05-sync-chips.png) |
+| 6 · Header controls, light vs dark | ![](wireframes/png/app-shell-06-theme-toggle.png) |
 
 ## Rubric
 
@@ -133,7 +161,8 @@ Tokens and always-acceptable items: [tokens.md](tokens.md).
 - [ ] Header 44 px tall with a bottom border, spanning the remaining width
 - [ ] Breadcrumbs left-aligned, `›` separators, last crumb heavier than the rest
 - [ ] Sync chip is a pill: rounded-full, hairline border, icon + label
-- [ ] Star and import/export sit right of the chip, before the account control
+- [ ] Theme toggle right of the chip, showing a **Moon in light mode, a Sun in dark**
+- [ ] Star and import/export sit right of the toggle, before the account control
 - [ ] Only `<main>` scrolls — header and sidebar stay put
 - [ ] Empty state centres "No page open", a sub-line, then **New page** / **Open sidebar**
 - [ ] Loading state is centred, has neither sidebar nor header
@@ -143,6 +172,10 @@ Tokens and always-acceptable items: [tokens.md](tokens.md).
 - Spinner rotation angle when frozen
 - Sync chip label — reflects real state
 - Sidebar present or collapsed (`sidebarOpen` persists across reloads)
+- Which theme is showing — but **not** the toggle's icon within a given theme
+- Overall scale, if and only if zoom was left off 1 — see [tokens.md](tokens.md).
+  Reset it rather than accepting it: at 1.3 every measurement in this rubric is wrong
+  at once, which reads as many findings instead of one setting.
 
 ### Must NOT Appear
 - A toast (`.ui-freeze` hides `[data-sonner-toaster]`)
@@ -150,6 +183,8 @@ Tokens and always-acceptable items: [tokens.md](tokens.md).
 - The mobile scrim at `md` and wider
 - Both "Open sidebar" buttons at once
 - The star or import/export button in the empty state
+- A Sun in light mode, or a Moon in dark — the toggle names its destination
+- Any visible zoom control (there is none; the shortcuts are keyboard-only)
 
 ### Failure Criteria
 - The shell itself scrolls, or the header scrolls away

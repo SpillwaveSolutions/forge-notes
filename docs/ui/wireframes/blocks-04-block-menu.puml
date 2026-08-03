@@ -1,0 +1,14 @@
+' Source: src/components/editor/BlockRow.tsx:562 — the ⠿ Block menu
+' "Edit with AI" appears only when canAiEdit. "Turn into" is a submenu listing
+' all 14 types.
+@startsalt
+{+
+  <i>Block
+  ✨ Edit with AI
+  ↑ Move up
+  ↓ Move down
+  ⋯ Turn into            >
+  --
+  <color:#c2410c>🗑 Delete
+}
+@endsalt

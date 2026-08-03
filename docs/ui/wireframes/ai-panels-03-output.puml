@@ -1,0 +1,20 @@
+' Source: src/components/editor/AiBlockPanel.tsx:234 — aiOutput && !streamPreview
+' The stream panel and this <pre> are MUTUALLY EXCLUSIVE. Seeing both means the
+' invariant broke. The stream label is three-way:
+'   status ?? (loading ? "Streaming…" : "Preview")
+' so a finished-but-uncleared stream panel reads "Preview" with no spinner.
+@startsalt
+{^"✨ AI block                              Anthropic · claude-opus-5"
+  <i>Uses page context. Backends: Deep Agents, API keys, or coding CLIs…
+  .
+  { [Summary] | [Todos] | [Table] | [Outline] | [Diagram] }
+  .
+  { "Custom instruction…                    " | [▶ Run] }
+  .
+  {SI
+    - Ship the port identity check
+    - Document the remaining screens
+    - Publish the specs to the wiki
+  }
+}
+@endsalt

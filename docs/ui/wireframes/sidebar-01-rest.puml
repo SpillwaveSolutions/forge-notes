@@ -1,0 +1,32 @@
+' Source: src/components/layout/Sidebar.tsx:333
+' REST state. The per-row ⋯ and + are opacity-0 here — present in the DOM and
+' clickable, but absent from the picture. See sidebar-02-reveal.
+@startsalt
+{+
+  { <b>W  My Workspace | ☁ | [«] }
+  --
+  🔍 Search
+  +  New page
+  ⬇  Import / export
+  🔗 Link markdown
+  >_ Agent harness
+  ==
+  <b>FAVORITES
+  ⭐ Getting started
+  .
+  <b>PRIVATE
+  { v 📄 Getting started }
+  {   > 📄   Sub-page }
+  { > 📄 Roadmap }
+  { . 📄 Scratch }
+  .
+  <b>LINKED MARKDOWN
+  { > 🔗 docs }
+  <i>Link folder (no import)
+  ==
+  ➜ Sign in to sync
+  <i>Local only · Sign in to sync
+  🗑 Trash
+  ⚙ Settings
+}
+@endsalt

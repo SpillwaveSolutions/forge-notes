@@ -1,0 +1,26 @@
+' Source: src/components/harness/HarnessPanel.tsx:203 — Workflow tab
+' The backend slot sits ABOVE the tab body and is shared by every tab.
+' Option prefixes ● / ○ are text glyphs, not icons — they survive an
+' accessibility snapshot as literal characters.
+@startsalt
+{+
+  <b>>_ Meta-harness · CLI agents                    X
+  Plan → Implement → Review → Validate. Swap backends without
+  rewriting the workflow.
+  { ( <b>Workflow ) | ( Single agent ) | ( Backends ) }
+  ==
+  Backend slot (executor.harness)
+  ^● Mock (mock)^
+  .
+  Workflow
+  ^feature-build.yaml^
+  Feature
+  "Add a search filter                          "
+  [ ▶ Run workflow ]
+  .
+  {SI
+    wks harness workflow feature-build \
+      --feature "Add a search filter" --backend mock
+  }
+}
+@endsalt

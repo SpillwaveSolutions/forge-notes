@@ -1,0 +1,25 @@
+' Source: src/components/editor/AiEditDialog.tsx:220 — preview non-empty, idle
+' NEVER rubric a streaming capture: the preview text is nondeterministic by
+' construction, and the <pre> drops to opacity-80 while still streaming (which
+' is correct, not a render bug). Capture idle and final only.
+@startsalt
+{+
+  <b>✨ Edit block with AI                           X
+  Rewrite this block. Uses your configured backend…
+  ==
+  {^"Original"
+    Welcome to ForgeNotes. Type / for commands.
+  }
+  .
+  { [Improve] | [Shorter] | [Expand] | [Fix grammar] | [Professional] }
+  .
+  { "Custom instruction…                        " | [Run] }
+  .
+  <b>Preview
+  {SI
+    Welcome to ForgeNotes. Press / at any point to open the
+    command menu and insert a block.
+  }
+  [           Apply to block            ]
+}
+@endsalt

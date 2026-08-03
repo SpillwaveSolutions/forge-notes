@@ -1,0 +1,21 @@
+' Source: src/components/search/CommandPalette.tsx:147 Command.Empty
+' "Actions → New page" survives the empty state — cmdk renders Empty alongside
+' groups, so the escape hatch is always reachable.
+@startsalt
+{+
+  { 🔍 | "zzzzzz                                     " | [ESC] }
+  ==
+  <i>Local search (sign in to sync for Postgres search)
+  ==
+  .
+  No pages found
+  .
+  <b>ACTIONS
+  { + New page }
+  .
+  <b>RESULTS
+  .
+  --
+  <i>reads "Searching…" instead while the request is in flight
+}
+@endsalt

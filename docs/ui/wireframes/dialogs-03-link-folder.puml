@@ -1,0 +1,25 @@
+' Source: src/components/markdown/LinkFolderDialog.tsx:74 — max-w-md
+' LINKS, does not copy — the deliberate contrast with MarkdownIODialog. If a
+' rubric cannot tell the two apart from a screenshot, the descriptions failed.
+' "Choose local folder" needs window.showDirectoryPicker — absent in WebKit, so
+' that path is effectively Chromium-only and errors rather than degrading.
+@startsalt
+{+
+  <b>🔗 Link markdown folder                         X
+  Browse .md files in the same UI <b>without importing them.
+  ==
+  <b>Display name
+  "docs                                         "
+  .
+  {^"💾 This computer"
+    <i>Uses the browser's folder picker. Files stay on disk; we only
+    <i>read/write when you open or save.
+    [ 📁 Choose local folder ]
+  }
+  {^"Server path (sandbox / deploy host)"
+    "/workspace/markdown-samples                "
+    <i>Allowed under /workspace
+    [ Link server folder ]
+  }
+}
+@endsalt

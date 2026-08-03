@@ -1,0 +1,34 @@
+' Source: src/components/layout/AppShell.tsx:345 EmptyWorkspace
+' No page and no mount selected. Header keeps "No page selected"; star and
+' import/export are ABSENT (both are gated on page || showMount).
+@startsalt
+{+
+  {#
+    {
+      <b>W Workspace  ~
+      --
+      🔍 Search
+      + New page
+      --
+      <b>PRIVATE
+      No pages yet
+      --
+      🗑 Trash
+      ⚙ Settings
+    } |
+    {
+      { No page selected | . | (Local only) | 🌙 | [Sign in to sync] }
+      ==
+      {
+        .
+        <b>No page open
+        Create a page, open one from the sidebar, or
+        link a markdown folder without importing.
+        .
+        { [ New page ] | [ Open sidebar ] }
+        .
+      }
+    }
+  }
+}
+@endsalt

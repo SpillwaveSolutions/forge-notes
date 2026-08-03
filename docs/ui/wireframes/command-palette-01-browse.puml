@@ -1,0 +1,16 @@
+' Source: src/components/search/CommandPalette.tsx:108 — open, query empty
+' No mode banner (showHits is false). Second group heading reads "Pages".
+@startsalt
+{+
+  { 🔍 | "Search pages…                              " | [ESC] }
+  ==
+  <b>ACTIONS
+  { + New page }
+  .
+  <b>PAGES
+  { 📄 Getting started | . | 📃 }
+  { 📄 Roadmap         | ⭐ | 📃 }
+  { 📄 Scratch         | . | 📃 }
+  { 📄 Untitled        | . | 📃 }
+}
+@endsalt

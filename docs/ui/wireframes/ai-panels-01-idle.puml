@@ -1,0 +1,14 @@
+' Source: src/components/editor/AiBlockPanel.tsx:155 — configured, idle
+' INLINE, not a modal: a rounded-xl card on bg-muted/30 sitting in the block
+' column, captured as part of the page. Presets differ from AiEditDialog's five —
+' this one generates from page context, that one rewrites one block.
+@startsalt
+{^"✨ AI block                              Anthropic · claude-opus-5"
+  <i>Uses page context. Backends: Deep Agents, API keys, or coding CLIs
+  <i>(Claude Code / Codex / Grok) with live streaming when available.
+  .
+  { [Summary] | [Todos] | [Table] | [Outline] | [Diagram] }
+  .
+  { "Custom instruction…                    " | [▶ Run] }
+}
+@endsalt

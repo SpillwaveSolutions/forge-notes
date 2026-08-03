@@ -1,0 +1,27 @@
+' Source: src/components/layout/AppShell.tsx — the header theme toggle
+' The accessible name and the icon BOTH name the DESTINATION, not the current
+' state. So in light mode you see a Moon; in dark you see a Sun. Icon and label
+' always agree with each other, and both disagree with the theme you are in.
+' A rubric expecting "dark mode shows a moon" asserts the opposite of the design.
+'
+' Zoom (⌘+ / ⌘- / ⌘0) has NO visible control — nothing here changes. It rescales
+' every capture instead. Reset it to 1 before screenshotting anything.
+@startsalt
+{
+  {#
+    <b>theme | <b>icon | <b>accessible name        | <b>on click
+    light    | 🌙     | "Switch to dark theme"     | -> dark
+    dark     | ☀      | "Switch to light theme"    | -> light
+  }
+  ==
+  <b>Header order, left to right
+  {+
+    { [☰] | 📄 Getting started > 📄 Notes | . | (☁/ Local only) | [🌙] | [⬇] | [☆] | [Sign in to sync] }
+  }
+  --
+  <i>Both this toggle and Settings' Light/Dark pair write the same
+  <i>`workspace-v1` theme field. Two controls, one piece of state.
+  <i>useTheme() in __root.tsx applies `.dark`, so /login is themed too even
+  <i>though this header never renders there.
+}
+@endsalt

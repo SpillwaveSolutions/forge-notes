@@ -1,0 +1,20 @@
+' Source: src/components/search/CommandPalette.tsx:138 — query present
+' Mode banner appears; heading flips to "Results"; rows gain a per-hit mode tag
+' and a snippet. The banner names the engine that ACTUALLY ran — a failed server
+' search falls back to local and relabels itself.
+@startsalt
+{+
+  { 🔍 | "roadmap                                    " | [ESC] }
+  ==
+  <i>Postgres full-text + pg_trgm similarity
+  ==
+  <b>ACTIONS
+  { + New page }
+  .
+  <b>RESULTS
+  { 📄 Roadmap | ⭐ | <i>KEYWORD | 📃 }
+  <i>   …the roadmap is generated from work items…
+  { 📄 Q3 planning | . | <i>SIMILARITY | 📃 }
+  <i>   …see roadmap for the shipping order…
+}
+@endsalt

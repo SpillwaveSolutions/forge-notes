@@ -1,0 +1,15 @@
+' Source: src/components/editor/BlockRow.tsx:531 BlockHandles
+' REVEAL state. Handles sit at -left-12, OUTSIDE the row, in the gutter the
+' page editor's pl-10/pl-12 reserves. They are opacity-0, never hidden: still
+' clickable at rest, so only a screenshot catches the difference.
+' Focus reveals them too — click "Add block at end" before a rest capture.
+@startsalt
+{
+  {#
+    [+] [⠿] | <size:22><b>A heading
+    [+] [⠿] | paragraph text
+    [+] [⠿] | • a bullet
+    [+] [⠿] | [ ] a todo
+  }
+}
+@endsalt

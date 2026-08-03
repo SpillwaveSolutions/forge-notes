@@ -1,0 +1,27 @@
+' Source: src/components/harness/HarnessPanel.tsx:305 — data-testid="harness-result"
+' The `runId · backend · durationMs` line is [data-volatile]: .ui-freeze hides it
+' with visibility:hidden, so the line KEEPS ITS HEIGHT. The gap in a frozen
+' capture is the hidden metadata, not a layout bug.
+' Success also fires a toast, which .ui-freeze hides entirely — this panel is the
+' only screenshot-visible evidence that a run finished.
+@startsalt
+{+
+  <b>>_ Meta-harness · CLI agents                    X
+  { ( <b>Workflow ) | ( Single agent ) | ( Backends ) }
+  ==
+  Backend slot (executor.harness)
+  ^● Mock (mock)^
+  .
+  [ ▶ Run workflow ]
+  .
+  {^" "
+    { (ok) | <i>········································· | plan: harness/plans/… }
+    {SI
+      plan   → wrote harness/plans/2026-08-02-search-filter.md
+      build  → 3 files changed
+      review → no blocking findings
+      validate → 23 passed
+    }
+  }
+}
+@endsalt

@@ -68,6 +68,32 @@ any Windows capture. **Font rendering is always an Acceptable Difference.**
   VM with that setting reproduces most of `.ui-freeze` for free — which is why a
   screenshot that looks frozen is not evidence that freeze mode is on.
 
+## Zoom — a capture prerequisite, not just a feature
+
+`useZoom()` (`src/lib/use-zoom.ts`, called from `__root.tsx`) sets
+`documentElement.style.fontSize` from `localStorage["forgenotes-zoom"]`, and ⌘`+` / ⌘`-`
+step it along a fixed ladder — `0.75 · 0.85 · 1 · 1.15 · 1.3 · 1.5 · 1.75 · 2` — with
+⌘`0` resetting to 1.
+
+Because Tailwind sizes everything here in rem, **one root font size scales type,
+padding, gaps and radii together**. That is what makes the feature cheap, and it is also
+why it wrecks a screenshot rubric silently: a capture taken at 1.3 differs from the
+wireframe in every dimension at once, and reads as a hundred small layout regressions
+rather than one setting.
+
+> **Reset zoom before capturing.** Either seed
+> `localStorage["forgenotes-zoom"] = "1"`, or delete the key. Every capture recipe in
+> `docs/ui/` assumes zoom is 1; none of them repeat it.
+
+Deliberately **not** in `workspace-v1`: that store is partialized into the remote
+workspace and comes back through `loadFromRemote`, so a level set on a desktop would
+follow you to a laptop. Zoom belongs to the display, so it gets its own machine-local
+key — and it survives `Reset workspace`, which is correct for the same reason.
+
+Known limitation, web build only: browsers do not reliably let a page cancel their own
+zoom chrome, so in a plain browser the native shortcut may fire alongside this handler
+and zoom twice. In the Tauri window this fully replaces the webview's zoom.
+
 ## Capture mode
 
 Two classes on `<html>`, set by `useCaptureMode()` (`src/lib/use-capture-mode.ts`)
@@ -78,11 +104,20 @@ from `localStorage`, and **gated on `import.meta.env.DEV`** — production ignor
 | `.ui-freeze` | `forgenotes-ui-freeze` | `animation`/`transition: none`; `caret-color: transparent`; hides `[data-sonner-toaster]`; `[data-volatile]` → `visibility: hidden` |
 | `.ui-reveal` | `forgenotes-ui-reveal` | `[data-hover-reveal]` → `opacity: 1` |
 
+Two more `localStorage` keys affect every capture without being capture mode:
+`forgenotes-zoom` (above) and `workspace-v1` (theme, below).
+
 Theme is seeded separately through the zustand `persist` key:
 
 ```js
 localStorage["workspace-v1"] = '{"state":{"theme":"dark"},"version":0}'
+localStorage["forgenotes-zoom"] = "1"        // reset zoom — every rubric assumes it
 ```
+
+At runtime the theme has **two** controls writing the same persisted field: the header
+toggle ([app-shell.md](app-shell.md)) and the Light/Dark pair in Settings
+([sidebar.md](sidebar.md)). Seeding beats clicking either, because it applies before
+first paint and so works on `/login`, which renders no shell at all.
 
 Three details that cost time if you don't know them:
 

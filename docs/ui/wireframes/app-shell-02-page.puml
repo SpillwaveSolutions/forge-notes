@@ -1,0 +1,36 @@
+' Source: src/components/layout/AppShell.tsx:133 — page mode
+' Sidebar 260px | header 44px over a scrolling main.
+@startsalt
+{+
+  {#
+    {
+      <b>W Workspace  ~
+      --
+      🔍 Search
+      + New page
+      ⬇ Import / export
+      🔗 Link markdown
+      >_ Agent harness
+      --
+      <b>PRIVATE
+      📄 Getting started
+      📄 Roadmap
+      --
+      🗑 Trash
+      ⚙ Settings
+    } |
+    {
+      { 📄 Getting started > 📄 Notes | . | (Local only) | 🌙 | ⬇ | ☆ | [Sign in to sync] }
+      ==
+      {
+        <size:16><b>Getting started
+        .
+        Type / for commands.
+        .
+        • A bullet
+        1. A numbered item
+      }
+    }
+  }
+}
+@endsalt

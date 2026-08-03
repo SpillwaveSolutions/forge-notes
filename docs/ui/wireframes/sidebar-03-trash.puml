@@ -1,0 +1,15 @@
+' Source: src/components/layout/Sidebar.tsx:536 — Trash Dialog, max-w-md
+' Delete here is PERMANENT (permanentlyDeletePage); the sidebar's row-menu
+' Delete only archives.
+@startsalt
+{+
+  <b>Trash                                        X
+  Restored pages return to the top level of your workspace.
+  ==
+  { 📄 Old notes      | [Restore] | [Delete] }
+  { 📄 Untitled       | [Restore] | [Delete] }
+  { 📄 Draft          | [Restore] | [Delete] }
+  --
+  <i>Empty state reads: "Trash is empty"
+}
+@endsalt

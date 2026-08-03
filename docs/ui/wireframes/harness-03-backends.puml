@@ -1,0 +1,24 @@
+' Source: src/components/harness/HarnessPanel.tsx:269 — Backends tab
+' Status dot is emerald-500 when available, muted otherwise. Like the sidebar
+' sync icon, emerald is NOT a theme token. Which backends show as available
+' depends on what is installed — always an acceptable difference.
+@startsalt
+{+
+  <b>>_ Meta-harness · CLI agents                    X
+  Plan → Implement → Review → Validate…
+  { ( Workflow ) | ( Single agent ) | ( <b>Backends ) }
+  ==
+  Backend slot (executor.harness)
+  ^● Mock (mock)^
+  .
+  <i>Install CLIs locally for live runs; <b>mock always works in preview.
+  <i>Grok Build via `grok agent stdio` (ACP).
+  .
+  {#
+    ● | <b>Mock          | mock · built-in                     | ✓
+    ● | <b>Claude Code   | claude · claude -p                  | ✓
+    ○ | <b>Codex         | codex · codex exec                  | .
+    ● | <b>Grok Build    | grok · grok agent stdio (ACP)       | ✓
+  }
+}
+@endsalt

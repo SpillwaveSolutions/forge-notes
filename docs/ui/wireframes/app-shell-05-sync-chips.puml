@@ -1,0 +1,18 @@
+' Source: src/components/layout/AppShell.tsx:301 SyncChip
+' All four outcomes side by side. Every one is `hidden sm:inline-flex`, so the
+' chip is ABSENT below the sm breakpoint — a narrow capture is not missing it.
+@startsalt
+{
+  {#
+    <b>mode      | <b>status            | <b>chip
+    local        | any                  | ( ☁/ Local only )
+    database     | saving \| pending    | ( ◌ Saving… )
+    database     | error                | ( ☁ Sync error )
+    database     | saved                | ( ☁ Saved to DB )
+  }
+  --
+  <i>◌ = Loader2, spinning. The only animation in the header; .ui-freeze
+  <i>stops it at an arbitrary angle, so rotation is acceptable, presence is not.
+  <i>"Sync error" is the only variant using destructive text.
+}
+@endsalt

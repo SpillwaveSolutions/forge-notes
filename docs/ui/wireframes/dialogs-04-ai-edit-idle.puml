@@ -1,0 +1,21 @@
+' Source: src/components/editor/AiEditDialog.tsx:146 — idle, no preview yet
+' Preset labels do not match their ids: "Expand" is id "longer". Select by label.
+' Run becomes Stop (destructive) while loading — same slot, never both.
+@startsalt
+{+
+  <b>✨ Edit block with AI                           X
+  Rewrite this block. Uses your configured backend (API or Claude /
+  Codex / Grok CLI) with streaming when available.
+  <i>Anthropic · claude-opus-5
+  ==
+  <i>[AiSetupBanner — present only when AI is unconfigured]
+  .
+  {^"Original"
+    Welcome to ForgeNotes. Type / for commands.
+  }
+  .
+  { [Improve] | [Shorter] | [Expand] | [Fix grammar] | [Professional] }
+  .
+  { "Custom instruction…                        " | [Run] }
+}
+@endsalt

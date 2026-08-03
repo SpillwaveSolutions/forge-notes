@@ -53,14 +53,45 @@ documents, not published artifacts.
 
 ## Screens
 
-| Screen | Doc | States |
-|---|---|---|
-| AI Setup Wizard | [ai-setup-wizard.md](ai-setup-wizard.md) | 7 |
+Read [tokens.md](tokens.md) first — it holds the shared colour/type vocabulary and the
+reusable Acceptable-Difference and Failure fragments the per-screen rubrics point at,
+so they do not each re-derive them.
 
-Everything else is still to be written — see phase 6 of epic
-`01KYZ8X1X1V76HYNK8B5JYMD9W`. Roughly in value order: login, app shell, sidebar and
-command palette, page editor and the 14 block types, the remaining dialogs, then the
-AI panels.
+| Screen | Doc | States | Wireframes |
+|---|---|---|---|
+| Design tokens | [tokens.md](tokens.md) | — | — |
+| Login | [login.md](login.md) | 4 | 4 |
+| App shell | [app-shell.md](app-shell.md) | 4 + 4 sync variants | 6 |
+| Sidebar | [sidebar.md](sidebar.md) | 5 | 4 |
+| Command palette | [command-palette.md](command-palette.md) | 4 | 3 |
+| Page editor | [page-editor.md](page-editor.md) | 4 | 4 |
+| Blocks (14 types) | [blocks.md](blocks.md) | 14 × rest/reveal | 4 |
+| Dialogs (I/O, link, AI edit) | [dialogs.md](dialogs.md) | 6 | 5 |
+| Agent harness | [harness.md](harness.md) | 5 | 4 |
+| AI panels | [ai-panels.md](ai-panels.md) | 4 | 3 |
+| Mounted markdown | [mounted-markdown.md](mounted-markdown.md) | 4 | 3 |
+| AI Setup Wizard | [ai-setup-wizard.md](ai-setup-wizard.md) | 7 | 7 |
+
+Every screen under `src/components/**` and `src/routes/**` is now covered. Trash and
+Settings live in `sidebar.md` (which owns them); `AiSetupBanner` lives in
+`ai-panels.md`. `src/components/ui/**` is deliberately absent — those are primitives
+with no standalone state, specified through the screens that use them.
+
+## Writing an honest rubric
+
+The four lists are not decoration; three of them exist to stop the fourth being noise.
+
+**Acceptable Differences is the load-bearing one.** Any judge with a comparison
+instinct reports every pixel delta as a finding, and a rubric that cries wolf is
+ignored inside a week. Naming what does *not* matter — spacing, colour, icon choice,
+wireframe proportion, dynamic data — is what makes the judgement usable. Wireframes are
+Salt: they are schematic by construction, so *every* proportion in them is approximate
+and none of it is a finding.
+
+Keep **Must Match** to 6–10 items, all structural: presence, ordering, hierarchy — the
+things a bad redesign breaks. **Must NOT Appear** is where the `opacity-0` → `hidden`
+canaries go. **Failure Criteria** is for the unarguable: clipped content, unreadable
+contrast, a control off-screen.
 
 ## Capture prerequisites
 
