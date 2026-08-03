@@ -136,6 +136,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01KZ4G3ZQY3SEY7FM6Q4SQHKNC",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
    "from": "roadmap-snapshot/2026-08-01_v0.2.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -256,6 +261,11 @@
    "doc_type": "item",
    "status": "done",
    "title": "Desktop window blanks on boot: Better Auth rejects the tauri:// scheme as a base URL"
+  },
+  "item/01KZ4G3ZQY3SEY7FM6Q4SQHKNC": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "AI silently no-ops on desktop: asset protocol returns index.html with HTTP 200, so streamAi reads it as success"
   },
   "pr/1": {
    "doc_type": "pr"

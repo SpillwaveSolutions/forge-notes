@@ -35,6 +35,21 @@ export async function streamAi(opts: StreamAiOptions): Promise<AiResponse> {
   }
   if (!res.body) throw new Error("No response body for stream");
 
+  // `res.ok` is NOT enough. The packaged desktop app has no server, and Tauri's
+  // asset protocol answers an unknown path with `index.html` and HTTP **200** —
+  // so this reads as success, the SSE parser is handed HTML, finds no `data:`
+  // lines, and returns an empty result with no error. Pressing Run then does
+  // visibly nothing at all, which is how this shipped unnoticed.
+  const contentType = res.headers.get("content-type") ?? "";
+  if (!contentType.includes("text/event-stream")) {
+    throw new Error(
+      contentType.includes("text/html")
+        ? "AI needs the ForgeNotes server, and this build has none reachable. " +
+          "Run `npm run dev` and reopen the desktop app, or use the web app."
+        : `Expected an event stream, got ${contentType || "no content type"}.`,
+    );
+  }
+
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
