@@ -1,0 +1,26 @@
+' Source: src/components/layout/Sidebar.tsx:572 — Settings Dialog, max-w-md
+' TRAP: "Reset workspace" calls native confirm() (line 653). A browser modal
+' blocks every subsequent automation event — do not click it while driving.
+@startsalt
+{+
+  <b>Settings                                     X
+  Workspace preferences and AI
+  ==
+  <i>[Monitor] Running as Desktop · macos · Tauri standalone   (Tauri only)
+  .
+  Workspace name
+  "My Workspace                                     "
+  .
+  { Theme | . | [ ☀ Light ] | [ 🌙 Dark ] }
+  .
+  {^"✨ AI"
+    Backend: LangChain Deep Agents · Anthropic · claude-opus-5
+    CLIs: claude ✓ · codex · grok ✓
+    [Configure AI]
+  }
+  {^" "
+    Storage: Local only
+  }
+  [        ↺ Reset workspace        ]
+}
+@endsalt

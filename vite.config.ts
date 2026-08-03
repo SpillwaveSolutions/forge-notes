@@ -131,6 +131,11 @@ export default defineConfig(({ command }) => ({
     // devUrl both assume it. VITE_PORT only overrides it locally, so several
     // agents can each run a Tauri app on one laptop without colliding. It is
     // set by scripts/dev-ports.mjs; see `npm run ports`.
+    //
+    // This is why `npm run dev` carries NO `--port` flag: a CLI flag outranks
+    // the config, so `--port 8080` would silently defeat VITE_PORT and take
+    // `playwright.config.ts` (which threads the brokered port through the env)
+    // with it. Do not add it back.
     port: Number(process.env.VITE_PORT) || 8080,
     strictPort: true,
     // Harness runs write plans/artifacts under /workspace — do not full-reload the app.

@@ -1,0 +1,24 @@
+' Source: src/routes/login.tsx:109 — mode="signup"
+' Delta from signin: Name field added at top, submit relabelled, toggle inverted.
+@startsalt
+{+
+  .
+  {* F }
+  <b>Sign in to ForgeNotes
+  Signed-in pages sync to the database. Guests keep a local copy only.
+  .
+  Name
+  "Your name                "
+  Email
+  "you@example.com          "
+  Password
+  "At least 8 characters    "
+  [     Create account      ]
+  Already have an account? Sign in
+  --  or  --
+  [  Continue with Google   ]
+  [    Continue with X      ]
+  .
+  Continue as guest
+}
+@endsalt

@@ -1,0 +1,18 @@
+' Source: src/components/editor/PageEditor.tsx:150 — page.cover set
+' Cover bleeds -mx-4/-mx-6 WIDER than the text column. "Remove cover" is
+' opacity-0 until the cover is hovered — shown here as the reveal variant.
+@startsalt
+{
+  {
+    {#
+      <i>cover band, 144px (176px at sm), rounded-xl | [Remove cover]
+    }
+    <size:32>📘
+    { [☆ Favorite] | [✨ AI block] | [🖼 Cover] | [⋯] }
+    .
+    <size:28><b>Getting started
+    .
+    Welcome to ForgeNotes. Type / for commands.
+  }
+}
+@endsalt

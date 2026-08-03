@@ -1,0 +1,32 @@
+' Source: src/components/layout/AppShell.tsx:145 — below md, mobileSidebar
+' Drawer is min(280px,88vw) over a bg-black/40 scrim. Sidebar renders `mobile`:
+' full width, no collapse button. The scrim dismisses on click only — no Escape.
+@startsalt
+{+
+  {#
+    {
+      <b>W Workspace
+      --
+      🔍 Search
+      + New page
+      ⬇ Import / export
+      🔗 Link markdown
+      >_ Agent harness
+      --
+      <b>PRIVATE
+      📄 Getting started
+      --
+      🗑 Trash
+      ⚙ Settings
+    } |
+    {
+      <i>scrim
+      <i>bg-black/40
+      .
+      .
+      .
+      .
+    }
+  }
+}
+@endsalt

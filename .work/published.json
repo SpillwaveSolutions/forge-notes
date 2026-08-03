@@ -1,10 +1,10 @@
 {
   "_sidebar": {
     "page_id": "_Sidebar",
-    "render_hash": "91a4f6fc4c69",
+    "render_hash": "e5f61afa5d80",
     "rev": "5df4c2a328c38e08b1200bfbac41b921ade68df3",
-    "source": "docs/.index/rendered/_Sidebar.md",
-    "source_hash": "91a4f6fc4c69",
+    "source": "generated",
+    "source_hash": "e5f61afa5d80",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/_Sidebar"
   },
   "home": {
@@ -230,5 +230,103 @@
     "truth_state": "snapshot",
     "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Roadmap-2026-08-01_v0.2.0-release",
     "wiki_key": "roadmap-snapshot/2026-08-01_v0.2.0-release"
+  },
+  "ui/README": {
+    "source": "docs/ui/README.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-Screens",
+    "page_id": "UI-Screens",
+    "source_hash": "3a7ae6bcf1a0",
+    "render_hash": "6e0f9888981b"
+  },
+  "ui/TEMPLATE": {
+    "source": "docs/ui/TEMPLATE.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-TEMPLATE",
+    "page_id": "UI-TEMPLATE",
+    "source_hash": "a1605dbbf133",
+    "render_hash": "97b553e9ee6c"
+  },
+  "ui/ai-panels": {
+    "source": "docs/ui/ai-panels.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-ai-panels",
+    "page_id": "UI-ai-panels",
+    "source_hash": "c50dd2d55c43",
+    "render_hash": "edb895787a60"
+  },
+  "ui/ai-setup-wizard": {
+    "source": "docs/ui/ai-setup-wizard.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-ai-setup-wizard",
+    "page_id": "UI-ai-setup-wizard",
+    "source_hash": "243f2cb9ade4",
+    "render_hash": "52e71a3b64eb"
+  },
+  "ui/app-shell": {
+    "source": "docs/ui/app-shell.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-app-shell",
+    "page_id": "UI-app-shell",
+    "source_hash": "ba2aef0b070f",
+    "render_hash": "0b3549049f1e"
+  },
+  "ui/blocks": {
+    "source": "docs/ui/blocks.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-blocks",
+    "page_id": "UI-blocks",
+    "source_hash": "1e65ee8eafd8",
+    "render_hash": "5555dea9eddc"
+  },
+  "ui/command-palette": {
+    "source": "docs/ui/command-palette.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-command-palette",
+    "page_id": "UI-command-palette",
+    "source_hash": "6e548ea9af34",
+    "render_hash": "b67d01322091"
+  },
+  "ui/dialogs": {
+    "source": "docs/ui/dialogs.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-dialogs",
+    "page_id": "UI-dialogs",
+    "source_hash": "c62718163adc",
+    "render_hash": "8d6f6e79e0a0"
+  },
+  "ui/harness": {
+    "source": "docs/ui/harness.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-harness",
+    "page_id": "UI-harness",
+    "source_hash": "a1f3fea5cc0b",
+    "render_hash": "704a97f27d5b"
+  },
+  "ui/login": {
+    "source": "docs/ui/login.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-login",
+    "page_id": "UI-login",
+    "source_hash": "709d2c763bd7",
+    "render_hash": "f046be839028"
+  },
+  "ui/mounted-markdown": {
+    "source": "docs/ui/mounted-markdown.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-mounted-markdown",
+    "page_id": "UI-mounted-markdown",
+    "source_hash": "5fcb12159faa",
+    "render_hash": "aca733d533be"
+  },
+  "ui/page-editor": {
+    "source": "docs/ui/page-editor.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-page-editor",
+    "page_id": "UI-page-editor",
+    "source_hash": "fa39e6fa1466",
+    "render_hash": "810f09d0844d"
+  },
+  "ui/sidebar": {
+    "source": "docs/ui/sidebar.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-sidebar",
+    "page_id": "UI-sidebar",
+    "source_hash": "3e753bbfb8fe",
+    "render_hash": "3e97d586846c"
+  },
+  "ui/tokens": {
+    "source": "docs/ui/tokens.md",
+    "url": "https://github.com/SpillwaveSolutions/forge-notes/wiki/UI-tokens",
+    "page_id": "UI-tokens",
+    "source_hash": "fd57c856fbb2",
+    "render_hash": "4d977879348c"
   }
 }

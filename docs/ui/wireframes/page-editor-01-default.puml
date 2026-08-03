@@ -1,0 +1,22 @@
+' Source: src/components/editor/PageEditor.tsx:148 — no cover
+' max-w-3xl centred column. Blocks are pl-10/pl-12; hover handles live at
+' -left-12, OUTSIDE the row, in that gutter.
+@startsalt
+{
+  {
+    <size:32>📘
+    { [☆ Favorite] | [✨ AI block] | [🖼 Cover] | [⋯] }
+    .
+    <size:28><b>Getting started
+    .
+    Welcome to ForgeNotes. Type / for commands.
+    .
+    <b><size:20>A heading
+    • A bullet
+    1. A numbered item
+    [ ] A todo
+    .
+    <i>(≈128px of empty space — the "Add block at end" target, invisible)
+  }
+}
+@endsalt

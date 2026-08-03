@@ -1,0 +1,18 @@
+' Source: src/components/markdown/MountedMarkdownView.tsx:216 — mode="browse"
+' The "Linked · not imported" pill is the screen's whole thesis: the only
+' on-screen thing distinguishing a linked file from a workspace page, which
+' renders in the same frame at the same column width.
+' ".." appears only when dirPath is non-empty.
+@startsalt
+{
+  {
+    { (🔗 Linked · not imported) | docs | / | guides }
+    .
+    📂 ..
+    📁 tutorials
+    📁 reference
+    📝 getting-started.md
+    📝 troubleshooting.md
+  }
+}
+@endsalt

@@ -1,0 +1,16 @@
+' Source: src/components/ai/AiSetupWizard.tsx:737 AiSetupBanner
+' Returns null when setupComplete — so present in a fresh workspace, gone in a
+' configured one. Appears in AiBlockPanel AND AiEditDialog. Its presence is
+' ALWAYS an acceptable difference; only its content is rubric'd.
+@startsalt
+{^"✨ AI block                                    Deep Agents"
+  {#
+    ✨ Set up AI — Grok, Claude, Codex CLI, MCP…  (LangChain Deep Agents)
+  }
+  <i>Uses page context. Backends: Deep Agents, API keys, or coding CLIs…
+  .
+  { [Summary] | [Todos] | [Table] | [Outline] | [Diagram] }
+  .
+  { "Custom instruction…                    " | [▶ Run] }
+}
+@endsalt

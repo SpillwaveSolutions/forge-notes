@@ -1,0 +1,24 @@
+' Source: src/components/editor/SlashMenu.tsx:52 — role=listbox, w-72, max-h-72
+' filterBlockTypes matches label, description AND keywords — "h1" finds
+' Heading 1, "hr" finds Divider, though neither string is on screen.
+' `left` is clamped to innerWidth-300, so a menu near the right edge shifts.
+@startsalt
+{+
+  <b>BASIC BLOCKS
+  { [T] | <b>Text | }
+  <i>     Plain paragraph
+  { [H] | <b>Heading 1 | }
+  <i>     Large section heading
+  { [H] | <b>Heading 2 | }
+  <i>     Medium section heading
+  { [H] | <b>Heading 3 | }
+  <i>     Small section heading
+  { [•] | <b>Bulleted list | }
+  <i>     Unordered list
+  { [1] | <b>Numbered list | }
+  <i>     Ordered list
+  --
+  <i>…14 in total; scrolls at max-h-72
+  <i>no match renders a smaller panel: "No matching blocks"
+}
+@endsalt

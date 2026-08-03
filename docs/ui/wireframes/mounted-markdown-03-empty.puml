@@ -1,0 +1,16 @@
+' Source: src/components/markdown/MountedMarkdownView.tsx:160
+' !mount || !selection. Reached by clearing the selection while still in mount
+' mode — not a common state. Note the header strip is absent entirely here,
+' pill included: the early return precedes it.
+@startsalt
+{
+  {
+    .
+    .
+    🔗
+    Select a linked markdown file from the sidebar.
+    .
+    .
+  }
+}
+@endsalt

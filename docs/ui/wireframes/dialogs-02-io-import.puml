@@ -1,0 +1,20 @@
+' Source: src/components/markdown/MarkdownIODialog.tsx:238 — Import tab
+' TRAP: both buttons trigger a HIDDEN <input type=file> via ref.click(), which
+' opens a native OS picker. That blocks all further automation, exactly like
+' confirm(). Capture the rest state; never click them while driving.
+@startsalt
+{+
+  <b>📤 Markdown import / export                     X
+  Move pages as folders of .md files — or export a hierarchy.
+  ==
+  { Export | <b>Import }
+  --
+  [ ] Nest under current page
+  .
+  [       ⬆ Import .md or .zip        ]
+  [   📥 Import folder of markdown    ]
+  .
+  <i>Folders become parent pages; each .md becomes a page. Content is
+  <i>COPIED into the workspace (unlike linked mounts).
+}
+@endsalt

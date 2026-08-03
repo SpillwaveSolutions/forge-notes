@@ -1,0 +1,23 @@
+' Source: src/components/layout/Sidebar.tsx:263, 469 — [data-hover-reveal]
+' REVEAL state (.ui-reveal forces opacity-1 on ALL rows at once; a real :hover
+' reveals exactly one). Page rows gain ⋯ and +; mount rows gain Unlink.
+@startsalt
+{+
+  { <b>W  My Workspace | ☁ | [«] }
+  --
+  🔍 Search
+  +  New page
+  ==
+  <b>PRIVATE
+  { v 📄 Getting started | ⋯ | + }
+  {   > 📄   Sub-page   | ⋯ | + }
+  { > 📄 Roadmap        | ⋯ | + }
+  .
+  <b>LINKED MARKDOWN
+  { > 🔗 docs           | ⛓ }
+  <i>Link folder (no import)
+  ==
+  🗑 Trash
+  ⚙ Settings
+}
+@endsalt

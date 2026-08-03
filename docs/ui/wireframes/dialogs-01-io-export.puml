@@ -1,0 +1,24 @@
+' Source: src/components/markdown/MarkdownIODialog.tsx:192 — Export tab
+' The tabs are a hand-rolled pair of buttons, NOT role=tablist.
+' Non-obvious coupling: ticking "Include child pages" DISABLES "Download single
+' .md", a button whose label never mentions the checkbox.
+@startsalt
+{+
+  <b>📤 Markdown import / export                     X
+  Move pages as folders of .md files — or export a hierarchy.
+  ==
+  { <b>Export | Import }
+  --
+  Current page: 📘 <b>Getting started
+  [X] Include child pages (folder hierarchy)
+  .
+  [        ⬇ Download as .zip         ]
+  [       Download single .md         ]   <i>(disabled while ^ is ticked)
+  .
+  {^"Write to server folder"
+    "/workspace/markdown-mounts/export           "
+    <i>Allowed under /workspace
+    [ 📤 Write markdown dir ]
+  }
+}
+@endsalt

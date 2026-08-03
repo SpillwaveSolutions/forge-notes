@@ -1,0 +1,23 @@
+' Source: src/components/harness/HarnessPanel.tsx:236 — Single agent tab
+' The CLI <pre> is LIVE: it interpolates the current selections, so it changes
+' as the form changes. Its text is an acceptable difference; its presence is not.
+@startsalt
+{+
+  <b>>_ Meta-harness · CLI agents                    X
+  Plan → Implement → Review → Validate…
+  { ( Workflow ) | ( <b>Single agent ) | ( Backends ) }
+  ==
+  Backend slot (executor.harness)
+  ^● Mock (mock)^
+  .
+  Agent YAML
+  ^reviewer.yaml^
+  Message
+  "Review the auth change                       "
+  [ ▶ Run agent ]
+  .
+  {SI
+    wks harness run reviewer --message "Review the auth change" --backend mock
+  }
+}
+@endsalt

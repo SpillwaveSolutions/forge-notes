@@ -1,0 +1,33 @@
+' Source: src/components/editor/BlockRow.tsx:394 — all 14 data-block-type values
+' REST state: handles are opacity-0 at -left-12 and therefore absent here.
+' One wireframe for all 14 on purpose — 14 files would need re-approving on any
+' shared-chrome change, for a distinction blocks.md's table already carries.
+@startsalt
+{
+  {
+    <size:28><b>heading1
+    <size:22><b>heading2
+    <size:18><b>heading3
+    paragraph — body text, no ornament
+    • bullet
+    1. numbered
+    2. numbered — resets to 1 after ANY other type
+    [ ] todo, unchecked
+    [X] todo, checked (struck through)
+    { > toggle — collapsed hides its children }
+    {#
+      | quote — left rule, indented, muted
+    }
+    {^"💡 callout — filled panel, emoji, leading-relaxed" }
+    {SI
+      code — mono, min-h-16, filled surface
+    }
+    {#
+      mermaid — a rendered <svg>. Internals are ALWAYS acceptable differences.
+    }
+    {^"✨ ai — the generate panel, see ai-panels.md" }
+    --
+    <i>divider ^ — a rule. No text, no focus target.
+  }
+}
+@endsalt

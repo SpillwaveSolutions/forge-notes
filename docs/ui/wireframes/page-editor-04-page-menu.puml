@@ -1,0 +1,11 @@
+' Source: src/components/editor/PageEditor.tsx:262 — the ⋯ Page actions menu
+' NOTE the wording: "Move to trash" here, "Delete" in the sidebar row menu, for
+' the SAME archive operation. Both current; they disagree.
+@startsalt
+{+
+  + Add sub-page
+  ⧉ Duplicate
+  --
+  <color:#c2410c>🗑 Move to trash
+}
+@endsalt
