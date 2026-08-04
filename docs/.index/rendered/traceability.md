@@ -2,6 +2,26 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Run Grok/Claude/Codex CLIs natively on desktop so AI works without a server
+`01KZ5E9E7C6ZWQC79W7REW6Q1W` · status: done
+- targets: release/v0.3.1
+
+### AI silently no-ops on desktop: asset protocol returns index.html with HTTP 200, so streamAi reads it as success
+`01KZ4G3ZQY3SEY7FM6Q4SQHKNC` · status: done
+- targets: release/v0.3.1
+
+### Desktop window blanks on boot: Better Auth rejects the tauri:// scheme as a base URL
+`01KZ4FQNVT4N2H3XV0QYY9X1SS` · status: done
+- targets: release/v0.3.1
+
+### Desktop app ships a dead placeholder — SSR build has no static entry, so the UI never loads
+`01KZ4D4P3YE5H94JXVZKCA08YY` · status: done
+- targets: release/v0.3.1
+
+### cargo tauri build fails: scrubbed icon filename has no image extension
+`01KZ3Z46SDWDGVD3CFZ0Z1S9FB` · status: done
+- targets: release/v0.3.1
+
 ### Command palette shows an empty RESULTS heading with no 'No pages found' message
 `01KZ2MM83PJSTBEFWA953QPTSS` · status: done
 - targets: release/v0.3.0

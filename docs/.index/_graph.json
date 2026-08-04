@@ -121,6 +121,31 @@
    "type": "targets"
   },
   {
+   "from": "item/01KZ3Z46SDWDGVD3CFZ0Z1S9FB",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01KZ4D4P3YE5H94JXVZKCA08YY",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01KZ4FQNVT4N2H3XV0QYY9X1SS",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01KZ4G3ZQY3SEY7FM6Q4SQHKNC",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
+   "from": "item/01KZ5E9E7C6ZWQC79W7REW6Q1W",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
    "from": "roadmap-snapshot/2026-08-01_v0.2.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -227,6 +252,31 @@
    "status": "done",
    "title": "Command palette shows an empty RESULTS heading with no 'No pages found' message"
   },
+  "item/01KZ3Z46SDWDGVD3CFZ0Z1S9FB": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "cargo tauri build fails: scrubbed icon filename has no image extension"
+  },
+  "item/01KZ4D4P3YE5H94JXVZKCA08YY": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Desktop app ships a dead placeholder \u2014 SSR build has no static entry, so the UI never loads"
+  },
+  "item/01KZ4FQNVT4N2H3XV0QYY9X1SS": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Desktop window blanks on boot: Better Auth rejects the tauri:// scheme as a base URL"
+  },
+  "item/01KZ4G3ZQY3SEY7FM6Q4SQHKNC": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "AI silently no-ops on desktop: asset protocol returns index.html with HTTP 200, so streamAi reads it as success"
+  },
+  "item/01KZ5E9E7C6ZWQC79W7REW6Q1W": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Run Grok/Claude/Codex CLIs natively on desktop so AI works without a server"
+  },
   "pr/1": {
    "doc_type": "pr"
   },
@@ -255,6 +305,9 @@
    "doc_type": "release"
   },
   "release/v0.3.0": {
+   "doc_type": "release"
+  },
+  "release/v0.3.1": {
    "doc_type": "release"
   },
   "roadmap": {

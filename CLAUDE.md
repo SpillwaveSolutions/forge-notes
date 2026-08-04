@@ -262,6 +262,39 @@ or signed out*, so redirecting on it bounces signed-in users on every hard reloa
 must keep it, or Vite ships them to the browser and the app dies with
 `AsyncLocalStorage is not a constructor`.
 
+**The desktop app has no server, and the asset protocol hides that.** An unknown path
+under `tauri://localhost` does not 404 — it returns `index.html` with **HTTP 200**. So
+`res.ok` is true, `/api/*` "succeeds", and the caller silently parses HTML. That is exactly
+how the AI block came to do nothing at all when Run was pressed. Any client that fetches an
+app endpoint must check the **content type**, not just `res.ok`.
+
+Consequence for features: anything needing the server (Deep Agents, direct model APIs, sign-in,
+DB sync, server-side search) cannot work in the packaged desktop app. AI avoids the problem
+rather than solving it — `src-tauri/src/ai_cli.rs` runs the local Grok/Claude/Codex CLIs
+directly, so on desktop there is no server in the path at all. Two things about it:
+**spawning lives in Rust on purpose** (the shell plugin's scope would need `args: true`,
+which is a webview → arbitrary-argv bridge), and **binaries are resolved by searching known
+install dirs**, because a `.app` launched from Finder inherits a minimal `PATH` without
+`~/.local/bin`, `~/.grok/bin`, or Homebrew — so `Command::new("grok")` works from a terminal
+and fails from the Dock.
+
+**Better Auth rejects the `tauri://` scheme.** `createAuthClient` infers its base URL from
+`window.location.origin` and throws on any non-http(s) protocol — at module scope, so the
+route chunk dies and the router boundary paints "Something went wrong!" over the whole app.
+`src/lib/auth/base-url.ts` overrides the base URL only when the origin is not http(s). This
+is the one sanctioned edit inside the otherwise-frozen `src/lib/auth/*`.
+
+**Cargo does not track `dist-desktop/`.** Tauri embeds `frontendDist` at compile time, so
+rebuilding the frontend and re-running `tauri build` yields a binary carrying the PREVIOUS
+bundle, silently — three rounds of desktop fixes were built, installed, and tested without
+one of them reaching the running app. `scripts/build-desktop.mjs` now bumps a tracked Rust
+source to force the re-embed. If you ever doubt what a binary contains:
+`strings -a <bin> | grep -o 'index-[A-Za-z0-9_-]*\.js'` versus `dist-desktop/index.html`.
+
+**`window.onerror` cannot see a React error boundary.** The boundary *catches* the exception,
+so a global listener never fires and its silence proves nothing. Route errors are reported
+through the router's `defaultOnCatch` (`src/router.tsx`) instead.
+
 **Data access has no ORM.** Raw SQL through the tagged-template wrapper in `src/lib/db.ts`.
 Always go through `getSql()` — it normalizes driver differences between PGlite and `pg`
 (int8 → Number, date → `YYYY-MM-DD`, interval → text) so results stay JSON-safe. Bypassing it

@@ -106,8 +106,27 @@ Notion-style blocks stored per page as structured JSON.
 | **Direct model API** | Single-shot chat (streamable) |
 | **Claude Code CLI** | Shell `claude -p` (prefers stream-json) |
 | **Codex CLI** | Shell `codex exec` (stdout stream) |
-| **Grok CLI** | Shell `grok chat --stream` / fallbacks |
+| **Grok CLI** | Shell `grok -p` (headless one-shot) |
 | **Local demo** | Offline placeholders without keys/CLIs |
+
+### Web vs desktop
+
+On the **web** every backend runs server-side: the browser posts to
+`/api/ai/stream` and the server spawns the CLI or calls the provider.
+
+The **desktop app has no server**, so it runs the CLIs itself — through a Rust
+command (`src-tauri/src/ai_cli.rs`) rather than HTTP. Consequences worth knowing:
+
+- **Grok CLI is the desktop default**, then Claude, then Codex — whichever is
+  installed. A fresh desktop install is switched off `deepagents` automatically,
+  because that backend needs both an API key and a server.
+- **The API-key backends (Deep Agents, Direct) do not work on desktop.** They
+  need the server. Choosing one falls back to an installed CLI.
+- **Binaries are found by searching**, not by `PATH` alone: an app launched from
+  Finder gets a minimal `PATH` that excludes `~/.local/bin`, `~/.grok/bin`, and
+  Homebrew — where all three CLIs actually live.
+- Spawning happens in Rust, not via the shell plugin, so the webview can never
+  choose the binary or its arguments.
 
 ### Model providers (API path)
 

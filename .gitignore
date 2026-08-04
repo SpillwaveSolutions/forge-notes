@@ -23,3 +23,7 @@ screenshots/ui/
 # Tauri bundler embeds these into the binary, so they are a build artifact,
 # not a source. 126 files / 4.4 MB slipped in with the icon fix.
 dist-desktop/
+
+# Build output — committed by accident twice now (dist-desktop in #23, .vercel in f018dab).
+.vercel/
+dist/
