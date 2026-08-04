@@ -1,5 +1,7 @@
 use tauri::Manager;
 
+mod ai_cli;
+
 /// App identity for the frontend (`window.__TAURI_INTERNALS__` is also set by Tauri).
 #[tauri::command]
 fn desktop_info() -> serde_json::Value {
@@ -71,7 +73,13 @@ pub fn run() {
   });
 
   builder
-    .invoke_handler(tauri::generate_handler![desktop_info, which_binary, log_client_error])
+    .invoke_handler(tauri::generate_handler![
+      desktop_info,
+      which_binary,
+      log_client_error,
+      ai_cli::ai_cli_available,
+      ai_cli::run_ai_cli
+    ])
     .setup(|app| {
       if let Some(window) = app.get_webview_window("main") {
         let _ = window.set_title("ForgeNotes");

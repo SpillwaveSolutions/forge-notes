@@ -13,7 +13,10 @@ import {
   parseModelPayload,
 } from "@/lib/ai/prompts";
 
-export type CliBackendId = "claude-cli" | "codex-cli" | "grok-cli";
+import { extractStreamJsonToken, isCliBackend, type CliBackendId } from "@/lib/ai/cli-protocol";
+
+export { isCliBackend };
+export type { CliBackendId };
 
 export interface CliBackendInfo {
   id: CliBackendId;
@@ -81,10 +84,6 @@ export async function listCliBackends(): Promise<CliBackendInfo[]> {
   return out;
 }
 
-export function isCliBackend(id: string | undefined | null): id is CliBackendId {
-  return id === "claude-cli" || id === "codex-cli" || id === "grok-cli";
-}
-
 export interface CliStreamChunk {
   type: "token" | "status" | "done" | "error";
   text?: string;
@@ -129,35 +128,6 @@ function fallbackArgs(
   if (backend === "codex-cli") return { bin, args: ["exec", prompt], mode: "text" };
   if (backend === "grok-cli") return { bin, args: ["-p", prompt], mode: "text" };
   return null;
-}
-
-function extractStreamJsonToken(line: string): string {
-  const trimmed = line.trim();
-  if (!trimmed.startsWith("{")) return "";
-  try {
-    const obj = JSON.parse(trimmed) as Record<string, unknown>;
-    if (obj.type === "content_block_delta") {
-      const delta = obj.delta as { type?: string; text?: string } | undefined;
-      if (delta?.text) return delta.text;
-    }
-    if (obj.type === "assistant" && typeof obj.message === "object" && obj.message) {
-      const msg = obj.message as { content?: Array<{ type?: string; text?: string }> };
-      if (Array.isArray(msg.content)) {
-        return msg.content.map((c) => c.text ?? "").join("");
-      }
-    }
-    if (typeof obj.text === "string") return obj.text;
-    if (typeof obj.content === "string") return obj.content;
-    if (typeof obj.delta === "string") return obj.delta;
-    if (obj.type === "item.completed" || obj.type === "message") {
-      const item = obj.item as { text?: string; content?: string } | undefined;
-      if (item?.text) return item.text;
-      if (item?.content) return item.content;
-    }
-  } catch {
-    return "";
-  }
-  return "";
 }
 
 type QItem =

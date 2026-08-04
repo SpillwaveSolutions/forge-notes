@@ -1,5 +1,14 @@
 import type { AiRequest, AiResponse, AiStreamEvent } from "@/lib/ai/types";
 import type { UserAiSettings } from "@/lib/ai/settings-types";
+import { isCliBackend } from "@/lib/ai/cli-protocol";
+import {
+  buildSystemPrompt,
+  buildUserPrompt,
+  composeCliPrompt,
+  parseModelPayload,
+} from "@/lib/ai/prompts";
+import { firstAvailableDesktopCli, runDesktopCli } from "@/lib/ai/desktop-cli";
+import { isTauri } from "@/lib/tauri";
 
 export interface StreamAiOptions {
   request: AiRequest;
@@ -18,6 +27,30 @@ export interface StreamAiOptions {
  * Prefers coding-agent CLIs when selected in settings (claude / codex / grok).
  */
 export async function streamAi(opts: StreamAiOptions): Promise<AiResponse> {
+  // On desktop a CLI backend runs the binary directly through Rust. Going out
+  // to `/api/ai/stream` would mean asking a server that does not exist to spawn
+  // a process that is already on this machine.
+  const chosen = opts.backend ?? opts.clientSettings?.backend;
+  const backend = isTauri() && !isCliBackend(chosen) ? await firstAvailableDesktopCli() : chosen;
+  if (isTauri() && isCliBackend(backend)) {
+    const prompt = composeCliPrompt(
+      buildSystemPrompt(opts.request.action),
+      buildUserPrompt(opts.request),
+    );
+    const raw = await runDesktopCli({
+      backend,
+      prompt,
+      signal: opts.signal,
+      onToken: opts.onToken,
+      onStatus: opts.onStatus,
+    });
+    // Same post-processing the server does, so a summary comes back as blocks
+    // on desktop exactly as it does on the web.
+    const result = parseModelPayload(raw.text, opts.request.action, backend);
+    opts.onDone?.(result, raw.text);
+    return result;
+  }
+
   const res = await fetch("/api/ai/stream", {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
@@ -45,7 +78,7 @@ export async function streamAi(opts: StreamAiOptions): Promise<AiResponse> {
     throw new Error(
       contentType.includes("text/html")
         ? "AI needs the ForgeNotes server, and this build has none reachable. " +
-          "Run `npm run dev` and reopen the desktop app, or use the web app."
+            "Run `npm run dev` and reopen the desktop app, or use the web app."
         : `Expected an event stream, got ${contentType || "no content type"}.`,
     );
   }

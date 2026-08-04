@@ -6,6 +6,7 @@ import {
   type UserAiSettings,
 } from "@/lib/ai/settings-types";
 import { uid } from "@/lib/utils";
+import { CLI_PREFERENCE, isCliBackend } from "@/lib/ai/cli-protocol";
 
 interface AiSettingsState extends UserAiSettings {
   hydrated: boolean;
@@ -107,6 +108,7 @@ export const useAiSettings = create<AiSettingsState>()(
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHydrated(true);
+        void applyDesktopDefaults();
       },
     },
   ),
@@ -114,4 +116,31 @@ export const useAiSettings = create<AiSettingsState>()(
 
 export function snapshotAiSettings(): UserAiSettings {
   return useAiSettings.getState().getSettings();
+}
+
+/**
+ * Point a fresh desktop install at a CLI that is actually installed.
+ *
+ * The shipped default is `deepagents`, which needs an API key AND a server to
+ * run in. The packaged desktop app has neither, so that default can only fail
+ * there. A local CLI needs no key, no server, and no network round trip.
+ *
+ * Deliberately only touches an install the user has not configured: it returns
+ * early once `setupComplete` is set or a CLI is already chosen, so it can never
+ * overwrite a deliberate choice on a later launch.
+ */
+async function applyDesktopDefaults(): Promise<void> {
+  const { isTauri } = await import("@/lib/tauri");
+  if (!isTauri()) return;
+
+  const current = useAiSettings.getState();
+  if (current.setupComplete || isCliBackend(current.backend)) return;
+
+  const { desktopCliAvailable } = await import("@/lib/ai/desktop-cli");
+  for (const backend of CLI_PREFERENCE) {
+    if (await desktopCliAvailable(backend)) {
+      useAiSettings.getState().patch({ backend, enabled: true });
+      return;
+    }
+  }
 }

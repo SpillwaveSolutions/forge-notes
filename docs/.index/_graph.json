@@ -141,6 +141,11 @@
    "type": "targets"
   },
   {
+   "from": "item/01KZ5E9E7C6ZWQC79W7REW6Q1W",
+   "to": "release/v0.3.1",
+   "type": "targets"
+  },
+  {
    "from": "roadmap-snapshot/2026-08-01_v0.2.0-release",
    "to": "roadmap",
    "type": "snapshot-of"
@@ -266,6 +271,11 @@
    "doc_type": "item",
    "status": "done",
    "title": "AI silently no-ops on desktop: asset protocol returns index.html with HTTP 200, so streamAi reads it as success"
+  },
+  "item/01KZ5E9E7C6ZWQC79W7REW6Q1W": {
+   "doc_type": "item",
+   "status": "done",
+   "title": "Run Grok/Claude/Codex CLIs natively on desktop so AI works without a server"
   },
   "pr/1": {
    "doc_type": "pr"

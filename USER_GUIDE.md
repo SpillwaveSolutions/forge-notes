@@ -138,6 +138,15 @@ Server env vars (`XAI_API_KEY`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`) can backf
 
 Streaming uses CLI stdout (stream-json for Claude when available).
 
+**On the desktop app a CLI is the only thing that works, and it is the default.**
+The desktop build has no server, so the API-key backends (Deep Agents, Direct
+model API) cannot run there; a fresh install is pointed at **Grok CLI**, falling
+back to Claude then Codex depending on what is installed. The app finds these
+binaries itself — including in `~/.local/bin`, `~/.grok/bin`, and Homebrew,
+which are *not* on the PATH an app launched from the Dock inherits — so there is
+nothing to configure. If none of the three is installed, AI says so rather than
+appearing to run.
+
 ### MCP servers (Deep Agents)
 
 1. Wizard → **MCP tools** → **Add server**.
