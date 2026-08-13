@@ -46,3 +46,4 @@
 {"actor":"richardhightower","ev":"01KZ5E9E7CBS3G84F89HK7EWA0","item":"01KZ5E9E7C6ZWQC79W7REW6Q1W","op":"create","set":{"discovered_during":"01KZ4G3ZQY3SEY7FM6Q4SQHKNC","kind":"feature","level":"story","milestone":"v0.3.1","priority":"P2","status":"todo","title":"Run Grok/Claude/Codex CLIs natively on desktop so AI works without a server","unplanned":true},"ts":"2026-08-04T03:50:15Z"}
 {"actor":"richardhightower","ev":"01KZ5EA14CA3YCB52DJCHAZYKR","item":"01KZ5E9E7C6ZWQC79W7REW6Q1W","op":"close","set":{"status":"done"},"ts":"2026-08-04T03:50:34Z"}
 {"actor":"richardhightower","ev":"01KZWHKX3YB15ZJXED9SNG7SFD","item":"01KZWHKX3YSNP570HXWBRVSYZE","op":"create","set":{"kind":"ops","level":"story","milestone":"v0.3.1","priority":"P2","status":"todo","title":"Release v0.3.1"},"ts":"2026-08-13T03:10:55Z"}
+{"actor":"richardhightower","ev":"01KZWHWWXXW639NXKKB0HKAG5P","item":"01KZWHKX3YSNP570HXWBRVSYZE","op":"close","set":{"status":"done"},"ts":"2026-08-13T03:15:50Z"}
