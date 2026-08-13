@@ -3,10 +3,10 @@
   {
    "canonical_key": "roadmap",
    "doc_type": "roadmap",
-   "generated_at": "2026-08-13T03:10:55Z",
+   "generated_at": "2026-08-13T03:15:50Z",
    "slug": "roadmap",
    "source": "docs/roadmap.md",
-   "source_hash": "c6270b17",
+   "source_hash": "72208efa",
    "title": "Roadmap",
    "truth_state": "current",
    "wiki": "https://github.com/SpillwaveSolutions/forge-notes/wiki/Roadmap",
