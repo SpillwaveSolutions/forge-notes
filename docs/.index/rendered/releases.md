@@ -2,6 +2,15 @@
 
 _What shipped, with the frozen evidence for each release. Generated; do not edit._
 
+## v0.3.1 — 2026-08-13
+
+- Roadmap snapshot: [[Roadmap-2026-08-13_v0.3.1-release]]
+- Shipped: cargo tauri build fails: scrubbed icon filename has no image extension
+- Shipped: Desktop app ships a dead placeholder — SSR build has no static entry, so the UI never loads
+- Shipped: Desktop window blanks on boot: Better Auth rejects the tauri:// scheme as a base URL
+- Shipped: AI silently no-ops on desktop: asset protocol returns index.html with HTTP 200, so streamAi reads it as success
+- Shipped: Run Grok/Claude/Codex CLIs natively on desktop so AI works without a server
+
 ## v0.3.0 — 2026-08-03
 
 - Roadmap snapshot: [[Roadmap-2026-08-03_v0.3.0-release]]

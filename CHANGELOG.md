@@ -3,6 +3,82 @@
 Notable changes to ForgeNotes. Released sections are frozen — corrections go in
 the next release's notes.
 
+## 0.3.1 — 2026-08-12
+
+The desktop app runs. v0.3.0 shipped source only because `cargo tauri build` had
+never been run here; running it surfaced a chain of five defects, each of which
+hid the next. Three of them shared a failure mode worth naming: **the code was
+right, and the thing that read it was lying.**
+
+### Added
+
+- **AI runs on desktop by spawning the local coding CLIs.** `grok`, `claude` and
+  `codex` are invoked directly, output streamed back over a `tauri::ipc::Channel`
+  — so on desktop there is no server in the path at all, rather than a server we
+  pretend is reachable. Grok and Claude are the defaults, picked by probing which
+  binary actually exists on first run.
+
+  Two decisions in it are load-bearing. **Spawning lives in Rust**, not behind
+  the shell plugin, because scoping that plugin for this would need `args: true`
+  — a webview → arbitrary-argv bridge, which is a much larger hole than the
+  feature is worth. And **binaries are resolved by searching known install
+  directories** before falling back to `PATH`: a `.app` launched from Finder
+  inherits a minimal `PATH` with no `~/.local/bin`, `~/.grok/bin` or Homebrew, so
+  `Command::new("grok")` works from a terminal and fails from the Dock.
+
+### Fixed
+
+- **`tauri.conf.json` named an icon `icons/henry.w@example.net`** — a scrubbing
+  artefact from `128x128@2x.png`. v0.3.0's notes called this harmless because the
+  file and the reference agreed. They did, and it still broke every build: the
+  bundler infers image format from the extension, `.net` is not one, and
+  `cargo tauri build` died with *"The image format could not be determined."*
+  That is why the packaging path stayed unexercised — the first person to run it
+  hit a wall. **Generalises past this file: "the references agree" is not "it
+  works."** The consistency was checkable by reading; the format inference was not.
+- **The desktop window painted nothing but "Something went wrong!"** Better Auth's
+  `createAuthClient` infers its base URL from `window.location.origin` and throws
+  on any non-http(s) protocol — at module scope, under `tauri://localhost`, so the
+  route chunk died and the router boundary covered the whole app.
+  `src/lib/auth/base-url.ts` overrides the base URL only when the origin is not
+  http(s); every web origin is untouched. This is the one sanctioned edit inside
+  the otherwise-frozen `src/lib/auth/*`.
+- **Every fix before that one was invisible, because the binary carried a stale
+  frontend.** Cargo does not track `dist-desktop/`, and Tauri embeds
+  `frontendDist` at compile time — so rebuilding the frontend and re-running
+  `tauri build` yields a binary containing the *previous* bundle, silently. Three
+  rounds of desktop fixes were built, installed and tested without one of them
+  reaching the running app. `scripts/build-desktop.mjs` now bumps a tracked Rust
+  source to force the re-embed.
+- **The error instrumentation could not see the error.** A React error boundary
+  *catches* the exception, so `window.onerror` never fires — its silence proved
+  nothing while the app was visibly showing a boundary. Route errors now report
+  through the router's `defaultOnCatch`.
+- **The AI block did nothing at all when Run was pressed.** An unknown path under
+  `tauri://localhost` does not 404 — the asset protocol returns `index.html` with
+  **HTTP 200**. So `res.ok` was true, `/api/ai/stream` "succeeded", and the client
+  parsed HTML into an empty result with no error anywhere. Clients that fetch an
+  app endpoint now check the **content type**, not just `res.ok`, and say plainly
+  that the server is unreachable.
+
+### Changed
+
+- `dist-desktop/` and `.vercel/` are untracked build output (249 files left the
+  index) and ESLint ignores them — they were contributing 10,468 of a reported
+  10,990 lint problems.
+- A claim in `safe-storage.ts` that WebKit denies storage under `tauri://localhost`
+  was measured and found false. The guard stays — it is still correct for Safari
+  private browsing — but the docstrings no longer assert something untrue.
+
+### Known issues
+
+- **The `.dmg` is unsigned and un-notarised**, so Gatekeeper blocks it on any
+  machine but the one that built it.
+- **Sign-in, database sync and server-side search do not work in the packaged
+  desktop app.** They need a server the bundle does not contain; AI now sidesteps
+  this rather than solving it, and the rest awaits a backend decision.
+- The two pre-existing lint errors remain; lint stays advisory in CI.
+
 ## 0.3.0 — 2026-08-03
 
 Closes the UI verification loop. v0.2.0 proved it on one screen; this release

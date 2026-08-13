@@ -2,6 +2,10 @@
 
 _The evidence chain: plan → item → ticket → code → release, forward and backward. Generated from `docs/.index/_graph.json`; do not edit._
 
+### Release v0.3.1
+`01KZWHKX3YSNP570HXWBRVSYZE` · status: todo
+- targets: release/v0.3.1
+
 ### Run Grok/Claude/Codex CLIs natively on desktop so AI works without a server
 `01KZ5E9E7C6ZWQC79W7REW6Q1W` · status: done
 - targets: release/v0.3.1

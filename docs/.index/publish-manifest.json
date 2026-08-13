@@ -24,7 +24,7 @@
    "frozen": false,
    "page_name": "Index-Releases",
    "render": "as-is",
-   "render_hash": "042532137775",
+   "render_hash": "7240d614566b",
    "source": "docs/.index/rendered/releases.md",
    "title": "Releases Index",
    "truth_state": "current",
@@ -44,7 +44,7 @@
    "frozen": false,
    "page_name": "Index-Traceability",
    "render": "as-is",
-   "render_hash": "890f04c37b1d",
+   "render_hash": "446e758b25dd",
    "source": "docs/.index/rendered/traceability.md",
    "title": "Traceability Index",
    "truth_state": "current",
@@ -371,11 +371,21 @@
    "wiki_key": "item/01KZ5E9E7C6ZWQC79W7REW6Q1W"
   },
   {
-   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-04T03:50:34Z. Historical snapshots are linked from [[Index-Releases]].",
+   "frozen": false,
+   "page_name": "Ticket-01KZWHKX3YSNP570HXWBRVSYZE",
+   "render": "as-is",
+   "render_hash": "c0002ccb37bb",
+   "source": "docs/.index/rendered/tickets/01KZWHKX3YSNP570HXWBRVSYZE.md",
+   "title": "Release v0.3.1",
+   "truth_state": "open",
+   "wiki_key": "item/01KZWHKX3YSNP570HXWBRVSYZE"
+  },
+  {
+   "banner": "> **Current** \u2014 this is the living version; regenerated at 2026-08-13T03:10:55Z. Historical snapshots are linked from [[Index-Releases]].",
    "frozen": false,
    "page_name": "Roadmap",
    "render": "doc+banner",
-   "render_hash": "bfb7436af456",
+   "render_hash": "432dac0b2730",
    "source": "docs/roadmap.md",
    "title": "Roadmap",
    "truth_state": "current",
@@ -402,10 +412,21 @@
    "title": "Roadmap",
    "truth_state": "snapshot",
    "wiki_key": "roadmap-snapshot/2026-08-03_v0.3.0-release"
+  },
+  {
+   "banner": "> **Snapshot** of release v0.3.1 (2026-08-13) \u2014 frozen record. The current version is [[Roadmap]].",
+   "frozen": true,
+   "page_name": "Roadmap-2026-08-13_v0.3.1-release",
+   "render": "doc+banner",
+   "render_hash": "5068412a657f",
+   "source": "docs/roadmap/2026-08-13_v0.3.1-release.md",
+   "title": "Roadmap",
+   "truth_state": "snapshot",
+   "wiki_key": "roadmap-snapshot/2026-08-13_v0.3.1-release"
   }
  ],
  "sidebar": {
-  "render_hash": "44c742b62e38",
+  "render_hash": "79c295cd701e",
   "source": "docs/.index/rendered/_Sidebar.md"
  },
  "version": 1
