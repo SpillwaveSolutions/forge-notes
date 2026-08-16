@@ -12,6 +12,7 @@ export type BlockType =
   | "callout"
   | "toggle"
   | "mermaid"
+  | "table"
   | "ai";
 
 export interface Block {
