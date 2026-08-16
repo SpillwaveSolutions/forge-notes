@@ -13,6 +13,7 @@ import {
   MessageSquare,
   ChevronRight,
   Workflow,
+  Table2,
   Sparkles,
 } from "lucide-react";
 import type { BlockType } from "@/lib/types";
@@ -122,6 +123,14 @@ export const BLOCK_TYPES: BlockTypeMeta[] = [
     icon: Workflow,
     keywords: ["mermaid", "diagram", "flowchart", "sequence", "graph"],
     placeholder: "flowchart TD\n  A[Start] --> B[End]",
+  },
+  {
+    type: "table",
+    label: "Table",
+    description: "Rows and columns as a markdown table.",
+    icon: Table2,
+    keywords: ["table", "grid", "spreadsheet", "columns"],
+    placeholder: "| Column 1 | Column 2 |\n| --- | --- |\n|  |  |",
   },
   {
     type: "ai",

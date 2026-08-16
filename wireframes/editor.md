@@ -21,11 +21,11 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 |---------|------|------------------|
 | Cover / icon | media | Optional page chrome |
 | Title | heading field | Untitled placeholder |
-| Blocks | list | paragraph, heading1–3, bullet, numbered, todo, toggle, quote, callout, code, mermaid, ai, divider (`BLOCK_TYPES`) |
+| Blocks | list | paragraph, heading1–3, bullet, numbered, todo, toggle, quote, callout, code, mermaid, table, ai, divider (`BLOCK_TYPES`) |
 | Slash menu | popup | Type `/` for commands; keywords in block-types.ts. Paragraph placeholder is `Type '/' for commands`. |
 | AI block | panel | Generate summary/todos/table/outline/diagram from page context |
 | AI rewrite | dialog | Improve / Shorter / Expand / Fix grammar / custom |
-| Mermaid | diagram | Renders from block source |
+| Table | grid | Slash `/table`. Markdown pipe table in `content`. Cells are editable; Add row / Add column. Import/export via convert.ts. |
 
 ## States
 - **Empty page**: first paragraph block with the slash placeholder.
@@ -36,6 +36,7 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 ## Acceptance Criteria
 - [ ] Title and block stack are visible for an open page.
 - [ ] Slash menu lists the block types in `BLOCK_TYPES`.
+- [ ] Table block renders an editable grid and serializes to a markdown pipe table.
 - [ ] AI block and AI rewrite dialog are reachable from the editor.
 - [ ] Mermaid block renders a diagram or an in-block error.
 - [ ] Empty page still shows a first block with Type / for commands.

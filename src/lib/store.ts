@@ -290,6 +290,10 @@ export const useWorkspace = create<WorkspaceState>()(
                       ...b,
                       type,
                       checked: type === "todo" ? (b.checked ?? false) : undefined,
+                      content:
+                        type === "table" && !b.content.includes("|")
+                          ? "| Column 1 | Column 2 |\n| --- | --- |\n|  |  |"
+                          : b.content,
                     }
                   : b,
               ),

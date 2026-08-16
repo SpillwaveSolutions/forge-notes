@@ -68,6 +68,10 @@ export function blocksToMarkdown(blocks: Block[]): string {
         lines.push("```");
         numbered = 0;
         break;
+      case "table":
+        lines.push(c.trim() || "|  |  |\n| --- | --- |\n|  |  |");
+        numbered = 0;
+        break;
       case "divider":
         lines.push("---");
         numbered = 0;
@@ -139,6 +143,21 @@ export function markdownToBlocks(md: string): Block[] {
       blocks.push(makeBlock("divider", ""));
       i += 1;
       continue;
+    }
+
+    if (line.includes("|") && /\|/.test(line)) {
+      const chunk: string[] = [];
+      while (i < lines.length && (lines[i]!.includes("|") || /^\s*$/.test(lines[i]!))) {
+        if (/^\s*$/.test(lines[i]!) && chunk.length) break;
+        if (!/^\s*$/.test(lines[i]!)) chunk.push(lines[i]!);
+        i += 1;
+      }
+      const hasSep = chunk.some((l) => /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$/.test(l));
+      if (hasSep || chunk.length >= 2) {
+        blocks.push(makeBlock("table", chunk.join("\n")));
+        continue;
+      }
+      i -= chunk.length;
     }
 
     const h = line.match(/^(#{1,3})\s+(.*)$/);
