@@ -21,12 +21,13 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 |---------|------|------------------|
 | Cover / icon | media | Optional page chrome |
 | Title | heading field | Untitled placeholder |
-| Blocks | list | paragraph, heading1–3, bullet, numbered, todo, toggle, quote, callout, code, mermaid, table, bookmark, ai, divider (`BLOCK_TYPES`) |
+| Blocks | list | paragraph, heading1–3, bullet, numbered, todo, toggle, quote, callout, code, mermaid, table, bookmark, image, ai, divider (`BLOCK_TYPES`) |
 | Slash menu | popup | Type `/` for commands; keywords in block-types.ts. Paragraph placeholder is `Type '/' for commands`. |
 | AI block | panel | Generate summary/todos/table/outline/diagram from page context |
 | AI rewrite | dialog | Improve / Shorter / Expand / Fix grammar / custom |
 | Table | grid | Slash `/table`. Markdown pipe table in `content`. Cells are editable; Add row / Add column. Import/export via convert.ts. |
 | Bookmark | card | Slash `/bookmark`. `content` holds a URL (optional title on a second line). Renders a link card with editable URL field; opens in a new tab. |
+| Image | media | Slash `/image`. `content` holds an image URL (optional alt text on a second line). Renders an editable URL/alt form plus an in-block image preview (`data-testid=image-block`). Broken/empty URL shows a dashed placeholder, not a crash. |
 
 ## States
 - **Empty page**: first paragraph block with the slash placeholder.
@@ -34,16 +35,19 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 - **Mermaid error**: in-block error, not a crash.
 - **Untitled**: title field empty shows Untitled in breadcrumbs, not in the field.
 - **Bookmark empty**: shows URL placeholder; no crash on invalid URL.
+- **Image empty / broken**: dashed placeholder; invalid URL does not crash the editor.
 
 ## Acceptance Criteria
 - [ ] Title and block stack are visible for an open page.
-- [ ] Slash menu lists the block types in `BLOCK_TYPES` including Bookmark.
+- [ ] Slash menu lists the block types in `BLOCK_TYPES` including Bookmark and Image.
 - [ ] Table block renders an editable grid and serializes to a markdown pipe table.
 - [ ] Bookmark block is insertable via `/bookmark`, stores a URL in `content`, and renders a clickable link card (`data-testid=bookmark-block`).
 - [ ] Bookmark round-trips through markdown as a bare URL or `[title](url)` link.
+- [ ] Image block is insertable via `/image`, stores a URL (+ optional alt) in `content`, and renders a preview (`data-testid=image-block`).
+- [ ] Image round-trips through markdown as `![alt](url)` (alt may be empty).
 - [ ] AI block and AI rewrite dialog are reachable from the editor.
 - [ ] Mermaid block renders a diagram or an in-block error.
 - [ ] Empty page still shows a first block with Type / for commands.
 
 ## Notes
-- Sources: PageEditor.tsx, BlockRow.tsx, SlashMenu.tsx, block-types.ts, BookmarkBlock.tsx, convert.ts.
+- Sources: PageEditor.tsx, BlockRow.tsx, SlashMenu.tsx, block-types.ts, BookmarkBlock.tsx, ImageBlock.tsx, convert.ts.
