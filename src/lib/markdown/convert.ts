@@ -72,6 +72,15 @@ export function blocksToMarkdown(blocks: Block[]): string {
         lines.push(c.trim() || "|  |  |\n| --- | --- |\n|  |  |");
         numbered = 0;
         break;
+      case "bookmark": {
+        const [urlLine, ...rest] = c.split("\n");
+        const url = (urlLine || "").trim();
+        const title = rest.join("\n").trim();
+        if (url && title) lines.push(`[${title}](${url})`);
+        else if (url) lines.push(url);
+        numbered = 0;
+        break;
+      }
       case "divider":
         lines.push("---");
         numbered = 0;
@@ -141,6 +150,22 @@ export function markdownToBlocks(md: string): Block[] {
 
     if (/^---+\s*$/.test(line)) {
       blocks.push(makeBlock("divider", ""));
+      i += 1;
+      continue;
+    }
+
+    // Standalone markdown link → bookmark: [title](url)
+    const mdLink = line.match(/^\s*\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)\s*$/);
+    if (mdLink) {
+      blocks.push(makeBlock("bookmark", `${mdLink[2]}\n${mdLink[1]}`));
+      i += 1;
+      continue;
+    }
+
+    // Bare URL line → bookmark
+    const bareUrl = line.match(/^\s*(https?:\/\/\S+)\s*$/);
+    if (bareUrl) {
+      blocks.push(makeBlock("bookmark", bareUrl[1]!));
       i += 1;
       continue;
     }

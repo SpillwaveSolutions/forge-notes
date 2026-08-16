@@ -38,6 +38,7 @@ import { getBlockMeta, BLOCK_TYPES } from "./block-types";
 import { SlashMenu, filterBlockTypes } from "./SlashMenu";
 import { MermaidDiagram } from "./MermaidDiagram";
 import { TableBlock } from "./TableBlock";
+import { BookmarkBlock } from "./BookmarkBlock";
 import { AiBlockPanel, type AiGeneratedBlock } from "./AiBlockPanel";
 import { AiEditDialog } from "./AiEditDialog";
 
@@ -238,14 +239,16 @@ export function BlockRow({
   };
 
   const canAiEdit =
-    block.type !== "divider" && block.type !== "ai" && block.type !== "mermaid";
+    block.type !== "divider" &&
+    block.type !== "ai" &&
+    block.type !== "mermaid" &&
+    block.type !== "table" &&
+    block.type !== "bookmark";
 
   if (block.type === "divider") {
     return (
       <div
         ref={rowRef}
-        // See the note on the `ai` early return below — same reason. THREE
-        // types took an early return past the wrapper that sets these.
         data-block-id={block.id}
         data-block-type={block.type}
         className="group relative flex items-center gap-1 py-2"
@@ -272,12 +275,6 @@ export function BlockRow({
     return (
       <div
         ref={rowRef}
-        // Same structural attributes as the general row below. They are easy to
-        // forget on an early return, and forgetting them is invisible: the
-        // block renders correctly, and only selector-based tooling notices that
-        // 3 of the 14 types cannot be addressed or counted. `e2e/a11y.spec.ts`
-        // now compares the rendered row count against the store, so a fourth
-        // early return fails loudly instead of silently.
         data-block-id={block.id}
         data-block-type={block.type}
         className="group relative py-1"
@@ -321,7 +318,6 @@ export function BlockRow({
     return (
       <div
         ref={rowRef}
-        // See the note on the `ai` early return above — same reason.
         data-block-id={block.id}
         data-block-type={block.type}
         className="group relative py-1"
@@ -422,6 +418,37 @@ export function BlockRow({
     );
   }
 
+  if (block.type === "bookmark") {
+    return (
+      <div
+        ref={rowRef}
+        data-block-id={block.id}
+        data-block-type={block.type}
+        className="group relative py-1"
+        style={indentStyle}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <BlockHandles
+          visible={hovered || isFocused}
+          canAiEdit={false}
+          onAdd={() => onEnter(block.id)}
+          onMoveUp={() => onMove(block.id, "up")}
+          onMoveDown={() => onMove(block.id, "down")}
+          onDelete={() => onDelete(block.id)}
+          onTypeChange={(t) => onTypeChange(block.id, t)}
+          onAiEdit={() => undefined}
+        />
+        <div className="rounded-xl border border-border bg-muted/20 p-3">
+          <div className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Bookmark
+          </div>
+          <BookmarkBlock content={block.content} onChange={(v) => onChange(block.id, v)} />
+        </div>
+      </div>
+    );
+  }
+
   const fieldClass = cn(
     "block w-full resize-none overflow-hidden border-0 bg-background p-0 text-foreground shadow-none outline-none ring-0 focus:outline-none focus:ring-0",
     "placeholder:text-muted-foreground/60",
@@ -441,10 +468,6 @@ export function BlockRow({
   return (
     <div
       ref={rowRef}
-      // Structural attributes, not one testid per block type: an agent can
-      // address and count all 14 types through these two, and they stay correct
-      // when a type is added. Reading type off class names is the alternative,
-      // and it breaks on any restyle.
       data-block-id={block.id}
       data-block-type={block.type}
       className={cn(
@@ -577,8 +600,6 @@ function BlockHandles({
 }) {
   return (
     <div
-      // opacity-0, not unmounted — clickable but invisible to a screenshot.
-      // `.ui-reveal` targets this so a rubric can capture the revealed state.
       data-hover-reveal
       className={cn(
         "absolute -left-12 top-1 flex items-center gap-0.5 opacity-0 transition-opacity max-sm:-left-10",
