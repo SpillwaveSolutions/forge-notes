@@ -15,6 +15,7 @@ import {
   Workflow,
   Table2,
   Sparkles,
+  Bookmark,
 } from "lucide-react";
 import type { BlockType } from "@/lib/types";
 
@@ -131,6 +132,14 @@ export const BLOCK_TYPES: BlockTypeMeta[] = [
     icon: Table2,
     keywords: ["table", "grid", "spreadsheet", "columns"],
     placeholder: "| Column 1 | Column 2 |\n| --- | --- |\n|  |  |",
+  },
+  {
+    type: "bookmark",
+    label: "Bookmark",
+    description: "Save a link as a card.",
+    icon: Bookmark,
+    keywords: ["bookmark", "link", "url", "web", "website", "href"],
+    placeholder: "https://",
   },
   {
     type: "ai",

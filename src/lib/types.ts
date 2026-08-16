@@ -13,6 +13,7 @@ export type BlockType =
   | "toggle"
   | "mermaid"
   | "table"
+  | "bookmark"
   | "ai";
 
 export interface Block {
