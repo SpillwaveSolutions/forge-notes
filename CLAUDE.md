@@ -358,3 +358,9 @@ Prefer editing these over adding new docs; several already cover what you might 
 | `FEATURES.md` / `USER_GUIDE.md` | Capability inventory / end-user manual — update when user-visible behavior changes. |
 | `TAURI.md`, `harness/README.md` | Desktop packaging; the meta-harness CLI and YAML. |
 | `deepagents-root/AGENTS.md` | Runtime system prompt for the **in-app** AI agent, not developer guidance. |
+
+
+## Spillwave UI Guard
+See `.claude/UI_GUARD.md` and the skills under `.spillwave/ui-guard/skills/`.
+Wireframe-first + adversarial review is required for non-trivial UI work.
+Plugin: https://github.com/SpillwaveSolutions/spillwave-ui-guard
