@@ -1,8 +1,13 @@
 # Wireframes
 
-This directory is required by Spillwave UI Guard.
+As-built UI contracts for ForgeNotes. Required by [Spillwave UI Guard](https://github.com/SpillwaveSolutions/spillwave-ui-guard).
 
-- One folder per feature or major screen
-- Use `_template.md` as the skeleton
-- Keep acceptance criteria current — the adversarial reviewer treats them as the contract
-- Source plugin: https://github.com/SpillwaveSolutions/spillwave-ui-guard
+Describe the **current** product. Update the matching file before changing layout, navigation, or a primary flow.
+
+| Screen | File |
+|--------|------|
+| App chrome | [shell.md](./shell.md) |
+| Page editor | [editor.md](./editor.md) |
+| Overlays (search, markdown I/O, AI, harness) | [overlays.md](./overlays.md) |
+
+Skeleton: [_template.md](./_template.md).
