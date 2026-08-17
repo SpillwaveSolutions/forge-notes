@@ -14,6 +14,7 @@ export type BlockType =
   | "mermaid"
   | "table"
   | "bookmark"
+  | "image"
   | "ai";
 
 export interface Block {

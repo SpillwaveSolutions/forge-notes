@@ -16,6 +16,7 @@ import {
   Table2,
   Sparkles,
   Bookmark,
+  Image,
 } from "lucide-react";
 import type { BlockType } from "@/lib/types";
 
@@ -140,6 +141,14 @@ export const BLOCK_TYPES: BlockTypeMeta[] = [
     icon: Bookmark,
     keywords: ["bookmark", "link", "url", "web", "website", "href"],
     placeholder: "https://",
+  },
+  {
+    type: "image",
+    label: "Image",
+    description: "Embed an image from a URL.",
+    icon: Image,
+    keywords: ["image", "img", "photo", "picture", "media", "figure"],
+    placeholder: "https://example.com/image.png",
   },
   {
     type: "ai",
