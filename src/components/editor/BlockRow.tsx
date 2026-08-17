@@ -39,6 +39,7 @@ import { SlashMenu, filterBlockTypes } from "./SlashMenu";
 import { MermaidDiagram } from "./MermaidDiagram";
 import { TableBlock } from "./TableBlock";
 import { BookmarkBlock } from "./BookmarkBlock";
+import { ImageBlock } from "./ImageBlock";
 import { AiBlockPanel, type AiGeneratedBlock } from "./AiBlockPanel";
 import { AiEditDialog } from "./AiEditDialog";
 
@@ -243,7 +244,8 @@ export function BlockRow({
     block.type !== "ai" &&
     block.type !== "mermaid" &&
     block.type !== "table" &&
-    block.type !== "bookmark";
+    block.type !== "bookmark" &&
+    block.type !== "image";
 
   if (block.type === "divider") {
     return (
@@ -444,6 +446,37 @@ export function BlockRow({
             Bookmark
           </div>
           <BookmarkBlock content={block.content} onChange={(v) => onChange(block.id, v)} />
+        </div>
+      </div>
+    );
+  }
+
+  if (block.type === "image") {
+    return (
+      <div
+        ref={rowRef}
+        data-block-id={block.id}
+        data-block-type={block.type}
+        className="group relative py-1"
+        style={indentStyle}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <BlockHandles
+          visible={hovered || isFocused}
+          canAiEdit={false}
+          onAdd={() => onEnter(block.id)}
+          onMoveUp={() => onMove(block.id, "up")}
+          onMoveDown={() => onMove(block.id, "down")}
+          onDelete={() => onDelete(block.id)}
+          onTypeChange={(t) => onTypeChange(block.id, t)}
+          onAiEdit={() => undefined}
+        />
+        <div className="rounded-xl border border-border bg-muted/20 p-3">
+          <div className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            Image
+          </div>
+          <ImageBlock content={block.content} onChange={(v) => onChange(block.id, v)} />
         </div>
       </div>
     );

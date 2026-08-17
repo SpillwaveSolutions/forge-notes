@@ -81,6 +81,14 @@ export function blocksToMarkdown(blocks: Block[]): string {
         numbered = 0;
         break;
       }
+      case "image": {
+        const [urlLine, ...rest] = c.split("\n");
+        const url = (urlLine || "").trim();
+        const alt = rest.join("\n").trim();
+        if (url) lines.push(`![${alt}](${url})`);
+        numbered = 0;
+        break;
+      }
       case "divider":
         lines.push("---");
         numbered = 0;
@@ -154,6 +162,16 @@ export function markdownToBlocks(md: string): Block[] {
       continue;
     }
 
+    // Standalone markdown image → image: ![alt](url)
+    const mdImage = line.match(/^\s*!\[([^\]]*)\]\(([^)\s]+)\)\s*$/);
+    if (mdImage) {
+      const alt = (mdImage[1] || "").trim();
+      const url = (mdImage[2] || "").trim();
+      blocks.push(makeBlock("image", alt ? `${url}\n${alt}` : url));
+      i += 1;
+      continue;
+    }
+
     // Standalone markdown link → bookmark: [title](url)
     const mdLink = line.match(/^\s*\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)\s*$/);
     if (mdLink) {
@@ -162,10 +180,15 @@ export function markdownToBlocks(md: string): Block[] {
       continue;
     }
 
-    // Bare URL line → bookmark
+    // Bare URL line → image (common extensions) or bookmark
     const bareUrl = line.match(/^\s*(https?:\/\/\S+)\s*$/);
     if (bareUrl) {
-      blocks.push(makeBlock("bookmark", bareUrl[1]!));
+      const u = bareUrl[1]!;
+      if (/\.(png|jpe?g|gif|webp|svg|avif|bmp)(\?.*)?$/i.test(u)) {
+        blocks.push(makeBlock("image", u));
+      } else {
+        blocks.push(makeBlock("bookmark", u));
+      }
       i += 1;
       continue;
     }
