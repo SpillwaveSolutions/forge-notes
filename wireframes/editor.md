@@ -27,7 +27,7 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 | AI rewrite | dialog | Improve / Shorter / Expand / Fix grammar / custom |
 | Table | grid | Slash `/table`. Markdown pipe table in `content`. Cells are editable; Add row / Add column. Import/export via convert.ts. |
 | Bookmark | card | Slash `/bookmark`. `content` holds a URL (optional title on a second line). Renders a link card with editable URL field; opens in a new tab. |
-| Image | media | Slash `/image`. `content` holds an image URL (optional alt text on a second line). Renders a preview `<img>` with editable URL + alt fields. Broken/empty URL shows a dashed placeholder, not a crash. |
+| Image | media | Slash `/image`. `content` holds an image URL or a `data:image/…` payload (optional alt on a second line). Renders a preview. **Upload** (`data-testid=image-upload`) and drag-and-drop accept a local image (≤2 MB) and store it as a data URL. Broken/empty URL shows a dashed placeholder, not a crash. |
 
 ## States
 - **Empty page**: first paragraph block with the slash placeholder.
@@ -36,6 +36,7 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 - **Untitled**: title field empty shows Untitled in breadcrumbs, not in the field.
 - **Bookmark empty**: shows URL placeholder; no crash on invalid URL.
 - **Image empty / broken**: dashed placeholder; img onError swaps to the same placeholder.
+- **Image from file**: Upload or drop stores a data URL; the URL field shows an Embedded file chip instead of the raw payload.
 
 ## Acceptance Criteria
 - [ ] Title and block stack are visible for an open page.
@@ -44,6 +45,7 @@ Edit a Notion-style page: title, icon/cover, and a stack of blocks. Slash-insert
 - [ ] Bookmark block is insertable via `/bookmark`, stores a URL in `content`, and renders a clickable link card (`data-testid=bookmark-block`).
 - [ ] Bookmark round-trips through markdown as a bare URL or `[title](url)` link.
 - [ ] Image block is insertable via `/image`, stores a URL (+ optional alt) in `content`, and renders a preview card (`data-testid=image-block`).
+- [ ] Image accepts a local file via Upload / drop (`data-testid=image-upload`); files over 2 MB are rejected with in-block copy, not a crash.
 - [ ] Image round-trips through markdown as `![alt](url)` or a bare image URL.
 - [ ] AI block and AI rewrite dialog are reachable from the editor.
 - [ ] Mermaid block renders a diagram or an in-block error.
